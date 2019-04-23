@@ -1,0 +1,7 @@
+{
+  "name": "My Health",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
