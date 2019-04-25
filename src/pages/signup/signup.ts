@@ -4,14 +4,12 @@ import { AlertController, Loading, LoadingController, NavController, NavParams }
 
 import 'rxjs/add/operator/first';
 
-import firebase from 'firebase';
-import { FirebaseAuthState } from 'angularfire2';
-
 import { AuthService } from './../../providers/auth.service';
-import { HomePage } from './../home/home';
 import { User } from './../../models/user.model';
 import { UserService } from './../../providers/user.service';
 import { MyHealthPage } from '../my-health/my-health';
+
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'page-signup',
@@ -60,12 +58,12 @@ export class SignupPage {
           this.authService.createAuthUser({
             email: formUser.email,
             password: formUser.password
-          }).then((authState: FirebaseAuthState) => {
+          }).then((authUser: firebase.User) => {
 
             delete formUser.password;
             let newUser: User = formUser;
             newUser.createDate = firebase.database.ServerValue.TIMESTAMP;
-            let uuid: string = authState.auth.uid;
+            let uuid: string = authUser.uid;
 
             this.userService.create(newUser, uuid)
               .then(() => {

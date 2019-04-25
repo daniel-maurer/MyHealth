@@ -5,6 +5,8 @@ import { AuthService } from './../../providers/auth.service';
 import { User } from './../../models/user.model';
 import { UserService } from './../../providers/user.service';
 
+import * as firebase from 'firebase/app';
+
 @Component({
   selector: 'page-user-profile',
   templateUrl: 'user-profile.html',
@@ -18,7 +20,7 @@ export class UserProfilePage {
 
   constructor(
     public authService: AuthService,
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public userService: UserService
   ) {
@@ -29,7 +31,8 @@ export class UserProfilePage {
   }
 
   ionViewDidLoad() {
-    this.userService.currentUser
+    this.userService
+      .mapObjectKey<User>(this.userService.currentUser)
       .subscribe((user: User) => {
         this.currentUser = user;
       });
@@ -37,18 +40,20 @@ export class UserProfilePage {
 
   onSubmit(event: Event): void {
     event.preventDefault();
-    
+
     if (this.filePhoto) {
 
       let uploadTask = this.userService.uploadPhoto(this.filePhoto, this.currentUser.$key);
 
-      uploadTask.on('state_changed', (snapshot) => {
+      uploadTask.on('state_changed', (snapshot: firebase.storage.UploadTaskSnapshot) => {
 
         this.uploadProgress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
 
       }, (error: Error) => {
         // catch error
-      }, () => {
+      });
+
+      uploadTask.then((UploadTaskSnapshot: firebase.storage.UploadTaskSnapshot) => {
         this.editUser(uploadTask.snapshot.downloadURL);
       });
 
@@ -58,7 +63,7 @@ export class UserProfilePage {
 
   }
 
-  onPhoto(event): void {  
+  onPhoto(event): void {
     this.filePhoto = event.target.files[0];
   }
 

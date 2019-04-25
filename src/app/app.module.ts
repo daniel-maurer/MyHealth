@@ -32,21 +32,11 @@ import { UserService } from './../providers/user.service';
 import { ToDosPage } from '../pages/to-dos/to-dos';
 
 const firebaseAppConfig: FirebaseAppConfig = {
-   // apiKey: "AIzaSyBHOi0nJETBKQ7XCqSw-e2SeWra49tPIwc",
-  //  authDomain: "dolphin-a6820.firebaseapp.com",
-  //  databaseURL: "https://dolphin-a6820.firebaseio.com",
-  //  storageBucket: "dolphin-a6820.appspot.com"
-
     apiKey: "AIzaSyBdGxWWveVlY0uHvVHLPjF9SgnEd1Be4Pg",
     authDomain: "myhealthdb.firebaseapp.com",
     databaseURL: "https://myhealthdb.firebaseio.com",
     storageBucket: "myhealthdb.appspot.com",
 };
-
-const firebaseAuthConfig = {
-  provider: AuthProviders.Custom,
-  method: AuthMethods.Password
-}
 
 @NgModule({
   declarations: [
@@ -68,10 +58,12 @@ const firebaseAuthConfig = {
     ToDosPage,
   ],
   imports: [
-    AngularFireModule.initializeApp(firebaseAppConfig, firebaseAuthConfig),
+    AngularFireModule.initializeApp(firebaseAppConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp, { mode: 'md' })
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

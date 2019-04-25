@@ -1,20 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { MenuController, NavController } from 'ionic-angular';
 
-import { FirebaseListObservable, FirebaseAuthState } from 'angularfire2';
+import { AngularFireList } from 'angularfire2/database';
 
 import { AuthService } from './../../providers/auth.service';
 import { Chat } from './../../models/chat.model';
 import { ChatPage } from './../chat/chat';
 import { ChatService } from './../../providers/chat.service';
-import { ClassService } from './../../providers/class.service';
-import { LessonService } from './../../providers/lesson.service';
 import { SignupPage } from './../signup/signup';
 import { User } from './../../models/user.model';
 import { UserService } from './../../providers/user.service';
 
-import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-home',
@@ -22,33 +21,17 @@ import firebase from 'firebase';
 })
 export class HomePage {
 
-  chats: FirebaseListObservable<Chat[]>;
-  users: FirebaseListObservable<User[]>;
+  chats: Observable<Chat[]>;
+  users: Observable<User[]>;
   view: string = 'chats';
-  currentUser: User;
 
   constructor(
     public authService: AuthService,
     public chatService: ChatService,
-    public classService: ClassService,
-    public lessonService: LessonService,
     public menuCtrl: MenuController,
     public navCtrl: NavController,
     public userService: UserService
   ) {
-
-    authService
-      .auth
-      .subscribe((authState: FirebaseAuthState) => {
-
-        if (authState) {
-          userService.currentUser
-            .subscribe((user: User) => {
-              this.currentUser = user;
-            });
-        }
-
-      });
 
   }
 
@@ -57,18 +40,18 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this.chats = this.chatService.chats;
+    this.chats = this.chatService.mapListKeys<Chat>(this.chatService.chats)
+      .map((chats: Chat[]) => chats.reverse());
     this.users = this.userService.users;
 
-    this.classService.setClasses();
-    this.lessonService.setLessons();
     this.menuCtrl.enable(true, 'user-menu');
   }
 
   filterItems(event: any): void {
     let searchTerm: string = event.target.value;
 
-    this.chats = this.chatService.chats;
+    this.chats = this.chatService.mapListKeys<Chat>(this.chatService.chats)
+      .map((chats: Chat[]) => chats.reverse());
     this.users = this.userService.users;
 
     if (searchTerm) {
@@ -76,12 +59,12 @@ export class HomePage {
       switch(this.view) {
 
         case 'chats':
-          this.chats = <FirebaseListObservable<Chat[]>>this.chats
-            .map((chats: Chat[]) => chats.filter((chat: Chat) => (chat.title.toLowerCase().indexOf(searchTerm.toLocaleLowerCase()) > -1)));
+          this.chats = this.chats
+            .map((chats: Chat[]) => chats.filter((chat: Chat) => (chat.title && chat.title.toLowerCase().indexOf(searchTerm.toLocaleLowerCase()) > -1)));
           break;
           
         case 'users':
-          this.users = <FirebaseListObservable<User[]>>this.users
+          this.users = this.users
             .map((users: User[]) => users.filter((user: User) => (user.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)));
           break;
 
@@ -93,15 +76,17 @@ export class HomePage {
 
   onChatCreate(recipientUser: User): void {
 
-    this.userService.currentUser
+    this.userService
+      .mapObjectKey<User>(this.userService.currentUser)
       .first()
       .subscribe((currentUser: User) => {
 
-        this.chatService.getDeepChat(currentUser.$key, recipientUser.$key)
+        this.chatService
+          .mapObjectKey<Chat>(this.chatService.getDeepChat(currentUser.$key, recipientUser.$key))
           .first()
-          .subscribe((chat: Chat) => {
+          .subscribe((chat: Chat) => {            
 
-            if (chat.hasOwnProperty('$value')) {
+            if (!chat.title) {              
 
               let timestamp: Object = firebase.database.ServerValue.TIMESTAMP;
 
@@ -124,11 +109,13 @@ export class HomePage {
 
   onChatOpen(chat: Chat): void {
 
-    let recipientUserId: string = chat.$key;
+    let recipientUserId: string = chat.$key;    
 
-    this.userService.get(recipientUserId)
+    this.userService.mapObjectKey<User>(
+      this.userService.get(recipientUserId)
+    )
       .first()
-      .subscribe((user: User) => {
+      .subscribe((user: User) => {        
 
         this.navCtrl.push(ChatPage, {
           recipientUser: user
