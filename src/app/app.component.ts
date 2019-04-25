@@ -4,12 +4,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthService } from './../providers/auth.service';
-import { HomePage } from './../pages/home/home';
 import { SigninPage } from './../pages/signin/signin';
 import { User } from './../models/user.model';
 import { UserService } from './../providers/user.service';
 
 import * as firebase from 'firebase/app';
+import { MyHealthPage } from '../pages/my-health/my-health';
 
 @Component({
   templateUrl: 'app.html'
@@ -34,7 +34,7 @@ export class MyApp {
 
         if (authUser) {
 
-          this.rootPage = HomePage;
+          this.rootPage = MyHealthPage;
 
           userService.currentUser
             .valueChanges()

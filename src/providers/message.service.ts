@@ -8,7 +8,7 @@ import { BaseService } from "./base.service";
 import { Message } from '../models/message.model';
 
 import * as firebase from 'firebase/app';
-import { Observable } from 'rxjs/Observable';
+
 
 @Injectable()
 export class MessageService extends BaseService {

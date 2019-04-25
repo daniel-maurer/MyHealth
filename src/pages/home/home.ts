@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-
 import { MenuController, NavController } from 'ionic-angular';
-
-import { AngularFireList } from 'angularfire2/database';
 
 import { AuthService } from './../../providers/auth.service';
 import { Chat } from './../../models/chat.model';
@@ -14,6 +11,7 @@ import { UserService } from './../../providers/user.service';
 
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'page-home',
@@ -24,8 +22,10 @@ export class HomePage {
   chats: Observable<Chat[]>;
   users: Observable<User[]>;
   view: string = 'chats';
+  currentUser: User;
 
   constructor(
+    public afAuth: AngularFireAuth,
     public authService: AuthService,
     public chatService: ChatService,
     public menuCtrl: MenuController,
@@ -33,7 +33,15 @@ export class HomePage {
     public userService: UserService
   ) {
 
+    this.userService
+    .mapObjectKey<User>(this.userService.currentUser)
+    .first()
+    .subscribe((user: User) => {
+              this.currentUser = user;
+    });
+
   }
+  
 
   ionViewCanEnter(): Promise<boolean> {
     return this.authService.authenticated;
@@ -42,8 +50,8 @@ export class HomePage {
   ionViewDidLoad() {
     this.chats = this.chatService.mapListKeys<Chat>(this.chatService.chats)
       .map((chats: Chat[]) => chats.reverse());
-    this.users = this.userService.users;
 
+    this.users = this.userService.users;
     this.menuCtrl.enable(true, 'user-menu');
   }
 

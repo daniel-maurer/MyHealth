@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators/map';
 
 import { FirebaseApp } from "angularfire2";
 import { AngularFireAuth } from "angularfire2/auth";
-import { AngularFireDatabase, AngularFireObject, AngularFireList } from "angularfire2/database";
+import { AngularFireDatabase, AngularFireObject } from "angularfire2/database";
 
 import { BaseService } from "./base.service";
 import { User } from './../models/user.model';

@@ -1,13 +1,9 @@
 <ion-header>
-  <!--
-  <custom-logged-header [title]="view | capitalize:true"></custom-logged-header>
--->
   <ion-navbar>
  <button ion-button menuToggle="user-menu">
     <ion-icon name="menu"></ion-icon>
   </button>
-
-    <ion-segment *ngIf="!currentUser.isPatient" [(ngModel)]="view">
+    <ion-segment *ngIf="!currentUser?.isPatient" [(ngModel)]="view">
       <ion-segment-button value="chats">
         Chats
       </ion-segment-button>
@@ -16,7 +12,7 @@
       </ion-segment-button>
     </ion-segment>
 
-    <ion-title *ngIf="currentUser.isPatient">Mensagens</ion-title>
+    <ion-title *ngIf="currentUser?.isPatient">Mensagens</ion-title>
   </ion-navbar>
 
   

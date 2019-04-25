@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, Loading, LoadingController, NavController, NavParams } from 'ionic-angular';
 
 import { AuthService } from './../../providers/auth.service';
-import { HomePage } from './../home/home';
 import { SignupPage } from './../signup/signup';
 
 @Component({
