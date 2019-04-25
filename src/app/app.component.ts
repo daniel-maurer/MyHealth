@@ -32,6 +32,7 @@ export class MyApp {
 
         if (authState) {
           userService.currentUser
+            .valueChanges()
             .subscribe((user: User) => {
               this.currentUser = user;
             });
