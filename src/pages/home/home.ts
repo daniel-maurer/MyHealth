@@ -10,8 +10,8 @@ import { User } from './../../models/user.model';
 import { UserService } from './../../providers/user.service';
 
 import * as firebase from 'firebase/app';
-import { Observable } from 'rxjs/Observable';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs';
+import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'page-home',
@@ -25,21 +25,17 @@ export class HomePage {
   currentUser: User;
 
   constructor(
-    public afAuth: AngularFireAuth,
     public authService: AuthService,
     public chatService: ChatService,
     public menuCtrl: MenuController,
     public navCtrl: NavController,
     public userService: UserService
   ) {
-
     this.userService
     .mapObjectKey<User>(this.userService.currentUser)
-    .first()
     .subscribe((user: User) => {
               this.currentUser = user;
     });
-
   }
   
 
@@ -49,8 +45,9 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.chats = this.chatService.mapListKeys<Chat>(this.chatService.chats)
-      .map((chats: Chat[]) => chats.reverse());
-
+    .pipe(
+      map((chats: Chat[]) => chats.reverse())
+    );
     this.users = this.userService.users;
     this.menuCtrl.enable(true, 'user-menu');
   }
@@ -59,23 +56,28 @@ export class HomePage {
     let searchTerm: string = event.target.value;
 
     this.chats = this.chatService.mapListKeys<Chat>(this.chatService.chats)
-      .map((chats: Chat[]) => chats.reverse());
+    .pipe(
+      map((chats: Chat[]) => chats.reverse())
+    );
     this.users = this.userService.users;
 
     if (searchTerm) {
-
+      
       switch(this.view) {
 
         case 'chats':
           this.chats = this.chats
-            .map((chats: Chat[]) => chats.filter((chat: Chat) => (chat.title && chat.title.toLowerCase().indexOf(searchTerm.toLocaleLowerCase()) > -1)));
+            .pipe(
+              map((chats: Chat[]) => chats.filter((chat: Chat) => (chat.title && chat.title.toLowerCase().indexOf(searchTerm.toLocaleLowerCase()) > -1)))
+            );
           break;
           
         case 'users':
           this.users = this.users
-            .map((users: User[]) => users.filter((user: User) => (user.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)));
+            .pipe(
+              map((users: User[]) => users.filter((user: User) => (user.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)))
+            );
           break;
-
       }
 
     }
@@ -83,15 +85,12 @@ export class HomePage {
   }
 
   onChatCreate(recipientUser: User): void {
-
     this.userService
       .mapObjectKey<User>(this.userService.currentUser)
-      .first()
       .subscribe((currentUser: User) => {
 
         this.chatService
           .mapObjectKey<Chat>(this.chatService.getDeepChat(currentUser.$key, recipientUser.$key))
-          .first()
           .subscribe((chat: Chat) => {            
 
             if (!chat.title) {              
@@ -116,13 +115,11 @@ export class HomePage {
   }
 
   onChatOpen(chat: Chat): void {
-
     let recipientUserId: string = chat.$key;    
 
     this.userService.mapObjectKey<User>(
       this.userService.get(recipientUserId)
     )
-      .first()
       .subscribe((user: User) => {        
 
         this.navCtrl.push(ChatPage, {

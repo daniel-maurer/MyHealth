@@ -3,9 +3,9 @@ import { Http } from '@angular/http';
 
 import { Observable } from 'rxjs';
 
-import { FirebaseApp } from "angularfire2";
-import { AngularFireAuth } from "angularfire2/auth";
-import { AngularFireDatabase, AngularFireObject } from "angularfire2/database";
+import { FirebaseApp } from "@angular/fire";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireDatabase, AngularFireObject } from "@angular/fire/database";
 
 import { BaseService } from "./base.service";
 import { User } from './../models/user.model';

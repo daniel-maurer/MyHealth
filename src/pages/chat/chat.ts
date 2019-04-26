@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Content, NavController, NavParams } from 'ionic-angular';
 
-import { AngularFireList, AngularFireObject } from 'angularfire2/database';
+import { AngularFireList, AngularFireObject } from '@angular/fire/database';
 
 import { AuthService } from './../../providers/auth.service';
 import { Chat } from './../../models/chat.model';
@@ -10,7 +10,7 @@ import { Message } from './../../models/message.model';
 import { MessageService } from './../../providers/message.service';
 import { User } from './../../models/user.model';
 import { UserService } from './../../providers/user.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import firebase from 'firebase';
 
@@ -50,7 +50,6 @@ export class ChatPage {
 
     this.userService
       .mapObjectKey<User>(this.userService.currentUser)
-      .first()
       .subscribe((currentUser: User) => {
         this.sender = currentUser;
 
@@ -60,7 +59,6 @@ export class ChatPage {
         if (this.recipient.photo) {
           this.chatService
             .mapObjectKey(this.chat1)
-            .first()
             .subscribe((chat: Chat) => {
               this.chatService.updatePhoto(this.chat1, chat.photo, this.recipient.photo);
             });
@@ -79,7 +77,6 @@ export class ChatPage {
 
         this.messages
           .valueChanges()
-          .first()
           .subscribe((messages: Message[]) => {
 
             if (messages.length === 0) {

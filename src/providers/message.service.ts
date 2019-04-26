@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 import { BaseService } from "./base.service";
 import { Message } from '../models/message.model';
@@ -20,7 +20,7 @@ export class MessageService extends BaseService {
     super();
   }
 
-  create(message: Message, listMessages: AngularFireList<Message>): Promise<void> {
+  create(message: Message, listMessages: AngularFireList<Message>): Promise<firebase.database.Reference> {
     return Promise.resolve(listMessages.push(message));
   }
 

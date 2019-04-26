@@ -1,6 +1,7 @@
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs';
-import { AngularFireList, AngularFireObject } from 'angularfire2/database';
+import { AngularFireList, AngularFireObject } from '@angular/fire/database';
+import 'rxjs-compat';
 
 const extractError = (error: Response | any): string => {
     // In a real world app, we might use a remote logging infrastructure

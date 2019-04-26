@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/first';
-import 'rxjs/add/operator/map';
 
-import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireAuth } from "@angular/fire/auth";
 
 import { BaseService } from "./base.service";
 
@@ -27,8 +25,8 @@ export class AuthService extends BaseService {
 
   signinWithEmail(user: {email: string, password: string}): Promise<boolean> {
     return this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
-      .then((authUser: firebase.User) => {
-          return authUser != null;
+      .then((authUser) => {
+        return authUser != null;
       }).catch(this.handlePromiseError);
   }
 
@@ -40,7 +38,6 @@ export class AuthService extends BaseService {
     return new Promise((resolve, reject) => {
       this.afAuth
         .authState
-        .first()
         .subscribe((authUser: firebase.User) => {
           (authUser) ? resolve(true) : reject(false);
         });
