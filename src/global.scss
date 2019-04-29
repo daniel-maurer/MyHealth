@@ -1,0 +1,82 @@
+// http://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+.scroll-content {
+  margin-top: 0 !important;
+}
+
+ion-header,
+.toolbar-background {
+  &:after {
+    height: 0 !important;
+  }
+}
+
+ion-title {
+  --height: 50px !important;
+  font-size: 30px !important;
+  font-weight: 300 !important;
+  width: 100%;
+  left: 0% !important;
+  //new
+  position: absolute !important;
+  left: 50%;
+  top: 11px !important;
+  //position: absolute !important;
+  // top: 36% !important;
+  text-align: center !important;
+}
+
+ion-content {
+  //position: absolute !important;
+  //top: 50px !important;
+}
+
+.icon-3em {
+  font-size: 3em;
+}
+
+ion-toolbar {
+  --background: #c024fe;
+  --background: -moz-linear-gradient(45deg, #1d6afe 0%, #c024fe 100%);
+  --background: -webkit-gradient(
+    left bottom,
+    right top,
+    color-stop(0%, #1d6afe),
+    color-stop(100%, #c024fe)
+  );
+  --background: -webkit-linear-gradient(45deg, #1d6afe 0%, #c024fe 100%);
+  --background: -o-linear-gradient(45deg, #1d6afe 0%, #c024fe 100%);
+  --background: -ms-linear-gradient(45deg, #1d6afe 0%, #c024fe 100%);
+  --background: linear-gradient(45deg, #1d6afe 0%, #c024fe 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cb9c4', endColorstr='#3dd3ae', GradientType=1 );
+
+  --color: #ffffff;
+}
+
+.style-btn {
+  --background: #7024fe;
+  --background: -moz-linear-gradient(45deg, #3f1dfe 0%, #7024fe 100%);
+  --background: -webkit-gradient(
+    left bottom,
+    right top,
+    color-stop(0%, #3f1dfe),
+    color-stop(100%, #7024fe)
+  );
+  --background: -webkit-linear-gradient(45deg, #3f1dfe 0%, #7024fe 100%);
+  --background: -o-linear-gradient(45deg, #3f1dfe 0%, #7024fe 100%);
+  --background: -ms-linear-gradient(45deg, #3f1dfe 0%, #7024fe 100%);
+  --background: linear-gradient(45deg, #3f1dfe 0%, #7024fe 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cb9c4', endColorstr='#3dd3ae', GradientType=1 );
+
+  --color: #ffffff;
+}

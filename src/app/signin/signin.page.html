@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Entrar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col size-sm="8" size-md="4" size-lg="3" size-xl="3">
+        <!--
+        <h1 text-center>
+          <img [src]="'assets/images/dolphin_logo.png'" height="121" width="105" />
+        </h1>
+        -->
+        <h1 text-center>
+          <img src="https://img.icons8.com/nolan/100/000000/heart-health.png" />
+        </h1>
+
+        <form [formGroup]="signinForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+          <ion-item>
+            <ion-icon name="mail" slot="start" color="style"></ion-icon>
+            <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="lock" slot="start" color="style"></ion-icon>
+            <ion-input
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+            ></ion-input>
+          </ion-item>
+
+          <br />
+          <ion-button class="style-btn" expand="block" type="submit" [disabled]="signinForm.invalid"
+            >Entrar</ion-button
+          >
+        </form>
+
+        <ion-button class="style-btn" expand="block" text-center (click)="onSignup()"
+          >Cadastrar</ion-button
+        >
+
+        <ion-button expand="block" fill="clear" text-center color="style" (click)="onHome()"
+          >Home Page</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <a
+    href="https://icons8.com/icon/48312/heart-health"
+    style="margin:auto; text-align:center; display:block; position:absolute;  bottom:11px; left: calc(50% - 98.275px);"
+    >Heart Health icon by Icons8</a
+  >
+</ion-content>

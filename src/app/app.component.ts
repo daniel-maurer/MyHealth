@@ -1,32 +1,32 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { AuthService } from './../providers/auth.service';
-import { SigninPage } from './../pages/signin/signin';
-import { User } from './../models/user.model';
-import { UserService } from './../providers/user.service';
-
+import { Platform } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { User } from './user.model';
+import { SigninPage } from './signin/signin.page';
+import { AuthService } from './auth.service';
+import { UserService } from './user.service';
+import { HomePage } from './home/home.page';
 import * as firebase from 'firebase/app';
-import { MyHealthPage } from '../pages/my-health/my-health';
+
+
 
 @Component({
-  templateUrl: 'app.html'
+  selector: 'app-root',
+  templateUrl: 'app.component.html'
 })
-export class MyApp {
-
-  rootPage:any;
+export class AppComponent {
+  rootPage:any = SigninPage;
   currentUser: User;
 
   constructor(
     authService: AuthService,
-    platform: Platform, 
-    statusBar: StatusBar, 
+    platform: Platform,
+    statusBar: StatusBar,
     splashScreen: SplashScreen,
     userService: UserService
   ) {
-
     authService
       .afAuth
       .authState
@@ -34,7 +34,7 @@ export class MyApp {
 
         if (authUser) {
 
-          this.rootPage = MyHealthPage;
+          this.rootPage = HomePage;
 
           userService.currentUser
             .valueChanges()

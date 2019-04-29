@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastrar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col size-sm="8" size-md="4" size-lg="3" size-xl="3">
+        <h1 text-center>
+          <ion-icon name="person-add" color="style" class="icon-3em"></ion-icon>
+        </h1>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+          <ion-item>
+            <ion-icon name="person" slot="start" color="style"></ion-icon>
+            <ion-input type="text" placeholder="Nome" formControlName="name"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="at" slot="start" color="style"></ion-icon>
+            <ion-input
+              type="text"
+              placeholder="Seu fantástico username"
+              formControlName="username"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="mail" slot="start" color="style"></ion-icon>
+            <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="lock" slot="start" color="style"></ion-icon>
+            <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="ice-cream" slot="start" color="style"></ion-icon>
+            <ion-label>Data de Aniversário</ion-label>
+            <ion-datetime
+              displayFormat="DD MMM YYYY"
+              pickerFormat="DD MMM YYYY"
+              formControlName="birthDate"
+            ></ion-datetime>
+          </ion-item>
+
+          <br />
+          <ion-button class="style-btn" expand="block" type="submit" [disabled]="signupForm.invalid"
+            >Criar Conta</ion-button
+          >
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

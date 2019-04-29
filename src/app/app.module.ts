@@ -1,91 +1,68 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { RouteReuseStrategy } from '@angular/router';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { CapitalizePipe } from './capitalize.pipe';
 import { AngularFireModule, FirebaseAppConfig } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { CustomLoggedHeaderComponent } from './custom-logged-header/custom-logged-header.component';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { UserMenuComponent } from './user-menu/user-menu.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { MessageBoxComponent } from './message-box/message-box.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-
-import { AuthService } from './../providers/auth.service';
-import { CapitalizePipe } from './../pipes/capitalize.pipe';
-import { ChatPage } from './../pages/chat/chat';
-import { ChatService } from './../providers/chat.service';
-import { CustomLoggedHeaderComponent } from './../components/custom-logged-header/custom-logged-header.component';
-import { InformationPage } from './../pages/information/information';
-import { NotificationPage } from './../pages/notification/notification';
-import { MessageBoxComponent } from './../components/message-box/message-box.component';
-import { MessageService } from './../providers/message.service';
-import { HomePage } from '../pages/home/home';
-import { MyApp } from './app.component';
-import { MyHealthPage } from './../pages/my-health/my-health';
-import { ProgressBarComponent } from './../components/progress-bar/progress-bar.component';
-import { SigninPage } from './../pages/signin/signin';
-import { SignupPage } from './../pages/signup/signup';
-import { UserInfoComponent } from './../components/user-info/user-info.component';
-import { UserMenuComponent } from './../components/user-menu/user-menu.component';
-import { UserProfilePage } from './../pages/user-profile/user-profile';
-import { UserService } from './../providers/user.service';
-import { ToDosPage } from '../pages/to-dos/to-dos';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { UserService } from './user.service';
+import { MessageService } from './message.service';
+import { ChatService } from './chat.service';
+import { AuthService } from './auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 const firebaseAppConfig: FirebaseAppConfig = {
-    apiKey: "AIzaSyBdGxWWveVlY0uHvVHLPjF9SgnEd1Be4Pg",
-    authDomain: "myhealthdb.firebaseapp.com",
-    databaseURL: "https://myhealthdb.firebaseio.com",
-    storageBucket: "myhealthdb.appspot.com",
+  apiKey: "AIzaSyBdGxWWveVlY0uHvVHLPjF9SgnEd1Be4Pg",
+  authDomain: "myhealthdb.firebaseapp.com",
+  databaseURL: "https://myhealthdb.firebaseio.com",
+  storageBucket: "myhealthdb.appspot.com",
 };
 
 @NgModule({
   declarations: [
+    AppComponent,
     CapitalizePipe,
-    ChatPage,
     CustomLoggedHeaderComponent,
-    HomePage,
-    InformationPage,
-    MessageBoxComponent,
-    MyApp,
-    MyHealthPage,
-    NotificationPage,
     ProgressBarComponent,
-    SigninPage,
-    SignupPage,
     UserInfoComponent,
     UserMenuComponent,
-    UserProfilePage,
-    ToDosPage,
+    MessageBoxComponent,
   ],
+  entryComponents: [ ],
   imports: [
     AngularFireModule.initializeApp(firebaseAppConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     BrowserModule,
+    FormsModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    ChatPage,
-    HomePage,
-    InformationPage,
-    MyApp,
-    MyHealthPage,
-    NotificationPage,
-    SigninPage,
-    SignupPage,
-    UserProfilePage,
-    ToDosPage
+    ReactiveFormsModule,
+    IonicModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [
     AuthService,
     ChatService,
     MessageService,
+    UserService,
     StatusBar,
     SplashScreen,
-    UserService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  bootstrap: [
+    AppComponent
   ]
 })
 export class AppModule {}

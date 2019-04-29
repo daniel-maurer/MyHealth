@@ -1,7 +1,6 @@
 {
-  "name": "My Health",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
+  "name": "my-health",
+  "integrations": {},
+  "type": "angular",
+  "id": "018cd867"
 }
