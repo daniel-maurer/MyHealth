@@ -1,20 +1,87 @@
 import { MessagesPage } from './../messages/messages.page';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { NavController, NavParams, ModalController, PopoverController } from '@ionic/angular';
 import { InformationPage } from './../information/information.page';
 import { NotificationsPage } from './../notifications/notifications.page';
 import { ToDosPage } from '../to-dos/to-dos.page';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss']
 })
 export class HomePage {
+  currentUser: User;
 
-    constructor(public navCtrl: NavController, 
+  slideOpts2 = {
+    initialSlide: 1,
+    slidesPerView: 2,
+    //slidesPerView: 'auto',
+    spaceBetween: -20,
+    speed: 400,
+    centeredSlides: true
+    //  showPaginate:  false
+  };
+
+  form = [
+    { val: 'Caminhar 15 min', isChecked: true },
+    { val: 'Medir glicose', isChecked: false },
+    { val: 'Cardiologista as 17h', isChecked: false }
+  ];
+
+  slideOpts = {
+  // Default parameters for smallest screen
+  slidesPerView: 1,
+    spaceBetween: 10,
+    centeredSlides: true,
+      // Responsive breakpoints
+      breakpointsInverse: true,
+        breakpoints: {
+    // when window width is >= 320px
+    320: {
+      slidesPerView: 2,
+        spaceBetween: -20
+    },
+    // when window width is >= 480px
+    480: {
+      slidesPerView: 3,
+        spaceBetween: 30
+    },
+    // when window width is >= 640px
+    640: {
+      slidesPerView: 4,
+        spaceBetween: 40
+    }
+  }
+}
+
+  constructor(
+    public navCtrl: NavController,
     public modalCtrl: ModalController,
-    public popoverCtrl: PopoverController) {
+    public popoverCtrl: PopoverController,
+    public userService: UserService
+  ) {
+    this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
+      this.currentUser = user;
+    });
+  }
+
+  ngOnInit() {
+    this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
+      this.currentUser = user;
+    });
+  }
+
+  onResize(event) {
+    // let slidesPerView = Math.round($(window).width() / 110);
+    // if (slidesPerView < 3) {
+    //   slidesPerView = 3;
+    ///  }
+    ///  console.log(slidesPerView);
+    ///  this.slideOpts.slidesPerView = slidesPerView;
+    // swiper.onResize();
   }
 
   async onInformation() {

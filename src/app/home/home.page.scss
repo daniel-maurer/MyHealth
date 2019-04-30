@@ -1,4 +1,98 @@
-   ion-icon {
+.round {
+  position: absolute;
+  top: 20px;
+  left: calc(50% - 20px);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px 10px 10px 0px;
+  width: 40px;
+  height: 40px;
+}
+
+.title {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 55px !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+}
+.sub-title {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 85px !important;
+  font-size: 16px !important;
+  font-weight: normal !important;
+}
+
+.progress {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 120px !important;
+  font-size: 12px !important;
+  font-weight: normal !important;
+  color: #999999;
+}
+
+.slides {
+  position: absolute;
+  top: 170px !important;
+  width: 100%;
+  background-color: var(--color-item-light) !important;
+}
+
+.projects {
+  margin-left: 10px;
+  font-size: 15px !important;
+  font-weight: bold !important;
+}
+
+ion-card {
+  height: 160px !important;
+  width: 140px !important;
+
+  box-shadow: none !important;
+  border-radius: 10px 10px 10px 0px !important;
+
+  ion-card-subtitle {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    font-size: 16px;
+    color: #ffffff;
+  }
+
+  ion-card-title {
+    font-size: 16;
+    position: absolute;
+    top: calc(50% - 30px);
+    width: 100%;
+    color: #ffffff;
+  }
+}
+
+.tasks {
+  position: absolute;
+  width: 100% !important;
+  top: 400px;
+  ion-item {
+    margin-right: 50px;
+  }
+  ion-label {
+    // position: absolute;
+    width: 100% !important;
+  }
+}
+
+ion-fab {
+  bottom: 67px !important;
+}
+
+/*
+ion-icon {
         color: var(--ion-color-primary);
     }
 
@@ -14,9 +108,9 @@
         text-align: center !important;
         font-size: 12px !important;
         font-family: 'FontAwesome' !important;
-        font-weight: 100 !important; 
+        font-weight: 100 !important;
     }
-    
+
     div.first-text {
       position: relative !important;
       top: 5px !important;
@@ -35,17 +129,17 @@
         position: relative !important;
         top: 10px !important;
         text-align: center !important;
-        
+
     }
 ion-button.bsize{
       --width: 30px !important;
       --height: 30px !important;
         --font-size: 12px !important;
-        --font-weight: 150 !important; 
+        --font-weight: 150 !important;
         --padding-start: 40px;
         --padding-end: 40px;
     }
-  
+
 
     .col1
     {
@@ -95,7 +189,7 @@ ion-button.bsize{
       font-size: 16px;
       color: var(--color-text-gray);
     }
-  
+
     .card-subtitle {
       font-size: 16;
       position: absolute;
@@ -184,20 +278,20 @@ ion-button.bsize{
 
       font-weight: 100 !important;
       font-size: 14px;
-    
-    /*animation*/
+
+    //animation
     -webkit-animation:move 5s;
        -moz-animation:move 5s;
         -ms-animation:move 5s;
          -o-animation:move 5s;
             animation:move 5s;
-    /*animation-iteration-count*/
+    //animation-iteration-count
     -webkit-animation-iteration-count:infinite;
        -moz-animation-iteration-count:infinite;
         -ms-animation-iteration-count:infinite;
          -o-animation-iteration-count:infinite;
             animation-iteration-count:infinite;
-    /*animation-delay*/
+    //animation-delay
     -webkit-animation-delay:1s;
        -moz-animation-delay:1s;
         -ms-animation-delay:1s;
@@ -211,7 +305,7 @@ ion-button.bsize{
         60% { top: -48px; }
         80% { top: -64px; }
     }
-    
+
     @-webkit-keyframes move {
         0%  { top: 0px; }
         20% { top: -16px; }
@@ -241,3 +335,4 @@ ion-button.bsize{
         80% { top: -64px; }
     }
   }
+*/

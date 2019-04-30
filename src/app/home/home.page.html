@@ -1,3 +1,107 @@
+<ion-content ion-no-padding>
+  <img class="round" [src]="currentUser.photo || 'assets/images/no-photo.jpg'" />
+
+  <h1 class="title">Bem vindo, Daniel</h1>
+  <h2 class="sub-title">Hoje, você tem 3 tarefas</h2>
+  <h3 class="progress">30% Completadas</h3>
+
+  <div class="slides">
+    <h4 class="projects">Especialidades</h4>
+
+    <ion-slides pager="false" [options]="slideOpts">
+      <ion-slide>
+        <ion-card class="style-btn">
+          <ion-card-header>
+            <h3>Card Title</h3>
+            <h4>Card Subtitle1</h4>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="style-btn">
+          <ion-card-header>
+            <h3>Card Title</h3>
+            <h4>Card Subtitle2</h4>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="style-btn">
+          <ion-card-header>
+            <h3>Card Title</h3>
+            <h4>Card Subtitle3</h4>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="style-btn">
+          <ion-card-header>
+            <h3>Card Title</h3>
+            <h4>Card Subtitle4</h4>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="style-btn">
+          <ion-card-header>
+            <h3>Card Title</h3>
+            <h4>Card Subtitle5</h4>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div class="tasks">
+    <ion-list>
+      <ion-item lines="none" *ngFor="let entry of form">
+        <ion-label>{{ entry.val }}</ion-label>
+        <ion-checkbox
+          slot="start"
+          mode="ios"
+          color="style"
+          [(ngModel)]="entry.isChecked"
+        ></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="style-btn">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="schedule">
+      <ion-icon name="checkmark-circle-outline" color="style"></ion-icon>
+      <ion-label color="style">Home</ion-label>
+      <ion-badge>3</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button tab="speakers">
+      <ion-icon name="pulse" color="style"></ion-icon>
+      <ion-label color="style">Gráficos</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="map">
+      <ion-icon mode="ios" name="chatbubbles" color="style"></ion-icon>
+      <ion-label color="style">Mensagens</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="about">
+      <ion-icon name="settings" color="style"></ion-icon>
+      <ion-label color="style">Configurações</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<!--
+
+
+
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -68,10 +172,7 @@
             </b>
           </div>
 
-          <!--
-              <br />4 mensagens
 
-              -->
         </div>
         <div class="buttonsRows">
           <div class="buttonsCol1">
@@ -124,3 +225,4 @@
     </div>
   </div>
 </ion-content>
+-->
