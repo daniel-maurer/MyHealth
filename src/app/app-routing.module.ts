@@ -4,20 +4,18 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
-  { path: 'chat/:recipientUser', loadChildren: './chat/chat.module#ChatPageModule' },
-  { path: 'information', loadChildren: './information/information.module#InformationPageModule' },
-  { path: 'messages', loadChildren: './messages/messages.module#MessagesPageModule' },
-  { path: 'notifications', loadChildren: './notifications/notifications.module#NotificationsPageModule' },
-  { path: 'signin', loadChildren: './signin/signin.module#SigninPageModule' },
-  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
-  { path: 'to-dos', loadChildren: './to-dos/to-dos.module#ToDosPageModule' },
-  { path: 'user-profile', loadChildren: './user-profile/user-profile.module#UserProfilePageModule' },
+  { path: 'chat/:recipientUser', loadChildren: './chat/pages/chat/chat.module#ChatPageModule' },
+  { path: 'messages', loadChildren: './chat/pages/messages/messages.module#MessagesPageModule' },
+  { path: 'signin', loadChildren: './auth/pages/signin/signin.module#SigninPageModule' },
+  { path: 'signup', loadChildren: './auth/pages/signup/signup.module#SignupPageModule' },
+  {
+    path: 'user-profile',
+    loadChildren: './auth/pages/user-profile/user-profile.module#UserProfilePageModule'
+  }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

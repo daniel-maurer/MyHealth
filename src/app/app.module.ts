@@ -7,27 +7,27 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CapitalizePipe } from './capitalize.pipe';
+import { CapitalizePipe } from './chat/pipes/capitalize.pipe';
 import { AngularFireModule, FirebaseAppConfig } from '@angular/fire';
-import { CustomLoggedHeaderComponent } from './custom-logged-header/custom-logged-header.component';
-import { UserInfoComponent } from './user-info/user-info.component';
-import { UserMenuComponent } from './user-menu/user-menu.component';
-import { ProgressBarComponent } from './progress-bar/progress-bar.component';
-import { MessageBoxComponent } from './message-box/message-box.component';
+import { CustomLoggedHeaderComponent } from './shared/components/custom-logged-header/custom-logged-header.component';
+import { UserInfoComponent } from './shared/components/user-info/user-info.component';
+import { UserMenuComponent } from './shared/components/user-menu/user-menu.component';
+import { ProgressBarComponent } from './shared/components/progress-bar/progress-bar.component';
+import { MessageBoxComponent } from './chat/components/message-box/message-box.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { UserService } from './user.service';
-import { MessageService } from './message.service';
-import { ChatService } from './chat.service';
-import { AuthService } from './auth.service';
+import { UserService } from './auth/services/user.service';
+import { MessageService } from './chat/services/message.service';
+import { ChatService } from './chat/services/chat.service';
+import { AuthService } from './core/services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 const firebaseAppConfig: FirebaseAppConfig = {
-  apiKey: "AIzaSyBdGxWWveVlY0uHvVHLPjF9SgnEd1Be4Pg",
-  authDomain: "myhealthdb.firebaseapp.com",
-  databaseURL: "https://myhealthdb.firebaseio.com",
-  storageBucket: "myhealthdb.appspot.com",
+  apiKey: 'AIzaSyBdGxWWveVlY0uHvVHLPjF9SgnEd1Be4Pg',
+  authDomain: 'myhealthdb.firebaseapp.com',
+  databaseURL: 'https://myhealthdb.firebaseio.com',
+  storageBucket: 'myhealthdb.appspot.com'
 };
 
 @NgModule({
@@ -38,9 +38,9 @@ const firebaseAppConfig: FirebaseAppConfig = {
     ProgressBarComponent,
     UserInfoComponent,
     UserMenuComponent,
-    MessageBoxComponent,
+    MessageBoxComponent
   ],
-  entryComponents: [ ],
+  entryComponents: [],
   imports: [
     AngularFireModule.initializeApp(firebaseAppConfig),
     AngularFireAuthModule,
@@ -61,8 +61,6 @@ const firebaseAppConfig: FirebaseAppConfig = {
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
-  bootstrap: [
-    AppComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

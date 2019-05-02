@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { User } from './user.model';
-import { SigninPage } from './signin/signin.page';
-import { AuthService } from './auth.service';
-import { UserService } from './user.service';
+import { User } from './auth/models/user.model';
+import { SigninPage } from './auth/pages/signin/signin.page';
+import { AuthService } from './core/services/auth.service';
+import { UserService } from './auth/services/user.service';
 import { HomePage } from './home/home.page';
 import * as firebase from 'firebase/app';
 

@@ -1,4 +1,4 @@
-import { MessagesPage } from './../messages/messages.page';
+import { MessagesPage } from '../chat/pages/messages/messages.page';
 import { Component, HostListener, ViewChild } from '@angular/core';
 import {
   NavController,
@@ -7,11 +7,8 @@ import {
   PopoverController,
   IonContent
 } from '@ionic/angular';
-import { InformationPage } from './../information/information.page';
-import { NotificationsPage } from './../notifications/notifications.page';
-import { ToDosPage } from '../to-dos/to-dos.page';
-import { User } from '../user.model';
-import { UserService } from '../user.service';
+import { User } from '../auth/models/user.model';
+import { UserService } from '../auth/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -74,28 +71,12 @@ export class HomePage {
     });
   }
 
-  async onInformation() {
-    const modal = await this.modalCtrl.create({
-      component: InformationPage
-    });
-    return await modal.present();
-  }
-
   onMessage(): void {
     this.navCtrl.navigateForward('messages');
   }
 
   onToDos(): void {
     this.navCtrl.navigateForward('to-dos');
-  }
-
-  async onNotification(ev) {
-    const popover = await this.popoverCtrl.create({
-      component: NotificationsPage,
-      event: ev,
-      translucent: true
-    });
-    return await popover.present();
   }
 
   logScrollStart() {
