@@ -1,6 +1,6 @@
 import { MessagesPage } from './../messages/messages.page';
-import { Component, HostListener } from '@angular/core';
-import { NavController, NavParams, ModalController, PopoverController } from '@ionic/angular';
+import { Component, HostListener, ViewChild } from '@angular/core';
+import { NavController, NavParams, ModalController, PopoverController, IonContent } from '@ionic/angular';
 import { InformationPage } from './../information/information.page';
 import { NotificationsPage } from './../notifications/notifications.page';
 import { ToDosPage } from '../to-dos/to-dos.page';
@@ -15,6 +15,8 @@ import { UserService } from '../user.service';
 export class HomePage {
   currentUser: User;
 
+  @ViewChild(IonContent) content: IonContent;
+
   slideOpts2 = {
     initialSlide: 1,
     slidesPerView: 2,
@@ -28,7 +30,9 @@ export class HomePage {
   form = [
     { val: 'Caminhar 15 min', isChecked: true },
     { val: 'Medir glicose', isChecked: false },
-    { val: 'Cardiologista as 17h', isChecked: false }
+    { val: 'Cardiologista as 17h', isChecked: false },
+    { val: 'Teste1', isChecked: false },
+    { val: 'Teste2', isChecked: false }
   ];
 
   slideOpts = {
@@ -106,5 +110,17 @@ export class HomePage {
       translucent: true
     });
     return await popover.present();
+  }
+
+  logScrollStart(){
+    console.log("logScrollStart : When Scroll Starts");
+  }
+
+  logScrolling(){
+    console.log("logScrolling : When Scrolling");
+  }
+
+  logScrollEnd(){
+    console.log("logScrollEnd : When Scroll Ends");
   }
 }

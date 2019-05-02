@@ -1,4 +1,9 @@
-<ion-content ion-no-padding>
+<ion-content
+  [scrollEvents]="true"
+  (ionScrollStart)="logScrollStart()"
+  (ionScroll)="logScrolling($event)"
+  (ionScrollEnd)="logScrollEnd()"
+>
   <img class="round" [src]="currentUser.photo || 'assets/images/no-photo.jpg'" />
 
   <h1 class="title">Bem vindo, Daniel</h1>
@@ -72,8 +77,10 @@
   </ion-fab>
 </ion-content>
 
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
+<div class="list" style="margin-bottom:28px;"> &nbsp; </div>
+
+<ion-tabs translucent="true">
+  <ion-tab-bar slot="bottom" >
     <ion-tab-button tab="schedule">
       <ion-icon name="checkmark-circle-outline" color="style"></ion-icon>
       <ion-label color="style">Home</ion-label>
