@@ -3,11 +3,15 @@
 </ion-header>
 
 <ion-content padding>
+
+
   <app-message-box
-    *ngFor="let m of viewMessages | async"
+    *ngFor="let m of viewMessages"
     [message]="m"
     [isFromSender]="m.userId === sender.$key"
   ></app-message-box>
+
+
 </ion-content>
 
 <ion-footer>

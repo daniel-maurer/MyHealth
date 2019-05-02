@@ -5,7 +5,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'chat/:recipientUser', loadChildren: './chat/pages/chat/chat.module#ChatPageModule' },
-  { path: 'messages', loadChildren: './chat/pages/messages/messages.module#MessagesPageModule' },
+  {
+    path: 'home/messages',
+    loadChildren: './chat/pages/messages/messages.module#MessagesPageModule'
+  },
   { path: 'signin', loadChildren: './auth/pages/signin/signin.module#SigninPageModule' },
   { path: 'signup', loadChildren: './auth/pages/signup/signup.module#SignupPageModule' },
   {

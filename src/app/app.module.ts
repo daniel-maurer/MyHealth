@@ -13,7 +13,6 @@ import { CustomLoggedHeaderComponent } from './shared/components/custom-logged-h
 import { UserInfoComponent } from './shared/components/user-info/user-info.component';
 import { UserMenuComponent } from './shared/components/user-menu/user-menu.component';
 import { ProgressBarComponent } from './shared/components/progress-bar/progress-bar.component';
-import { MessageBoxComponent } from './chat/components/message-box/message-box.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { UserService } from './auth/services/user.service';
@@ -39,8 +38,7 @@ const firebaseAppConfig: FirebaseAppConfig = {
     CustomLoggedHeaderComponent,
     ProgressBarComponent,
     UserInfoComponent,
-    UserMenuComponent,
-    MessageBoxComponent
+    UserMenuComponent
   ],
   entryComponents: [],
   imports: [
