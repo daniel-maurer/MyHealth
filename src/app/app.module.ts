@@ -22,6 +22,7 @@ import { ChatService } from './chat/services/chat.service';
 import { AuthService } from './core/services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { BaseComponent } from './shared/components/base/base.component';
 
 const firebaseAppConfig: FirebaseAppConfig = {
   apiKey: 'AIzaSyBdGxWWveVlY0uHvVHLPjF9SgnEd1Be4Pg',
@@ -33,6 +34,7 @@ const firebaseAppConfig: FirebaseAppConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+    BaseComponent,
     CapitalizePipe,
     CustomLoggedHeaderComponent,
     ProgressBarComponent,
