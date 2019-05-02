@@ -36,7 +36,6 @@ export class SignupPage implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.pattern(emailRegex)])],
       password: ['', [Validators.required, Validators.minLength(6)]],
       birthDate: ['', [Validators.required, Validators.nullValidator]],
-      sex: ['', [Validators.required, Validators.nullValidator]],
     });
   }
 
