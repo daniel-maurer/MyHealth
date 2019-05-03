@@ -13,40 +13,41 @@
       </ion-segment-button>
     </ion-segment>
 
-    <ion-title *ngIf="currentUser?.isPatient">Mensagens</ion-title>
+    <ion-title class="clean-title" *ngIf="currentUser?.isPatient">Mensagens</ion-title>
   </ion-toolbar>
 
   <ion-searchbar mode="ios" (ionInput)="filterItems($event)"></ion-searchbar>
 </ion-header>
 
-<ion-content padding>
-    <div [ngSwitch]="view">
-      <ion-list *ngSwitchCase="'chats'" no-lines>
-        <ion-item *ngFor="let chat of chats | async" (click)="onChatOpen(chat)">
-          <ion-avatar slot="start">
-            <img [src]="chat.photo || 'assets/images/no-photo.jpg'" />
-          </ion-avatar>
-          <ion-row><div class="chat-title">{{ chat.title }}</div></ion-row>
-          <ion-row>
-              <div class="chat-message" *ngIf="chat.lastMessage; else customMessage">
-                  {{ chat.timestamp | date: 'dd/MM H:mm' }} - {{ chat.lastMessage }}
-                </div>
-          </ion-row>
-          
-          
-          <ng-template #customMessage>
-            <p>No messages</p>
-          </ng-template>
-        </ion-item>
-      </ion-list>
+<ion-content class="clean-content" padding>
+  <div [ngSwitch]="view">
+    <ion-list *ngSwitchCase="'chats'" no-lines>
+      <ion-item *ngFor="let chat of chats | async" (click)="onChatOpen(chat)">
+        <ion-avatar slot="start">
+          <img [src]="chat.photo || 'assets/images/no-photo.jpg'" />
+        </ion-avatar>
+        <ion-row
+          ><div class="chat-title">{{ chat.title }}</div></ion-row
+        >
+        <ion-row>
+          <div class="chat-message" *ngIf="chat.lastMessage; else customMessage">
+            {{ chat.timestamp | date: 'dd/MM H:mm' }} - {{ chat.lastMessage }}
+          </div>
+        </ion-row>
 
-      <ion-list *ngSwitchCase="'users'" no-lines>
-        <ion-item *ngFor="let user of users | async" (click)="onChatCreate(user)">
-          <ion-avatar slot="start">
-            <img [src]="user.photo || 'assets/images/no-photo.jpg'" />
-          </ion-avatar>
-          {{ user.name }}
-        </ion-item>
-      </ion-list>
-    </div>
-  </ion-content>
+        <ng-template #customMessage>
+          <p>No messages</p>
+        </ng-template>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'users'" no-lines>
+      <ion-item *ngFor="let user of users | async" (click)="onChatCreate(user)">
+        <ion-avatar slot="start">
+          <img [src]="user.photo || 'assets/images/no-photo.jpg'" />
+        </ion-avatar>
+        {{ user.name }}
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

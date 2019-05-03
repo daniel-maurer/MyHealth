@@ -72,8 +72,9 @@ export class HomePage {
   }
 
   onMessage(): void {
-    this.navCtrl.navigateForward('messages');
+    this.navCtrl.navigateForward('home/messages');
   }
+  
 
   onToDos(): void {
     this.navCtrl.navigateForward('to-dos');

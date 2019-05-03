@@ -31,21 +31,27 @@ ion-title {
   position: absolute !important;
   left: 50%;
   top: 11px !important;
-  //position: absolute !important;
-  // top: 36% !important;
+
   text-align: center !important;
 }
 
+.clean-title {
+  position: absolute !important;
+  top: 36% !important;
+}
+
 ion-content {
-  //position: absolute !important;
-  //top: 50px !important;
+  .clean-content {
+    position: absolute !important;
+    top: 50px !important;
+  }
 }
 
 .icon-3em {
   font-size: 3em;
 }
 
-ion-toolbar {
+.style-toolbar {
   --background: #c024fe;
   --background: -moz-linear-gradient(45deg, #1d6afe 0%, #c024fe 100%);
   --background: -webkit-gradient(
