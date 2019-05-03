@@ -6,6 +6,7 @@ export class Chat {
         public lastMessage: string,
         public timestamp: any,
         public title: string,
+        public headline: string,
         public photo: string
     ) {}
 

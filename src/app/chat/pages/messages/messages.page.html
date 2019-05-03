@@ -22,23 +22,42 @@
 <ion-content class="clean-content" padding>
   <div [ngSwitch]="view">
     <ion-list *ngSwitchCase="'chats'" no-lines>
-      <ion-item *ngFor="let chat of chats | async" (click)="onChatOpen(chat)">
-        <ion-avatar slot="start">
-          <img [src]="chat.photo || 'assets/images/no-photo.jpg'" />
-        </ion-avatar>
-        <ion-row
-          ><div class="chat-title">{{ chat.title }}</div></ion-row
-        >
+      <div ion-item *ngFor="let chat of chats | async" (click)="onChatOpen(chat)">
         <ion-row>
-          <div class="chat-message" *ngIf="chat.lastMessage; else customMessage">
-            {{ chat.timestamp | date: 'dd/MM H:mm' }} - {{ chat.lastMessage }}
-          </div>
+          <ion-col class="center-left">
+            <img class="round" [src]="chat.photo || 'assets/images/no-photo.jpg'" />
+          </ion-col>
+
+          <ion-col class="center-col">
+            <ion-row>
+              <div class="chat-title">{{ chat.title }}</div>
+            </ion-row>
+            <ion-row>
+              <div class="headline">
+                {{ chat.headline }}
+              </div>
+            </ion-row>
+          </ion-col>
+
+          <ion-col class="right-col">
+            <div class="chat-date" *ngIf="chat.lastMessage;">
+              {{ chat.timestamp | date: 'EEE, MMM d' }}
+            </div>
+          </ion-col>
         </ion-row>
 
-        <ng-template #customMessage>
-          <p>No messages</p>
-        </ng-template>
-      </ion-item>
+        <ion-row class="message-row">
+          <div class="chat-message" *ngIf="chat.lastMessage; else customMessage">
+            {{ chat.lastMessage }}
+          </div>
+          <ng-template #customMessage>
+            <p>No messages</p>
+          </ng-template>
+        </ion-row>
+
+
+        <hr>
+      </div>
     </ion-list>
 
     <ion-list *ngSwitchCase="'users'" no-lines>

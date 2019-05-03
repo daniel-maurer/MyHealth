@@ -99,10 +99,10 @@ export class MessagesPage implements OnInit {
 
               let timestamp: Object = firebase.database.ServerValue.TIMESTAMP;
 
-              let chat1 = new Chat('', timestamp, recipientUser.name, (recipientUser.photo || ''));
+              let chat1 = new Chat('', timestamp, recipientUser.name, recipientUser.headline, (recipientUser.photo || ''));
               this.chatService.create(chat1, currentUser.$key, recipientUser.$key);
 
-              let chat2 = new Chat('', timestamp, currentUser.name, (currentUser.photo || ''));
+              let chat2 = new Chat('', timestamp, currentUser.name, currentUser.headline, (currentUser.photo || ''));
               this.chatService.create(chat2, recipientUser.$key, currentUser.$key);
 
             }
