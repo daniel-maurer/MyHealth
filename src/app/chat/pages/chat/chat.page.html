@@ -4,13 +4,19 @@
 
 <ion-content padding>
 
+    <ion-item *ngFor="let m of viewMessages">
+        <p>
+          {{ m }}
+        </p>
+      </ion-item>
+<!--
 
   <app-message-box
     *ngFor="let m of viewMessages"
     [message]="m"
     [isFromSender]="m.userId === sender.$key"
   ></app-message-box>
-
+-->
 
 </ion-content>
 
