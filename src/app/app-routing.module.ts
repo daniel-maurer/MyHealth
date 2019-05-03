@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'chat/:recipientUser', loadChildren: './chat/pages/chat/chat.module#ChatPageModule' },
   {
-    path: 'home/messages',
+    path: 'messages',
     loadChildren: './chat/pages/messages/messages.module#MessagesPageModule'
   },
   { path: 'signin', loadChildren: './auth/pages/signin/signin.module#SigninPageModule' },
