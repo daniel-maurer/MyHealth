@@ -47,7 +47,8 @@ export class ChatPage implements OnInit {
       birthDate: this.route.snapshot.params['birthDate'],
       passwordDate: this.route.snapshot.params['passwordDate'],
       createDate: this.route.snapshot.params['createDate'],
-      isPatient: this.route.snapshot.params['isPatient']
+      isPatient: this.route.snapshot.params['isPatient'],
+      headline: this.route.snapshot.params['headline']
     };
   }
 

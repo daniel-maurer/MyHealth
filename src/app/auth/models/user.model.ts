@@ -10,7 +10,8 @@ export class User {
         public birthDate: string,
         public passwordDate: any,
         public createDate: any,
-        public isPatient: boolean
+        public isPatient: boolean,
+        public headline: string
     ) {}
 
 }

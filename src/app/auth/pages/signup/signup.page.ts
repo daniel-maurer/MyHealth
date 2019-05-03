@@ -59,7 +59,10 @@ export class SignupPage implements OnInit {
           }).then((authUser: firebase.User) => {
 
             delete formUser.password;
-            const newUser: User = formUser;
+            let newUser: User = formUser;
+            newUser.isPatient = true;
+            newUser.headline = 'O Melhor Paciente';
+
             newUser.createDate = firebase.database.ServerValue.TIMESTAMP;
             let uuid: string = firebase.auth().currentUser.uid;
             this.userService.create(newUser, uuid)
