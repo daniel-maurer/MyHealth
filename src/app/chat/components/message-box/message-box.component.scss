@@ -1,20 +1,27 @@
-app-message-box {
+div {
     display: flex;
     margin-bottom: 10px;
     margin-left: 30px;
+}
 
  .text {
-     background-color: var(--ion-color-primary);
      padding: 0px 10px;
-     
-     border-radius: 12px;
-     margin-left: 10px;
-     margin-right: 10px;
-     color: #efefef;
+
+     background-color: #e9eaec;
+     color: #333;
+     border-radius: 10px 10px 10px 0px;
+     justify-content: flex-start;
+     margin-left: 50px;
+     margin-right: 50px;
+     text-align: "left";
  }
 
  .sender-background {
-     background-color: #e9eaec;
-     color: #333;
+    background-color: var(--ion-color-style);
+    color: #efefef;
+    border-radius: 10px 10px 0px 10px;
+    justify-content: flex-end;
+    margin-left: 60px;
+    margin-right: 10px;
+    text-align: "right";
  }
-}

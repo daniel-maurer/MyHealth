@@ -1,27 +1,49 @@
 <ion-header>
-  <ion-toolbar> </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
-    <ion-item *ngFor="let m of viewMessages">
-        <p>
-          {{ m }}
-        </p>
-      </ion-item>
-<!--
+<ion-content fullscreen>
 
   <app-message-box
-    *ngFor="let m of viewMessages"
+    *ngFor="let m of (viewMessages$ | async)"
     [message]="m"
     [isFromSender]="m.userId === sender.$key"
   ></app-message-box>
--->
+
 
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar class="footer-toolbar">
+
+    <div ion-item>
+        <ion-row>
+            <ion-col>
+              <img class="round" [src]="recipient.photo || 'assets/images/no-photo.jpg'" />
+            </ion-col>
+  
+            <ion-col class="center-col">
+                <ion-input
+                type="text"
+                (keyup.enter)="sendMessage(newMessage); newMessage = ''"
+                placeholder="{{ recipient.name }}"
+                [(ngModel)]="newMessage"
+              ></ion-input>
+            </ion-col>
+  
+            <ion-col class="right-col">
+                <ion-button fill="clear" (click)="sendMessage(newMessage); newMessage = ''" color="style">
+                    <ion-icon name="send"></ion-icon>
+                  </ion-button>
+            </ion-col>
+          </ion-row>
+    </div>
+
+<!--
     <ion-item no-lines>
       <ion-avatar item-left>
         <img [src]="recipient.photo || 'assets/images/no-photo.jpg'" />
@@ -36,5 +58,7 @@
         <ion-icon name="send"></ion-icon>
       </ion-button>
     </ion-item>
+
+    -->
   </ion-toolbar>
 </ion-footer>

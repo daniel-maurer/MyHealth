@@ -1,0 +1,28 @@
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+}
+
+.footer-toolbar{
+    --background: #fff;
+    --ion-color-base: #fff !important;
+}
+.right-col {
+   // position: absolute;
+  //  right: 0px;
+    //width: 100px;
+    padding-right: 0px;
+    text-align: right !important;
+  }
+  .round {
+    display: block;
+    border-radius: 10px 10px 10px 0px;
+    width: 40px;
+    height: 40px;
+  }
+  .center-col {
+    position: absolute;
+    left: 56px;
+
+    width: calc(100% - 120px) !important;
+  }  

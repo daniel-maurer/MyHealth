@@ -23,7 +23,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ChatPage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
   messages: AngularFireList<Message>;
-  viewMessages: Observable<Message[]>;
+  viewMessages$: Observable<Message[]>;
   pageTitle: string;
   sender: User;
   recipient: User;
@@ -74,8 +74,8 @@ export class ChatPage implements OnInit {
         }
 
         let doSubscription = () => {
-          this.viewMessages = this.messageService.mapListKeys<Message>(this.messages);
-          this.viewMessages.subscribe((messages: Message[]) => {
+          this.viewMessages$ = this.messageService.mapListKeys<Message>(this.messages);
+          this.viewMessages$.subscribe((messages: Message[]) => {
             this.scrollToBottom();
           });
         };

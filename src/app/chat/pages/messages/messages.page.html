@@ -24,7 +24,7 @@
     <ion-list *ngSwitchCase="'chats'" no-lines>
       <div ion-item *ngFor="let chat of chats | async" (click)="onChatOpen(chat)">
         <ion-row>
-          <ion-col class="center-left">
+          <ion-col>
             <img class="round" [src]="chat.photo || 'assets/images/no-photo.jpg'" />
           </ion-col>
 

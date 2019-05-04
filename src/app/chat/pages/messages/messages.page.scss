@@ -37,10 +37,6 @@
   left: 56px;
 }
 
-ion-list{
-width: calc(100% - 32px) !important;
-}
-
 .message-row {
   padding-left: 5px;
   padding-top: 5px;
@@ -55,6 +51,7 @@ width: calc(100% - 32px) !important;
 ion-list {
   position: absolute !important;
   top: 60px !important;
+  width: calc(100% - 32px) !important;
 }
 
 hr {
