@@ -7,12 +7,15 @@
 </ion-header>
 
 <ion-content fullscreen>
-
-  <app-message-box
-    *ngFor="let m of (viewMessages$ | async)"
-    [message]="m"
-    [isFromSender]="m.userId === sender.$key"
-  ></app-message-box>
+  <ion-row justify-content-center>
+    <ion-col size-sm="8" size-md="8" size-lg="8" size-xl="8">
+      <app-message-box
+        *ngFor="let m of (viewMessages$ | async)"
+        [message]="m"
+        [isFromSender]="m.userId === sender.$key"
+      ></app-message-box>
+    </ion-col>
+  </ion-row>
 
 
 </ion-content>
@@ -36,7 +39,7 @@
             </ion-col>
   
             <ion-col class="right-col">
-                <ion-button fill="clear" (click)="sendMessage(newMessage); newMessage = ''" color="style">
+                <ion-button fill="clear" (click)="sendMessage(newMessage); newMessage = ''" color="medium">
                     <ion-icon name="send"></ion-icon>
                   </ion-button>
             </ion-col>
