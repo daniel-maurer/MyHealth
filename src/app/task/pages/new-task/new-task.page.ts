@@ -14,6 +14,7 @@ import { TaskService } from '../../services/task.service';
 export class NewTaskPage implements OnInit {
   taskForm: FormGroup;
   pageTitle = '...';
+  buttonText = '...';
   taskId: string = undefined;
 
   constructor(
@@ -31,11 +32,13 @@ export class NewTaskPage implements OnInit {
   init(): void {
     const taskId = this.route.snapshot.paramMap.get('id');
     if (!taskId) {
-      this.pageTitle = 'Create Task';
+      this.pageTitle = 'Criar Tarefa';
+      this.buttonText = 'Criar';
       return;
     }
     this.taskId = taskId;
-    this.pageTitle = 'Edit Task';
+    this.pageTitle = 'Editar Tarefa';
+    this.buttonText = 'Salvar';
     this.tasksService
       .get(taskId)
       .pipe(take(1))
@@ -48,7 +51,7 @@ export class NewTaskPage implements OnInit {
   private createForm(): void {
     this.taskForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
-      done: [true]
+      done: [false]
     });
   }
 
@@ -64,7 +67,7 @@ export class NewTaskPage implements OnInit {
             id: this.taskId,
             ...this.taskForm.value
           });
-      this.navCtrl.navigateBack('/tasks');
+      this.navCtrl.navigateBack('/home');
     } catch (error) {
       console.log('Error saving Task: ', error);
      // await this.overlayService.toast({

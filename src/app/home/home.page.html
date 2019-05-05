@@ -1,12 +1,5 @@
 
-<ion-content
->
-<!-- [scrollEvents]="true"
-  (ionScrollStart)="logScrollStart()"
-  (ionScroll)="logScrolling($event)"
-  (ionScrollEnd)="logScrollEnd()"
-  scrollY="true"
-  class="fixed"-->
+<ion-content>
   <img  class="round" [src]="currentUser?.photo || 'assets/images/no-photo.jpg'" />
 
   <h1 class="title">Bem vindo, {{ currentUser?.name }}</h1>
@@ -64,16 +57,17 @@
 <!--class="tasks no-padding"-->
   <div class="tasks">
     <h4 class="projects">Tarefas</h4>
-    <ion-button (click)="teste()">Botão</ion-button>
+
     <ion-list *ngIf="(tasks$ | async) as tasks">
       <ng-container *ngIf="tasks.length > 0; else noTasks">
-        <ion-item lines="none" (click)="teste()" *ngFor="let task of tasks">
+        <ion-item lines="none" *ngFor="let task of tasks">
           <ion-label>{{ task.title }}</ion-label>
           <ion-checkbox
             slot="start"
             mode="ios"
             color="style"
             [checked]="task.done"
+            (ionChange)="onUpdate(task)"
           ></ion-checkbox>
         </ion-item>
       </ng-container>
@@ -93,9 +87,12 @@
   </ion-fab-button>
 </ion-fab>
 
-<div class="list" style="margin-bottom:28px;">&nbsp;</div>
 
-<ion-tabs translucent="true">
+  
+
+
+
+
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="schedule">
       <ion-icon name="checkmark-circle-outline" color="style"></ion-icon>
@@ -118,4 +115,4 @@
       <ion-label color="style">Configurações</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
-</ion-tabs>
+

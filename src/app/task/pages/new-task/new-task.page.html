@@ -1,13 +1,9 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tasks"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ pageTitle }}</ion-title>
-   <!-- <app-logout-button
-      slot="end"
-      menu="main-menu"
-    ></app-logout-button> -->
+    <ion-title class="clean-title">{{ pageTitle }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,7 +16,7 @@
       <ion-icon
         name="paper"
         slot="start"
-        color="primary"
+        color="style"
       ></ion-icon>
       <ion-input
         type="text"
@@ -33,16 +29,17 @@
       <ion-toggle
         *ngIf="taskId"
         slot="end"
-        color="primary"
+        color="style"
         formControlName="done"
       ></ion-toggle>
     </ion-item>
     <ion-button
+      class="style-btn"
       expand="full"
       type="submit"
       [disabled]="taskForm.invalid"
     >
-      Save
+    {{ buttonText }}
     </ion-button>
   </form>
 </ion-content>

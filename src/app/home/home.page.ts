@@ -66,31 +66,17 @@ export class HomePage implements OnInit {
       this.currentUser = user;
     });
 
-    this.tasks$ = await this.tasksService.getAll();
-
-    await this.tasksService.get('0SuVYlpXQGJgAuXJYTgZ')
-    .pipe(take(1))
-    .subscribe(({ title, done }) => {
-      console.log(title);
-      console.log(done);
-
-    });
-
-    this.tasksService.get('FJqETkbLBbmhmvWqbMiK')
-    .pipe(take(1))
-    .subscribe(({ title, done }) => {
-      console.log(title);
-      console.log(done);
-
-    });
+    this.tasks$ = await this.tasksService.getAll().map(tasks => 
+      tasks.filter(task => task.done == false));
   }
 
   onMessage(): void {
     this.navCtrl.navigateForward('messages');
   }
 
-  teste(): void {
-    console.log('teste');
+  onUpdate(task: Task): void {
+    task.done = !task.done;
+    this.tasksService.update(task);
   }
 
   onToDos(): void {
