@@ -23,6 +23,18 @@ export class HomePage implements OnInit {
   tasks$: Observable<Task[]>;
   currentUser: User;
 
+  public cards = [
+    { title: 'Alergias', subtitle: 'Subtitle' },
+    { title: 'Altura', subtitle: 'Subtitle' },
+    { title: 'Apontamentos', subtitle: 'Subtitle' },
+    { title: 'Condições', subtitle: 'Subtitle' },
+    { title: 'Dietas', subtitle: 'Subtitle' },
+    { title: 'Exercícios', subtitle: 'Subtitle' },
+    { title: 'Medicamentos', subtitle: 'Subtitle' },
+    { title: 'Peso', subtitle: 'Subtitle' },
+    { title: 'Procedimentos', subtitle: 'Subtitle' }
+  ];
+
   slideOpts = {
     // Default parameters for smallest screen
     slidesPerView: 1,

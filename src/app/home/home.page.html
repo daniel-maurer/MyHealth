@@ -7,46 +7,14 @@
   <h3 class="progress">30% Completadas</h3>
 
   <div class="slides">
-    <h4 class="projects">Especialidades</h4>
+    <h4 class="projects">Meus Dados</h4>
 
     <ion-slides pager="false" [options]="slideOpts">
-      <ion-slide>
+      <ion-slide *ngFor="let card of cards">
         <ion-card class="style-btn">
           <ion-card-header>
-            <h3>Card Title</h3>
-            <h4>Card Subtitle1</h4>
-          </ion-card-header>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="style-btn">
-          <ion-card-header>
-            <h3>Card Title</h3>
-            <h4>Card Subtitle2</h4>
-          </ion-card-header>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="style-btn">
-          <ion-card-header>
-            <h3>Card Title</h3>
-            <h4>Card Subtitle3</h4>
-          </ion-card-header>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="style-btn">
-          <ion-card-header>
-            <h3>Card Title</h3>
-            <h4>Card Subtitle4</h4>
-          </ion-card-header>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="style-btn">
-          <ion-card-header>
-            <h3>Card Title</h3>
-            <h4>Card Subtitle5</h4>
+            <h3>{{card.title}}</h3>
+            <h4>{{card.subtitle}}</h4>
           </ion-card-header>
         </ion-card>
       </ion-slide>
