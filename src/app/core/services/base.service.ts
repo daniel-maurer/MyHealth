@@ -33,11 +33,10 @@ export abstract class BaseService {
           .snapshotChanges()
           .map(actions => actions.map(action => ({ $key: action.key, ...action.payload.val() })));
     }
-    
+
     mapObjectKey<T>(object: AngularFireObject<T>): Observable<T> {
         return object
           .snapshotChanges()
           .map(action => ({ $key: action.key, ...action.payload.val() }));
     }
-
 }

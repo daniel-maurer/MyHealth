@@ -1,5 +1,5 @@
 import { MessagesPage } from '../chat/pages/messages/messages.page';
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild, OnInit } from '@angular/core';
 import {
   NavController,
   NavParams,
@@ -9,24 +9,19 @@ import {
 } from '@ionic/angular';
 import { User } from '../auth/models/user.model';
 import { UserService } from '../auth/services/user.service';
+import { Observable } from 'rxjs';
+import { Task } from '../task/models/task.model';
+import { TaskService } from '../task/services/task.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  tasks$: Observable<Task[]>;
   currentUser: User;
-
-  @ViewChild(IonContent) content: IonContent;
-
-  form = [
-    { val: 'Caminhar 15 min', isChecked: true },
-    { val: 'Medir glicose', isChecked: false },
-    { val: 'Cardiologista as 17h', isChecked: false },
-    { val: 'Teste1', isChecked: false },
-    { val: 'Teste2', isChecked: false }
-  ];
 
   slideOpts = {
     // Default parameters for smallest screen
@@ -58,16 +53,35 @@ export class HomePage {
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public popoverCtrl: PopoverController,
-    public userService: UserService
+    public userService: UserService,
+    public tasksService: TaskService
   ) {
     this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
       this.currentUser = user;
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
       this.currentUser = user;
+    });
+
+    this.tasks$ = await this.tasksService.getAll();
+
+    await this.tasksService.get('0SuVYlpXQGJgAuXJYTgZ')
+    .pipe(take(1))
+    .subscribe(({ title, done }) => {
+      console.log(title);
+      console.log(done);
+
+    });
+
+    this.tasksService.get('FJqETkbLBbmhmvWqbMiK')
+    .pipe(take(1))
+    .subscribe(({ title, done }) => {
+      console.log(title);
+      console.log(done);
+
     });
   }
 
@@ -75,6 +89,9 @@ export class HomePage {
     this.navCtrl.navigateForward('messages');
   }
 
+  teste(): void {
+    console.log('teste');
+  }
 
   onToDos(): void {
     this.navCtrl.navigateForward('to-dos');

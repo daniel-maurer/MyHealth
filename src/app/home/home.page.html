@@ -1,12 +1,15 @@
+
 <ion-content
-  [scrollEvents]="true"
+>
+<!-- [scrollEvents]="true"
   (ionScrollStart)="logScrollStart()"
   (ionScroll)="logScrolling($event)"
   (ionScrollEnd)="logScrollEnd()"
->
-  <img class="round" [src]="currentUser.photo || 'assets/images/no-photo.jpg'" />
+  scrollY="true"
+  class="fixed"-->
+  <img  class="round" [src]="currentUser?.photo || 'assets/images/no-photo.jpg'" />
 
-  <h1 class="title">Bem vindo, {{ currentUser.name }}</h1>
+  <h1 class="title">Bem vindo, {{ currentUser?.name }}</h1>
   <h2 class="sub-title">Hoje, você tem 3 tarefas</h2>
   <h3 class="progress">30% Completadas</h3>
 
@@ -55,25 +58,37 @@
         </ion-card>
       </ion-slide>
     </ion-slides>
+
   </div>
-  <div class="tasks no-padding">
+
+<!--class="tasks no-padding"-->
+  <div class="tasks">
     <h4 class="projects">Tarefas</h4>
-    <ion-list>
-      <ion-item lines="none" *ngFor="let entry of form">
-        <ion-label>{{ entry.val }}</ion-label>
-        <ion-checkbox
-          slot="start"
-          mode="ios"
-          color="style"
-          [(ngModel)]="entry.isChecked"
-        ></ion-checkbox>
-      </ion-item>
+    <ion-button (click)="teste()">Botão</ion-button>
+    <ion-list *ngIf="(tasks$ | async) as tasks">
+      <ng-container *ngIf="tasks.length > 0; else noTasks">
+        <ion-item lines="none" (click)="teste()" *ngFor="let task of tasks">
+          <ion-label>{{ task.title }}</ion-label>
+          <ion-checkbox
+            slot="start"
+            mode="ios"
+            color="style"
+            [checked]="task.done"
+          ></ion-checkbox>
+        </ion-item>
+      </ng-container>
+      <ng-template #noTasks>
+        <ion-item lines="none">No Task yet...</ion-item>
+      </ng-template>
     </ion-list>
   </div>
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="end">
-  <ion-fab-button class="style-btn">
+  <ion-fab-button 
+      class="style-btn"
+      routerLink="/tasks/create"
+      routerDirection="forward">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>

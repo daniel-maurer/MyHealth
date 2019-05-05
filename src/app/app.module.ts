@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CapitalizePipe } from './chat/pipes/capitalize.pipe';
-import { AngularFireModule, FirebaseAppConfig } from '@angular/fire';
+import { AngularFireModule } from '@angular/fire';
 import { CustomLoggedHeaderComponent } from './shared/components/custom-logged-header/custom-logged-header.component';
 import { UserInfoComponent } from './shared/components/user-info/user-info.component';
 import { UserMenuComponent } from './shared/components/user-menu/user-menu.component';
@@ -22,13 +22,8 @@ import { AuthService } from './core/services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BaseComponent } from './shared/components/base/base.component';
-
-const firebaseAppConfig: FirebaseAppConfig = {
-  apiKey: 'AIzaSyBdGxWWveVlY0uHvVHLPjF9SgnEd1Be4Pg',
-  authDomain: 'myhealthdb.firebaseapp.com',
-  databaseURL: 'https://myhealthdb.firebaseio.com',
-  storageBucket: 'myhealthdb.appspot.com'
-};
+import { CoreModule } from './core/core.module';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -42,10 +37,11 @@ const firebaseAppConfig: FirebaseAppConfig = {
   ],
   entryComponents: [],
   imports: [
-    AngularFireModule.initializeApp(firebaseAppConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     BrowserModule,
+    CoreModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
