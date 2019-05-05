@@ -1,20 +1,31 @@
 <ion-header>
 
-  <app-custom-logged-header [title]="'User Profile'"></app-custom-logged-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="clean-title">
+      Configurações
+    </ion-title>
+  </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
 
-  <user-info [user]="currentUser"></user-info>
+  <div class="user-info" *ngIf="currentUser">
+    <img class="round" [src]="currentUser.photo || 'assets/images/no-photo.jpg'">
+    <h2 text-center>{{ currentUser.name }}</h2>
+    <p text-center>@{{ currentUser.username }}</p>
+  </div>
 
-  <ion-button expand="block" (click)="canEdit = !canEdit">Edit</ion-button>
+  <ion-button class="style-btn" expand="block" (click)="canEdit = !canEdit">Edit</ion-button>
 
   <form (ngSubmit)="onSubmit($event)" *ngIf="canEdit" #profileForm="ngForm">
 
     <ion-item>
-      <ion-icon name="person" item-left></ion-icon>
+      <ion-icon name="person" slot="start" color="style"></ion-icon>
       <ion-input
         type="text"
         placeholder="Name"
@@ -26,7 +37,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-icon name="at" item-left></ion-icon>
+      <ion-icon name="at" slot="start" color="style"></ion-icon>
       <ion-input
         type="text"
         placeholder="Username"
@@ -38,14 +49,15 @@
     </ion-item>
 
     <ion-item>
-      <ion-icon name="image" item-left></ion-icon>
+      <ion-icon name="image" slot="start" color="style"></ion-icon>
       <input type="file" accept="image/*" (change)="onPhoto($event)">
     </ion-item>
 
+<!--
     <app-progress-bar *ngIf="uploadProgress" [progress]="uploadProgress"></app-progress-bar>
-
+-->
     <br>
-    <ion-button expand="block" type="submit" [disabled]="profileForm.form.invalid">Save</ion-button>
+    <ion-button class="style-btn" expand="block" type="submit" [disabled]="profileForm.form.invalid">Save</ion-button>
 
   </form>
 

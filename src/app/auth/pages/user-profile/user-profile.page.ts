@@ -22,18 +22,16 @@ export class UserProfilePage implements OnInit {
   constructor(
     public authService: AuthService,
     public navCtrl: NavController,
-    public navParams: NavParams,
+    //public navParams: NavParams,
     public userService: UserService
   ) {  }
 
-  ngOnInit() {
-  }
 
   ionViewCanEnter(): Promise<boolean> {
     return this.authService.authenticated;
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
     this.userService
       .mapObjectKey<User>(this.userService.currentUser)
       .subscribe((user: User) => {

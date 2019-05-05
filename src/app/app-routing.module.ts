@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'user-profile',
     loadChildren: './auth/pages/user-profile/user-profile.module#UserProfilePageModule'
   },
+  {
+    path: 'home/user-profile',
+    loadChildren: './auth/pages/user-profile/user-profile.module#UserProfilePageModule'
+  },
   { path: 'tasks', loadChildren: './task/task.module#TasksModule'}
 
 ];

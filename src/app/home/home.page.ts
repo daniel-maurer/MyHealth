@@ -1,18 +1,14 @@
-import { MessagesPage } from '../chat/pages/messages/messages.page';
-import { Component, HostListener, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   NavController,
-  NavParams,
   ModalController,
-  PopoverController,
-  IonContent
+  PopoverController
 } from '@ionic/angular';
 import { User } from '../auth/models/user.model';
 import { UserService } from '../auth/services/user.service';
 import { Observable } from 'rxjs';
 import { Task } from '../task/models/task.model';
 import { TaskService } from '../task/services/task.service';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +28,7 @@ export class HomePage implements OnInit {
     { title: 'Exercícios', subtitle: 'Subtitle' },
     { title: 'Medicamentos', subtitle: 'Subtitle' },
     { title: 'Peso', subtitle: 'Subtitle' },
+    { title: 'Plano Terapeutico', subtitle: 'Subtitle' },
     { title: 'Procedimentos', subtitle: 'Subtitle' }
   ];
 
@@ -78,7 +75,7 @@ export class HomePage implements OnInit {
       this.currentUser = user;
     });
 
-    this.tasks$ = await this.tasksService.getAll().map(tasks => 
+    this.tasks$ = await this.tasksService.getAll().map(tasks =>
       tasks.filter(task => task.done == false));
   }
 
@@ -95,15 +92,8 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward('to-dos');
   }
 
-  logScrollStart() {
-    console.log('logScrollStart : When Scroll Starts');
+  onOptions(): void {
+    this.navCtrl.navigateForward('user-profile');
   }
 
-  logScrolling() {
-    console.log('logScrolling : When Scrolling');
-  }
-
-  logScrollEnd() {
-    console.log('logScrollEnd : When Scroll Ends');
-  }
 }

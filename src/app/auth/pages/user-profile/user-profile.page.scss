@@ -1,0 +1,21 @@
+.user-info {  
+    .round {
+        position: absolute;
+        top: 20px;
+        left: calc(50% - 75px);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px 10px 10px 0px;
+        width: 150px;
+        height: 150px;
+    }
+
+    h2 {
+        margin-top: 170px;
+    }
+    
+    p {
+        margin-top: -10px;
+    }
+}
