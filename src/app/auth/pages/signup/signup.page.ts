@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { AlertController, LoadingController, NavController, NavParams } from '@ionic/angular';
+import { AlertController, LoadingController, NavController } from '@ionic/angular';
 
 import 'rxjs/add/operator/first';
 
 import { AuthService } from '../../../core/services/auth.service';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
-import { HomePage } from '../../../home/home.page';
 
 import * as firebase from 'firebase/app';
 
@@ -67,7 +66,7 @@ export class SignupPage implements OnInit {
             let uuid: string = firebase.auth().currentUser.uid;
             this.userService.create(newUser, uuid)
               .then(() => {
-                this.navCtrl.navigateForward('home');
+                this.navCtrl.navigateForward('tabs');
                 this.loadingCtrl.dismiss();
               }).catch((error: any) => {
                 console.log(error);

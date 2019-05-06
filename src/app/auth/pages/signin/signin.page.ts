@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { AlertController, LoadingController, NavController, NavParams } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController, LoadingController, NavController } from '@ionic/angular';
 import { AuthService } from '../../../core/services/auth.service';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
@@ -41,7 +39,7 @@ export class SigninPage implements OnInit {
 
         if (isLogged) {
           //this.navCtrl.setRoot(HomePage);
-          this.navCtrl.navigateForward('home');
+          this.navCtrl.navigateForward('tabs');
           //loading.dismiss();
           this.loadingCtrl.dismiss();
         }
@@ -60,7 +58,7 @@ export class SigninPage implements OnInit {
 
   onHome(): void {
     //this.navCtrl.setRoot(MyHealthPage);
-    this.navCtrl.navigateForward('home');
+    this.navCtrl.navigateForward('tabs');
   }
 
   showLoading(): any {

@@ -33,7 +33,7 @@ export class UserService extends BaseService {
     });
   }
 
-  private listenAuthState(): void {
+  public listenAuthState(): void {
     this.afAuth.authState.subscribe((authUser: firebase.User) => {
       if (authUser) {
         console.log('Auth state alterado!', authUser.uid);

@@ -1,8 +1,11 @@
-
 <ion-content>
-  <img  class="round" [src]="currentUser?.photo || 'assets/images/no-photo.jpg'" />
+  <img
+    class="round"
+    *ngIf="currentUser"
+    [src]="currentUser?.photo || 'assets/images/no-photo.jpg'"
+  />
 
-  <h1 class="title">Bem vindo, {{ currentUser?.name }}</h1>
+  <h1 class="title" *ngIf="currentUser">Bem vindo, {{ currentUser?.name }}</h1>
   <h2 class="sub-title">Hoje, você tem 3 tarefas</h2>
   <h3 class="progress">30% Completadas</h3>
 
@@ -13,20 +16,19 @@
       <ion-slide *ngFor="let card of cards">
         <ion-card class="style-btn">
           <ion-card-header>
-            <h3>{{card.title}}</h3>
-            <h4>{{card.subtitle}}</h4>
+            <h3>{{ card.title }}</h3>
+            <h4>{{ card.subtitle }}</h4>
           </ion-card-header>
         </ion-card>
       </ion-slide>
     </ion-slides>
-
   </div>
 
-<!--class="tasks no-padding"-->
+  <!--class="tasks no-padding"-->
   <div class="tasks">
     <h4 class="projects">Tarefas</h4>
 
-    <ion-list *ngIf="(tasks$ | async) as tasks">
+    <ion-list *ngIf="tasks$ | async as tasks">
       <ng-container *ngIf="tasks.length > 0; else noTasks">
         <ion-item lines="none" *ngFor="let task of tasks">
           <ion-label>{{ task.title }}</ion-label>
@@ -47,16 +49,10 @@
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="end">
-  <ion-fab-button 
-      class="style-btn"
-      routerLink="/tasks/create"
-      routerDirection="forward">
+  <ion-fab-button class="style-btn" routerLink="/tasks/create" routerDirection="forward">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
-
-
-  
 
 
 
@@ -82,3 +78,4 @@
       <ion-label color="style">Configurações</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
+
