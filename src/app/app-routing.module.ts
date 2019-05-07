@@ -3,13 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
-  { path: 'tabs/home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'chat/:recipientUser', loadChildren: './chat/pages/chat/chat.module#ChatPageModule' },
-  {
-    path: 'tabs/messages',
-    loadChildren: './chat/pages/messages/messages.module#MessagesPageModule'
-  },
   {
     path: 'messages',
     loadChildren: './chat/pages/messages/messages.module#MessagesPageModule'
@@ -18,10 +13,6 @@ const routes: Routes = [
   { path: 'signup', loadChildren: './auth/pages/signup/signup.module#SignupPageModule' },
   {
     path: 'user-profile',
-    loadChildren: './auth/pages/user-profile/user-profile.module#UserProfilePageModule'
-  },
-  {
-    path: 'tabs/user-profile',
     loadChildren: './auth/pages/user-profile/user-profile.module#UserProfilePageModule'
   },
   { path: 'tasks', loadChildren: './task/task.module#TasksModule' },
