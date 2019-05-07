@@ -12,6 +12,7 @@ import { Task } from '../task/models/task.model';
 import { TaskService } from '../task/services/task.service';
 import { take } from 'rxjs/operators';
 import { LoadingOptions } from '@ionic/core';
+import { AuthProvider } from '../core/services/auth.types';
 
 @Component({
   selector: 'app-home',
@@ -23,39 +24,39 @@ export class HomePage implements OnInit {
   currentUser: User;
 
   public cards = [
-    { title: 'Alergias', subtitle: 'Subtitle' },
-    { title: 'Altura', subtitle: 'Subtitle' },
-    { title: 'Apontamentos', subtitle: 'Subtitle' },
-    { title: 'Condições', subtitle: 'Subtitle' },
-    { title: 'Dietas', subtitle: 'Subtitle' },
-    { title: 'Exercícios', subtitle: 'Subtitle' },
-    { title: 'Medicamentos', subtitle: 'Subtitle' },
-    { title: 'Peso', subtitle: 'Subtitle' },
-    { title: 'Plano Terapeutico', subtitle: 'Subtitle' },
-    { title: 'Procedimentos', subtitle: 'Subtitle' }
+    { title: 'Alergias', icon: 'heart-empty' },
+    { title: 'Altura', icon: 'heart-empty' },
+    { title: 'Apontamen tos', icon: 'heart-empty' },
+    { title: 'Condições', icon: 'heart-empty' },
+    { title: 'Dietas', icon: 'heart-empty' },
+    { title: 'Exercícios', icon: 'heart-empty' },
+    { title: 'Medicamen tos', icon: 'heart-empty' },
+    { title: 'Peso', icon: 'heart-empty' },
+    { title: 'Plano Terapeutico', icon: 'heart-empty' },
+    { title: 'Procedimen tos', icon: 'heart-empty' }
   ];
 
   slideOpts = {
     // Default parameters for smallest screen
     slidesPerView: 1,
     spaceBetween: 10,
-    centeredSlides: true,
+ ///   centeredSlides: true,
     // Responsive breakpoints
     breakpointsInverse: true,
     breakpoints: {
       // when window width is >= 320px
       320: {
-        slidesPerView: 2,
-        spaceBetween: -20
+        slidesPerView:  3,
+        spaceBetween: 0
       },
       // when window width is >= 480px
       480: {
-        slidesPerView: 3,
+        slidesPerView:  3,
         spaceBetween: 30
       },
       // when window width is >= 640px
       640: {
-        slidesPerView: 4,
+        slidesPerView:  4,
         spaceBetween: 40
       },
       850: {

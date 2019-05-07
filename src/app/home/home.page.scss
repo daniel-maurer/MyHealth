@@ -51,25 +51,30 @@
 }
 
 ion-card {
-  height: 160px !important;
-  width: 140px !important;
+  height: 100px !important;
+  width: 100% !important;
 
   box-shadow: none !important;
   border-radius: 10px 10px 10px 0px !important;
 
-  ion-card-subtitle {
+  .card-icon {
     position: absolute;
-    top: 6px;
-    left: 6px;
-    font-size: 16px;
-    color: #ffffff;
+    left: 8px;
+    top: 8px;
+
+    width: 25px;
+    height: 25px;
   }
 
-  ion-card-title {
-    font-size: 16;
+ .card-title {
     position: absolute;
-    top: calc(50% - 30px);
-    width: 100%;
+    left: 8px;
+    bottom: 8px;
+
+    text-align: left;
+    vertical-align: text-bottom;
+    font-size: 15px !important;
+    font-weight: normal !important;
     color: #ffffff;
   }
 }
@@ -77,12 +82,11 @@ ion-card {
 .tasks {
   position: absolute;
   width: 100% !important;
-  top: 400px;
+  top: 340px;
   ion-item {
     margin-right: 50px;
   }
   ion-label {
-    // position: absolute;
     width: 100% !important;
   }
 }

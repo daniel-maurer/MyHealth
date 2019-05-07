@@ -15,16 +15,14 @@
     <ion-slides pager="false" [options]="slideOpts">
       <ion-slide *ngFor="let card of cards">
         <ion-card class="style-btn">
-          <ion-card-header>
-            <h3>{{ card.title }}</h3>
-            <h4>{{ card.subtitle }}</h4>
-          </ion-card-header>
+          <ion-icon class='card-icon' [name]="card.icon"></ion-icon>
+          <p class='card-title' no-margin>{{ card.title }}</p>
         </ion-card>
       </ion-slide>
     </ion-slides>
   </div>
 
-  <!--class="tasks no-padding"-->
+  <!--class="tasks no-padding"   ´${{card.title}}´-->
   <div class="tasks">
     <h4 class="projects">Tarefas</h4>
 
