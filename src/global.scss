@@ -86,18 +86,18 @@ ion-title {
 }
 
 .card-notification {
-  --background: #C84A23;
-  --background: -moz-linear-gradient(45deg, #F37021 0%, #C84A23 100%);
+  --background: #F37021;
+  --background: -moz-linear-gradient(45deg, #C84A23 0%, #F37021 100%);
   --background: -webkit-gradient(
     left bottom,
     right top,
-    color-stop(0%, #F37021),
-    color-stop(100%, #C84A23)
+    color-stop(0%, #C84A23),
+    color-stop(100%, #F37021)
   );
-  --background: -webkit-linear-gradient(45deg, #F37021 0%, #C84A23 100%);
-  --background: -o-linear-gradient(45deg, #F37021 0%, #C84A23 100%);
-  --background: -ms-linear-gradient(45deg, #F37021 0%, #C84A23 100%);
-  --background: linear-gradient(45deg, #F37021 0%, #C84A23 100%);
+  --background: -webkit-linear-gradient(45deg, #C84A23 0%, #F37021 100%);
+  --background: -o-linear-gradient(45deg, #C84A23 0%, #F37021 100%);
+  --background: -ms-linear-gradient(45deg, #C84A23 0%, #F37021 100%);
+  --background: linear-gradient(45deg, #C84A23 0%, #F37021 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cb9c4', endColorstr='#3dd3ae', GradientType=1 );
 
   --color: #ffffff;
