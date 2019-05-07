@@ -14,9 +14,9 @@
 
     <ion-slides pager="false" [options]="slideOpts">
       <ion-slide *ngFor="let card of cards">
-        <ion-card class="style-btn">
-          <ion-icon class='card-icon' [name]="card.icon"></ion-icon>
-          <p class='card-title' no-margin>{{ card.title }}</p>
+        <ion-card [class]="card.class">
+          <ion-icon class="card-icon" [name]="card.icon"></ion-icon>
+          <p class="card-title" no-margin>{{ card.title }}</p>
         </ion-card>
       </ion-slide>
     </ion-slides>

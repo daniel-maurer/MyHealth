@@ -24,39 +24,40 @@ export class HomePage implements OnInit {
   currentUser: User;
 
   public cards = [
-    { title: 'Alergias', icon: 'heart-empty' },
-    { title: 'Altura', icon: 'heart-empty' },
-    { title: 'Apontamen tos', icon: 'heart-empty' },
-    { title: 'Condições', icon: 'heart-empty' },
-    { title: 'Dietas', icon: 'heart-empty' },
-    { title: 'Exercícios', icon: 'heart-empty' },
-    { title: 'Medicamen tos', icon: 'heart-empty' },
-    { title: 'Peso', icon: 'heart-empty' },
-    { title: 'Plano Terapeutico', icon: 'heart-empty' },
-    { title: 'Procedimen tos', icon: 'heart-empty' }
+    { title: 'Cardiologia', icon: 'heart-empty', class: 'card-notification' },
+    { title: 'Alergias', icon: 'heart-empty', class: 'style-btn' },
+    { title: 'Altura', icon: 'heart-empty', class: 'style-btn' },
+    { title: 'Apontamen tos', icon: 'heart-empty', class: 'style-btn' },
+    { title: 'Condições', icon: 'heart-empty', class: 'style-btn' },
+    { title: 'Dietas', icon: 'heart-empty', class: 'style-btn' },
+    { title: 'Exercícios', icon: 'heart-empty', class: 'style-btn' },
+    { title: 'Medicamen tos', icon: 'heart-empty', class: 'style-btn' },
+    { title: 'Peso', icon: 'heart-empty', class: 'style-btn' },
+    { title: 'Plano Terapeutico', icon: 'heart-empty', class: 'style-btn' },
+    { title: 'Procedimen tos', icon: 'heart-empty', class: 'style-btn' }
   ];
 
   slideOpts = {
     // Default parameters for smallest screen
     slidesPerView: 1,
     spaceBetween: 10,
- ///   centeredSlides: true,
+    ///   centeredSlides: true,
     // Responsive breakpoints
     breakpointsInverse: true,
     breakpoints: {
       // when window width is >= 320px
       320: {
-        slidesPerView:  3,
+        slidesPerView: 3,
         spaceBetween: 0
       },
       // when window width is >= 480px
       480: {
-        slidesPerView:  3,
+        slidesPerView: 3,
         spaceBetween: 30
       },
       // when window width is >= 640px
       640: {
-        slidesPerView:  4,
+        slidesPerView: 4,
         spaceBetween: 40
       },
       850: {
