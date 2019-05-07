@@ -67,7 +67,7 @@ export class NewTaskPage implements OnInit {
             id: this.taskId,
             ...this.taskForm.value
           });
-      this.navCtrl.navigateBack('/home');
+      this.navCtrl.navigateBack('/tabs');
     } catch (error) {
       console.log('Error saving Task: ', error);
      // await this.overlayService.toast({
