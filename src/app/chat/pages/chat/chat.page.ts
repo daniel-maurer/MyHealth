@@ -29,6 +29,7 @@ export class ChatPage implements OnInit {
   recipient: User;
   private chat1: AngularFireObject<Chat>;
   private chat2: AngularFireObject<Chat>;
+  newMessage: string = "";
 
   constructor(
     public authService: AuthService,
