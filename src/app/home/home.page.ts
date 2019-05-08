@@ -3,7 +3,8 @@ import {
   NavController,
   ModalController,
   PopoverController,
-  LoadingController
+  LoadingController,
+  Platform
 } from '@ionic/angular';
 import { User } from '../auth/models/user.model';
 import { UserService } from '../auth/services/user.service';
@@ -28,43 +29,9 @@ export class HomePage implements OnInit {
   currentUser: User;
 
   slideOpts = {
-    // Default parameters for smallest screen
-    slidesPerView: 1,
+    slidesPerView: this.platform.width() / 110,
     spaceBetween: 10,
-       centeredSlides: false,
-    // Responsive breakpoints
-    breakpointsInverse: true,
-    breakpoints: {
-      // when window width is >= 320px
-      320: {
-        slidesPerView: 3,
-        centeredSlides: false,
-        spaceBetween: 0
-      },
-      // when window width is >= 480px
-      480: {
-        slidesPerView: 3,
-        centeredSlides: false,
-        spaceBetween: 30
-      },
-      // when window width is >= 640px
-      640: {
-        slidesPerView: 4,
-        spaceBetween: 40
-      },
-      850: {
-        slidesPerView: 5,
-        spaceBetween: 0
-      },
-      1000: {
-        slidesPerView: 6,
-        spaceBetween: 0
-      },
-      1368: {
-        slidesPerView: 7,
-        spaceBetween: 0
-      }
-    }
+    freeMode: true
   };
 
   constructor(
@@ -74,7 +41,8 @@ export class HomePage implements OnInit {
     public modalCtrl: ModalController,
     public popoverCtrl: PopoverController,
     public userService: UserService,
-    public tasksService: TaskService
+    public tasksService: TaskService,
+    public platform: Platform
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -83,9 +51,9 @@ export class HomePage implements OnInit {
       this.currentUser = user;
     });
 
-    this.tasks$ = this.tasksService.getAll().map((tasks) => {
-      console.log('map')
-      return tasks.filter(task => task.done == false)
+    this.tasks$ = this.tasksService.getAll().map(tasks => {
+      console.log('map');
+      return tasks.filter(task => task.done == false);
     });
     this.cards$ = this.cardService.getAll();
   }
@@ -121,7 +89,6 @@ export class HomePage implements OnInit {
   async onOrganizeCards() {
     const modal = await this.modalCtrl.create({
       component: OrganizeCardsPage
-    //  componentProps: { value: 123 }
     });
     return await modal.present();
   }

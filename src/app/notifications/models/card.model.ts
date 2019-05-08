@@ -1,7 +1,8 @@
 export interface Card {
-    id: string;
-    title: string;
-    important: boolean;
-    icon: string;
-    position: number;
-  }
+  id: string;
+  title: string;
+  important: boolean;
+  visible: boolean;
+  icon: string;
+  position: number;
+}

@@ -14,18 +14,6 @@ export class SigninPage implements OnInit {
 
   signinForm: FormGroup;
 
-  public cards: Card[] = [,
-    { id: 'allergy', title: 'Alergias', important: false, icon: 'heart-empty', position: 0 },
-    { id: 'notes', title: 'Apontamentos', important: false, icon: 'heart-empty', position: 1 },
-    { id: 'conditions', title: 'Condições', important: true, icon: 'heart-empty', position: 2 },
-    { id: 'diets', title: 'Dietas', important: false, icon: 'heart-empty', position: 3 },
-    { id: 'exercises', title: 'Exercícios', important: false, icon: 'heart-empty', position: 4 },
-    { id: 'medicines', title: 'Medicamentos', important: false, icon: 'heart-empty', position: 5 },
-    { id: 'weight', title: 'Peso', important: false, icon: 'heart-empty', position: 6 },
-    { id: 'therapeutic-plans', title: 'Planos Terapeuticos', important: false, icon: 'heart-empty', position: 7 },
-    { id: 'procedures', title: 'Procedimentos', important: false, icon: 'heart-empty', position: 8 }
-  ];
-
   constructor(
     public alertCtrl: AlertController,
     public authService: AuthService,
@@ -53,11 +41,6 @@ export class SigninPage implements OnInit {
       .then((isLogged: boolean) => {
 
         if (isLogged) {
-          //create standard cards
-          this.cards.forEach((card: Card) => {
-            this.cardService.createWithSpecificId(card);
-          });
-
           this.navCtrl.navigateForward('tabs');
           this.loadingCtrl.dismiss();
         }
@@ -75,11 +58,7 @@ export class SigninPage implements OnInit {
   }
 
   onHome(): void {
-
     //create standard cards
-    this.cards.forEach((card: Card) => {
-      this.cardService.createWithSpecificId(card);
-    });
     this.navCtrl.navigateForward('tabs');
   }
 

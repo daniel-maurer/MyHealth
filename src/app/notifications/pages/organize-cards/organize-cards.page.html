@@ -1,29 +1,21 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="end">
-            <ion-button color="dark" (click)="closeModal()">Fechar</ion-button>
+            <ion-button color="dark" (click)="closeModal()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
         </ion-buttons>
       <ion-title class="clean-title">Organizar</ion-title>
     </ion-toolbar>
-  
+
   </ion-header>
 
-  
+
 <ion-content >
     <ion-list>
-        <ion-list-header>
-            <ion-label>INCLUDE</ion-label>
-        </ion-list-header>
         <ion-reorder-group (ionItemReorder)="reorder($event)" [disabled]="false">
             <ion-item *ngFor="let card of cards">
                 <ion-label>{{card.title}}</ion-label>
-           <!--     <ion-checkbox
-                  slot="start"
-                  mode="ios"
-                  color="style"
-                  [checked]="card.important"
-                  (ionChange)="onUpdate(card)"
-                ></ion-checkbox> -->
                 <ion-reorder></ion-reorder>
             </ion-item>
         </ion-reorder-group>

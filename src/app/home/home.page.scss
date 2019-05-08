@@ -52,9 +52,9 @@
 
 ion-card {
   height: 100px !important;
-  width: 100% !important;
+  width: 100px !important;
+  min-width: 100px !important;
 
- // box-shadow: none !important;
   border-radius: 10px 10px 10px 0px !important;
 
   .card-icon {
@@ -67,10 +67,11 @@ ion-card {
     height: 25px;
   }
 
- .card-title {
+  .card-title {
     position: absolute;
     left: 8px;
     bottom: 8px;
+    max-width: 84px;
 
     text-align: left;
     vertical-align: text-bottom;
@@ -80,7 +81,7 @@ ion-card {
   }
 }
 
-.organize{
+.organize {
   --background: var(--ion-color-style);
 }
 
@@ -99,4 +100,3 @@ ion-card {
 ion-fab {
   bottom: 11px !important;
 }
-
