@@ -44,16 +44,18 @@ export class NewTaskPage implements OnInit {
     this.tasksService
       .get(taskId)
       .pipe(take(1))
-      .subscribe(({ title, done }) => {
+      .subscribe(({ title, done, scheduled }) => {
         this.taskForm.get('title').setValue(title);
         this.taskForm.get('done').setValue(done);
+        this.taskForm.get('scheduled').setValue(scheduled);
       });
   }
 
   private createForm(): void {
     this.taskForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
-      done: [false]
+      done: [false],
+      scheduled: null
     });
   }
 

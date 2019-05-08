@@ -8,16 +8,9 @@
 </ion-header>
 
 <ion-content padding>
-  <form
-    [formGroup]="taskForm"
-    (submit)="onSubmit()"
-  >
+  <form [formGroup]="taskForm" (submit)="onSubmit()">
     <ion-item>
-      <ion-icon
-        name="paper"
-        slot="start"
-        color="style"
-      ></ion-icon>
+      <ion-icon name="paper" slot="start" color="style"></ion-icon>
       <ion-input
         type="text"
         placeholder="Title"
@@ -26,20 +19,14 @@
         formControlName="title"
       >
       </ion-input>
-      <ion-toggle
-        *ngIf="taskId"
-        slot="end"
-        color="style"
-        formControlName="done"
-      ></ion-toggle>
+      <ion-toggle *ngIf="taskId" slot="end" color="style" formControlName="done"></ion-toggle>
     </ion-item>
-    <ion-button
-      class="style-btn"
-      expand="full"
-      type="submit"
-      [disabled]="taskForm.invalid"
-    >
-    {{ buttonText }}
+    <ion-item>
+      <ion-label>Agendar</ion-label>
+      <ion-datetime display-format="MMM DD, YYYY HH:mm" formControlName="scheduled"></ion-datetime>
+    </ion-item>
+    <ion-button class="style-btn" expand="full" type="submit" [disabled]="taskForm.invalid">
+      {{ buttonText }}
     </ion-button>
   </form>
 </ion-content>
