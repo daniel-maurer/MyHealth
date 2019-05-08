@@ -32,6 +32,10 @@ export abstract class Firestore<T extends { id: string }> {
     return this.setItem(item, 'set');
   }
 
+  createWithSpecificId(item: T): Promise<T> {
+    return this.setItem(item, 'set');
+  }
+
   update(item: T): Promise<T> {
     return this.setItem(item, 'update');
   }

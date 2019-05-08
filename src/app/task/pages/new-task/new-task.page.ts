@@ -5,6 +5,7 @@ import { NavController } from '@ionic/angular';
 import { take } from 'rxjs/operators';
 
 import { TaskService } from '../../services/task.service';
+import { OverlayService } from 'src/app/core/services/overlay.service';
 
 @Component({
   selector: 'app-new-task',
@@ -21,6 +22,7 @@ export class NewTaskPage implements OnInit {
     private fb: FormBuilder,
     private navCtrl: NavController,
     private route: ActivatedRoute,
+    private overlayService: OverlayService,
     private tasksService: TaskService
   ) {}
 
@@ -56,9 +58,9 @@ export class NewTaskPage implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
-   // const loading = await this.overlayService.loading({
-   //   message: 'Saving...'
-   // });
+    const loading = await this.overlayService.loading({
+      message: 'Saving...'
+    });
     console.log('Saving...');
     try {
       const task = !this.taskId
@@ -70,13 +72,13 @@ export class NewTaskPage implements OnInit {
       this.navCtrl.navigateBack('/tabs');
     } catch (error) {
       console.log('Error saving Task: ', error);
-     // await this.overlayService.toast({
-    //    message: error.message
-     // });
+      await this.overlayService.toast({
+        message: error.message
+      });
 
       console.log('error.message');
     } finally {
-     // loading.dismiss();
+      loading.dismiss();
     }
   }
 }

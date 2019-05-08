@@ -13,6 +13,9 @@ import { TaskService } from '../task/services/task.service';
 import { take } from 'rxjs/operators';
 import { LoadingOptions } from '@ionic/core';
 import { AuthProvider } from '../core/services/auth.types';
+import { Card } from '../notifications/models/card.model';
+import { CardService } from '../notifications/services/card.service';
+import { OrganizeCardsPage } from '../notifications/pages/organize-cards/organize-cards.page';
 
 @Component({
   selector: 'app-home',
@@ -21,38 +24,27 @@ import { AuthProvider } from '../core/services/auth.types';
 })
 export class HomePage implements OnInit {
   tasks$: Observable<Task[]>;
+  cards$: Observable<Card[]>;
   currentUser: User;
-
-  public cards = [
-    { title: 'Cardiologia', icon: 'heart-empty', class: 'card-notification' },
-    { title: 'Alergias', icon: 'heart-empty', class: 'style-btn' },
-    { title: 'Altura', icon: 'heart-empty', class: 'style-btn' },
-    { title: 'Apontamen tos', icon: 'heart-empty', class: 'style-btn' },
-    { title: 'Condições', icon: 'heart-empty', class: 'style-btn' },
-    { title: 'Dietas', icon: 'heart-empty', class: 'style-btn' },
-    { title: 'Exercícios', icon: 'heart-empty', class: 'style-btn' },
-    { title: 'Medicamen tos', icon: 'heart-empty', class: 'style-btn' },
-    { title: 'Peso', icon: 'heart-empty', class: 'style-btn' },
-    { title: 'Plano Terapeutico', icon: 'heart-empty', class: 'style-btn' },
-    { title: 'Procedimen tos', icon: 'heart-empty', class: 'style-btn' }
-  ];
 
   slideOpts = {
     // Default parameters for smallest screen
     slidesPerView: 1,
     spaceBetween: 10,
-    ///   centeredSlides: true,
+       centeredSlides: false,
     // Responsive breakpoints
     breakpointsInverse: true,
     breakpoints: {
       // when window width is >= 320px
       320: {
         slidesPerView: 3,
+        centeredSlides: false,
         spaceBetween: 0
       },
       // when window width is >= 480px
       480: {
         slidesPerView: 3,
+        centeredSlides: false,
         spaceBetween: 30
       },
       // when window width is >= 640px
@@ -76,6 +68,7 @@ export class HomePage implements OnInit {
   };
 
   constructor(
+    private cardService: CardService,
     public loadingCtrl: LoadingController,
     public navCtrl: NavController,
     public modalCtrl: ModalController,
@@ -86,11 +79,15 @@ export class HomePage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
-      console.log('await');
+      console.log('await user');
       this.currentUser = user;
     });
 
-    this.tasks$ = this.tasksService.getAll().map(tasks => tasks.filter(task => task.done == false));
+    this.tasks$ = this.tasksService.getAll().map((tasks) => {
+      console.log('map')
+      return tasks.filter(task => task.done == false)
+    });
+    this.cards$ = this.cardService.getAll();
   }
 
   showLoading(): any {
@@ -119,5 +116,13 @@ export class HomePage implements OnInit {
 
   onOptions(): void {
     this.navCtrl.navigateForward('user-profile');
+  }
+
+  async onOrganizeCards() {
+    const modal = await this.modalCtrl.create({
+      component: OrganizeCardsPage
+    //  componentProps: { value: 123 }
+    });
+    return await modal.present();
   }
 }

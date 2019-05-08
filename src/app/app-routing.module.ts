@@ -17,6 +17,7 @@ const routes: Routes = [
   },
   { path: 'tasks', loadChildren: './task/task.module#TasksModule' },
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' }
+
 ];
 
 @NgModule({

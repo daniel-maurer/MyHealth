@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController, NavController } from '@ionic/angular';
 import { AuthService } from '../../../core/services/auth.service';
+import { Card } from 'src/app/notifications/models/card.model';
+import { CardService } from 'src/app/notifications/services/card.service';
 
 @Component({
   selector: 'app-signin',
@@ -12,9 +14,22 @@ export class SigninPage implements OnInit {
 
   signinForm: FormGroup;
 
+  public cards: Card[] = [,
+    { id: 'allergy', title: 'Alergias', important: false, icon: 'heart-empty', position: 0 },
+    { id: 'notes', title: 'Apontamentos', important: false, icon: 'heart-empty', position: 1 },
+    { id: 'conditions', title: 'Condições', important: true, icon: 'heart-empty', position: 2 },
+    { id: 'diets', title: 'Dietas', important: false, icon: 'heart-empty', position: 3 },
+    { id: 'exercises', title: 'Exercícios', important: false, icon: 'heart-empty', position: 4 },
+    { id: 'medicines', title: 'Medicamentos', important: false, icon: 'heart-empty', position: 5 },
+    { id: 'weight', title: 'Peso', important: false, icon: 'heart-empty', position: 6 },
+    { id: 'therapeutic-plans', title: 'Planos Terapeuticos', important: false, icon: 'heart-empty', position: 7 },
+    { id: 'procedures', title: 'Procedimentos', important: false, icon: 'heart-empty', position: 8 }
+  ];
+
   constructor(
     public alertCtrl: AlertController,
     public authService: AuthService,
+    private cardService: CardService,
     public formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
     public navCtrl: NavController
@@ -38,9 +53,12 @@ export class SigninPage implements OnInit {
       .then((isLogged: boolean) => {
 
         if (isLogged) {
-          //this.navCtrl.setRoot(HomePage);
+          //create standard cards
+          this.cards.forEach((card: Card) => {
+            this.cardService.createWithSpecificId(card);
+          });
+
           this.navCtrl.navigateForward('tabs');
-          //loading.dismiss();
           this.loadingCtrl.dismiss();
         }
 
@@ -57,7 +75,11 @@ export class SigninPage implements OnInit {
   }
 
   onHome(): void {
-    //this.navCtrl.setRoot(MyHealthPage);
+
+    //create standard cards
+    this.cards.forEach((card: Card) => {
+      this.cardService.createWithSpecificId(card);
+    });
     this.navCtrl.navigateForward('tabs');
   }
 

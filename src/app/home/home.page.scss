@@ -54,7 +54,7 @@ ion-card {
   height: 100px !important;
   width: 100% !important;
 
-  box-shadow: none !important;
+ // box-shadow: none !important;
   border-radius: 10px 10px 10px 0px !important;
 
   .card-icon {
@@ -62,6 +62,7 @@ ion-card {
     left: 8px;
     top: 8px;
 
+    color: #ffffff !important;
     width: 25px;
     height: 25px;
   }
@@ -77,6 +78,10 @@ ion-card {
     font-weight: normal !important;
     color: #ffffff;
   }
+}
+
+.organize{
+  --background: var(--ion-color-style);
 }
 
 .tasks {

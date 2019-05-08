@@ -9,6 +9,8 @@ import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 
 import * as firebase from 'firebase/app';
+import { CardService } from 'src/app/notifications/services/card.service';
+import { Card } from 'src/app/notifications/models/card.model';
 
 @Component({
   selector: 'app-signup',
@@ -17,11 +19,24 @@ import * as firebase from 'firebase/app';
 })
 export class SignupPage implements OnInit {
 
+  public cards: Card[] = [,
+    { id: 'allergy', title: 'Alergias', important: false, icon: 'heart-empty', position: 0 },
+    { id: 'notes', title: 'Apontamentos', important: false, icon: 'heart-empty', position: 1 },
+    { id: 'conditions', title: 'Condições', important: false, icon: 'heart-empty', position: 2 },
+    { id: 'diets', title: 'Dietas', important: false, icon: 'heart-empty', position: 3 },
+    { id: 'exercises', title: 'Exercícios', important: false, icon: 'heart-empty', position: 4 },
+    { id: 'medicines', title: 'Medicamentos', important: false, icon: 'heart-empty', position: 5 },
+    { id: 'weight', title: 'Peso', important: false, icon: 'heart-empty', position: 6 },
+    { id: 'therapeutic-plans', title: 'Planos Terapeuticos', important: false, icon: 'heart-empty', position: 7 },
+    { id: 'procedures', title: 'Procedimentos', important: false, icon: 'heart-empty', position: 8 }
+  ];
+
   signupForm: FormGroup;
 
   constructor(
     public alertCtrl: AlertController,
     public authService: AuthService,
+    private cardService: CardService,
     public formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
     public navCtrl: NavController,
@@ -63,9 +78,15 @@ export class SignupPage implements OnInit {
             newUser.headline = 'O Melhor Paciente';
 
             newUser.createDate = firebase.database.ServerValue.TIMESTAMP;
-            let uuid: string = firebase.auth().currentUser.uid;
+            const uuid: string = firebase.auth().currentUser.uid;
             this.userService.create(newUser, uuid)
               .then(() => {
+
+                //create standard cards
+                this.cards.forEach((card: Card) => {
+                  this.cardService.createWithSpecificId(card);
+                });
+
                 this.navCtrl.navigateForward('tabs');
                 this.loadingCtrl.dismiss();
               }).catch((error: any) => {

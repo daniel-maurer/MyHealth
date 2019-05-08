@@ -12,13 +12,19 @@
   <div class="slides">
     <h4 class="projects">Meus Dados</h4>
 
-    <ion-slides pager="false" [options]="slideOpts">
+    <ion-slides pager="false" [options]="slideOpts" *ngIf="cards$ | async as cards">
       <ion-slide *ngFor="let card of cards">
-        <ion-card [class]="card.class">
+        <ion-card [class]="card.important ? 'card-notification' : 'style-btn'">
           <ion-icon class="card-icon" [name]="card.icon"></ion-icon>
           <p class="card-title" no-margin>{{ card.title }}</p>
         </ion-card>
       </ion-slide>
+      <ion-slide>
+        <ion-card class="organize" (click)="onOrganizeCards()">
+          <ion-icon class="card-icon" name="code"></ion-icon>
+          <p class="card-title" no-margin>Organizar</p>
+        </ion-card>
+        </ion-slide>
     </ion-slides>
   </div>
 
