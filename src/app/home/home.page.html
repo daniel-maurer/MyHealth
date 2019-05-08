@@ -6,7 +6,7 @@
   />
 
   <h1 class="title" *ngIf="currentUser">Bem vindo, {{ currentUser?.name }}</h1>
-  <h2 class="sub-title">Hoje, você tem 3 tarefas</h2>
+  <h2 class="sub-title">Hoje, você tem {{ (tasks$ | async)?.length }} tarefas</h2>
   <h3 class="progress">30% Completadas</h3>
 
   <div class="slides">

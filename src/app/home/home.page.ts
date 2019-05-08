@@ -11,9 +11,6 @@ import { UserService } from '../auth/services/user.service';
 import { Observable } from 'rxjs';
 import { Task } from '../task/models/task.model';
 import { TaskService } from '../task/services/task.service';
-import { take } from 'rxjs/operators';
-import { LoadingOptions } from '@ionic/core';
-import { AuthProvider } from '../core/services/auth.types';
 import { Card } from '../notifications/models/card.model';
 import { CardService } from '../notifications/services/card.service';
 import { OrganizeCardsPage } from '../notifications/pages/organize-cards/organize-cards.page';
@@ -26,6 +23,7 @@ import { OrganizeCardsPage } from '../notifications/pages/organize-cards/organiz
 export class HomePage implements OnInit {
   tasks$: Observable<Task[]>;
   cards$: Observable<Card[]>;
+  dones$: Observable<number>;
   currentUser: User;
 
   slideOpts = {
@@ -52,9 +50,9 @@ export class HomePage implements OnInit {
     });
 
     this.tasks$ = this.tasksService.getAll().map(tasks => {
-      console.log('map');
-      return tasks.filter(task => task.done == false);
+      return tasks.filter(task => this.today(new Date(task.scheduled)));
     });
+
     this.cards$ = this.cardService.getAll();
   }
 
@@ -84,6 +82,15 @@ export class HomePage implements OnInit {
 
   onOptions(): void {
     this.navCtrl.navigateForward('user-profile');
+  }
+
+  today(td) {
+    const d = new Date();
+    return (
+      td.getDate() == d.getDate() &&
+      td.getMonth() == d.getMonth() &&
+      td.getFullYear() == d.getFullYear()
+    );
   }
 
   async onOrganizeCards() {
