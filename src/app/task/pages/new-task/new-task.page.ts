@@ -6,27 +6,34 @@ import { take } from 'rxjs/operators';
 
 import { TaskService } from '../../services/task.service';
 import { OverlayService } from 'src/app/core/services/overlay.service';
+import { User } from 'src/app/auth/models/user.model';
+import { UserService } from 'src/app/auth/services/user.service';
 
 @Component({
   selector: 'app-new-task',
   templateUrl: './new-task.page.html',
-  styleUrls: ['./new-task.page.scss'],
+  styleUrls: ['./new-task.page.scss']
 })
 export class NewTaskPage implements OnInit {
   taskForm: FormGroup;
   pageTitle = '...';
   buttonText = '...';
   taskId: string = undefined;
+  currentUser: User;
 
   constructor(
     private fb: FormBuilder,
     private navCtrl: NavController,
     private route: ActivatedRoute,
     private overlayService: OverlayService,
-    private tasksService: TaskService
+    private tasksService: TaskService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
+    this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
+      this.currentUser = user;
+    });
     this.createForm();
     this.init();
   }
@@ -66,7 +73,10 @@ export class NewTaskPage implements OnInit {
     console.log('Saving...');
     try {
       const task = !this.taskId
-        ? await this.tasksService.create(this.taskForm.value)
+        ? await this.tasksService.create({
+            source: this.currentUser.name,
+            ...this.taskForm.value
+          })
         : await this.tasksService.update({
             id: this.taskId,
             ...this.taskForm.value

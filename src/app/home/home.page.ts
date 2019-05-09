@@ -45,7 +45,6 @@ export class HomePage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
-      console.log('await user');
       this.currentUser = user;
     });
 

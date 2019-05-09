@@ -17,6 +17,7 @@ ion-toolbar {
   .round {
     display: block;
     border-radius: 10px 10px 10px 0px;
+    object-fit: cover;
     width: 40px;
     height: 40px;
   }
@@ -25,4 +26,4 @@ ion-toolbar {
     left: 56px;
 
     width: calc(100% - 120px) !important;
-  }  
+  }
