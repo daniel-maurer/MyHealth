@@ -8,7 +8,7 @@ import {
 } from '@ionic/angular';
 import { User } from '../auth/models/user.model';
 import { UserService } from '../auth/services/user.service';
-import { Observable } from 'rxjs';
+import { Observable, scheduled } from 'rxjs';
 import { Task } from '../task/models/task.model';
 import { TaskService } from '../task/services/task.service';
 import { Card } from '../notifications/models/card.model';
@@ -50,7 +50,7 @@ export class HomePage implements OnInit {
     });
 
     this.tasks$ = this.tasksService.getAll().map(tasks => {
-      return tasks.filter(task => this.today(new Date(task.scheduled)));
+      return tasks.filter(task => this.today(new Date(task.scheduled)) || this.isLate(task));
     });
 
     this.dones$ = this.tasksService.getAll().map(tasks => {
@@ -95,6 +95,12 @@ export class HomePage implements OnInit {
       td.getMonth() === d.getMonth() &&
       td.getFullYear() === d.getFullYear()
     );
+  }
+
+  isLate(task: Task) {
+    const today = new Date();
+    const td = new Date(task.scheduled);
+    return td < today && !task.done;
   }
 
   async onOrganizeCards() {
