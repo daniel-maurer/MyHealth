@@ -50,85 +50,89 @@ ion-title {
 }
 
 .style-toolbar {
-  --background: #2CB6C5;
-  --background: -moz-linear-gradient(45deg, #007EB7 0%, #2CB6C5 100%);
+  --background: #2cb6c5;
+  --background: -moz-linear-gradient(45deg, #007eb7 0%, #2cb6c5 100%);
   --background: -webkit-gradient(
     left bottom,
     right top,
-    color-stop(0%, #007EB7),
-    color-stop(100%, #2CB6C5)
+    color-stop(0%, #007eb7),
+    color-stop(100%, #2cb6c5)
   );
-  --background: -webkit-linear-gradient(45deg, #007EB7 0%, #2CB6C5 100%);
-  --background: -o-linear-gradient(45deg, #007EB7 0%, #2CB6C5 100%);
-  --background: -ms-linear-gradient(45deg, #007EB7 0%, #2CB6C5 100%);
-  --background: linear-gradient(45deg, #007EB7 0%, #2CB6C5 100%);
+  --background: -webkit-linear-gradient(45deg, #007eb7 0%, #2cb6c5 100%);
+  --background: -o-linear-gradient(45deg, #007eb7 0%, #2cb6c5 100%);
+  --background: -ms-linear-gradient(45deg, #007eb7 0%, #2cb6c5 100%);
+  --background: linear-gradient(45deg, #007eb7 0%, #2cb6c5 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cb9c4', endColorstr='#3dd3ae', GradientType=1 );
 
   --color: #ffffff;
 }
 
 .style-btn {
-  --background: #2CB6C5;
-  --background: -moz-linear-gradient(45deg, #007EB7 0%, #2CB6C5 100%);
+  --background: #2cb6c5;
+  --background: -moz-linear-gradient(45deg, #007eb7 0%, #2cb6c5 100%);
   --background: -webkit-gradient(
     left bottom,
     right top,
-    color-stop(0%, #007EB7),
-    color-stop(100%, #2CB6C5)
+    color-stop(0%, #007eb7),
+    color-stop(100%, #2cb6c5)
   );
-  --background: -webkit-linear-gradient(45deg, #007EB7 0%, #2CB6C5 100%);
-  --background: -o-linear-gradient(45deg, #007EB7 0%, #2CB6C5 100%);
-  --background: -ms-linear-gradient(45deg, #007EB7 0%, #2CB6C5 100%);
-  --background: linear-gradient(45deg, #007EB7 0%, #2CB6C5 100%);
+  --background: -webkit-linear-gradient(45deg, #007eb7 0%, #2cb6c5 100%);
+  --background: -o-linear-gradient(45deg, #007eb7 0%, #2cb6c5 100%);
+  --background: -ms-linear-gradient(45deg, #007eb7 0%, #2cb6c5 100%);
+  --background: linear-gradient(45deg, #007eb7 0%, #2cb6c5 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cb9c4', endColorstr='#3dd3ae', GradientType=1 );
 
   --color: #ffffff;
 }
 
 .card-notification {
-  --background: #F37021;
-  --background: -moz-linear-gradient(45deg, #C84A23 0%, #F37021 100%);
+  --background: #f37021;
+  --background: -moz-linear-gradient(45deg, #c84a23 0%, #f37021 100%);
   --background: -webkit-gradient(
     left bottom,
     right top,
-    color-stop(0%, #C84A23),
-    color-stop(100%, #F37021)
+    color-stop(0%, #c84a23),
+    color-stop(100%, #f37021)
   );
-  --background: -webkit-linear-gradient(45deg, #C84A23 0%, #F37021 100%);
-  --background: -o-linear-gradient(45deg, #C84A23 0%, #F37021 100%);
-  --background: -ms-linear-gradient(45deg, #C84A23 0%, #F37021 100%);
-  --background: linear-gradient(45deg, #C84A23 0%, #F37021 100%);
+  --background: -webkit-linear-gradient(45deg, #c84a23 0%, #f37021 100%);
+  --background: -o-linear-gradient(45deg, #c84a23 0%, #f37021 100%);
+  --background: -ms-linear-gradient(45deg, #c84a23 0%, #f37021 100%);
+  --background: linear-gradient(45deg, #c84a23 0%, #f37021 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cb9c4', endColorstr='#3dd3ae', GradientType=1 );
 
   --color: #ffffff;
 }
 
+* {
+  font-family: 'Lato', sans-serif;
+  // https://fonts.google.com/specimen/Lato
+}
 
 .totvs-colors-fonts {
   // ÍCONES
-  color: #FFFFFF;
+  color: #ffffff;
   color: #000000;
-  color: #F37021;
-  color: #007EB7;
-  color: #2CB6C5;
-  color: #FAA735;
+  color: #f37021;
+  color: #007eb7;
+  color: #2cb6c5;
+  color: #faa735;
 
   //OUTRAS CORES
-  color: #443C39;
+  color: #443c39;
   color: #807870;
-  color: #5B504C;
-  color: #0C9ABE;
-  color: #EA9B3E;
+  color: #5b504c;
+  color: #0c9abe;
+  color: #ea9b3e;
 
   color: #272054;
-  color: #0D729C;
-  color: #29B6C5;
-  color: #C84A23;
+  color: #0d729c;
+  color: #29b6c5;
+  color: #c84a23;
 
-  color: #F5A922;
-  color: #172E73;
-  color: #EBEBEB;
-  color: #D5D0CD;
+  color: #f5a922;
+  color: #172e73;
+  color: #ebebeb;
+  color: #d5d0cd;
 
   /*
     Fontes:
