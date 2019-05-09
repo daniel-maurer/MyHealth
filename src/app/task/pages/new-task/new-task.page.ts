@@ -55,7 +55,7 @@ export class NewTaskPage implements OnInit {
     this.taskForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
       done: [false],
-      scheduled: null
+      scheduled: ['', [Validators.required]]
     });
   }
 

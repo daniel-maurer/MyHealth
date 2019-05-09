@@ -23,7 +23,7 @@ import { OrganizeCardsPage } from '../notifications/pages/organize-cards/organiz
 export class HomePage implements OnInit {
   tasks$: Observable<Task[]>;
   cards$: Observable<Card[]>;
-  dones$: Observable<number>;
+  dones$: Observable<Task[]>;
   currentUser: User;
 
   slideOpts = {
@@ -51,6 +51,10 @@ export class HomePage implements OnInit {
 
     this.tasks$ = this.tasksService.getAll().map(tasks => {
       return tasks.filter(task => this.today(new Date(task.scheduled)));
+    });
+
+    this.dones$ = this.tasksService.getAll().map(tasks => {
+      return tasks.filter(task => this.today(new Date(task.scheduled)) && task.done);
     });
 
     this.cards$ = this.cardService.getAll();
@@ -87,9 +91,9 @@ export class HomePage implements OnInit {
   today(td) {
     const d = new Date();
     return (
-      td.getDate() == d.getDate() &&
-      td.getMonth() == d.getMonth() &&
-      td.getFullYear() == d.getFullYear()
+      td.getDate() === d.getDate() &&
+      td.getMonth() === d.getMonth() &&
+      td.getFullYear() === d.getFullYear()
     );
   }
 
