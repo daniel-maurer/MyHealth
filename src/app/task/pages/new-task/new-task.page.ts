@@ -15,7 +15,6 @@ import { UserService } from 'src/app/auth/services/user.service';
   styleUrls: ['./new-task.page.scss']
 })
 export class NewTaskPage implements OnInit {
-
   constructor(
     private fb: FormBuilder,
     private navCtrl: NavController,
@@ -30,18 +29,18 @@ export class NewTaskPage implements OnInit {
   taskId: string = undefined;
   currentUser: User;
 
-  scheduleForm: FormGroup;
-  startDate: string = "Agendar";
+  createdTask: FormGroup;
+
+  startDate: string = 'Agendar';
   repeats: boolean = false;
 
-    taskDates: any[] = [];
+  taskDates: any[] = [];
 
   ngOnInit(): void {
     this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
       this.currentUser = user;
     });
     this.createForm();
-    this.createScheduleForm();
     this.init();
   }
 
@@ -69,33 +68,37 @@ export class NewTaskPage implements OnInit {
     this.taskForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
       done: [false],
-      scheduled: ['', [Validators.required]]
-    });
-  }
-
-  private createScheduleForm(): void {
-    this.scheduleForm = this.fb.group({
+      startDate: ['', [Validators.required]],
       weekday: [''],
-      startDate: ['', [Validators.required, Validators.minLength(3)]],
+      scheduled: [''],
       endDate: [''],
-      hour: ['', [Validators.required, Validators.minLength(3)]]
+      hour: ['']
     });
   }
 
   async onSubmit(): Promise<void> {
     const loading = await this.overlayService.loading({
-      message: 'Saving...'
+      message: 'Salvando...'
     });
-    console.log('Saving...');
+
     try {
+      // Set Hour if selected
+      const scheduledDate = new Date(this.taskForm.get('startDate').value);
+      const scheduledHour = new Date(this.taskForm.get('hour').value);
+      const completeScheduled = this.getTimestamp(scheduledDate, scheduledHour);
+
+      this.createdTask = this.fb.group({
+        title: [this.taskForm.get('title').value],
+        done: [false]
+      });
+
+      console.log(!this.taskId);
       const task = !this.taskId
-        ? await this.tasksService.create({
-            source: this.currentUser.name,
-            ...this.taskForm.value
-          })
+        ? this.onCreateTask(completeScheduled)
         : await this.tasksService.update({
             id: this.taskId,
-            ...this.taskForm.value
+            completeScheduled,
+            ...this.createdTask.value
           });
       this.navCtrl.navigateBack('/tabs');
     } catch (error) {
@@ -110,54 +113,64 @@ export class NewTaskPage implements OnInit {
     }
   }
 
+  async onCreateTask(scheduledDate: string): Promise<void> {
+    if (this.repeats) {
+      this.onScheduleSubmit();
+      this.taskDates.forEach(date => {
+        console.log(date);
+        this.tasksService.create({
+          source: this.currentUser.name,
+          scheduled: date,
+          ...this.createdTask.value
+        });
+      });
+    } else {
+      await this.tasksService.create({
+        source: this.currentUser.name,
+        scheduled: scheduledDate,
+        ...this.createdTask.value
+      });
+    }
+  }
+
   onRepeats() {
     this.repeats = !this.repeats;
-    if(this.repeats)
-    {
-      this.startDate = "Primeiro Dia"
-    }
-    else
-    {
-      this.startDate = "Agendar"
+    if (this.repeats) {
+      this.startDate = 'Primeiro Dia';
+    } else {
+      this.startDate = 'Agendar';
     }
   }
 
   onScheduleSubmit(): void {
+    this.setTaskDates(
+      this.taskForm.get('weekday').value,
+      this.taskForm.get('startDate').value,
+      this.taskForm.get('endDate').value,
+      this.taskForm.get('hour').value
+    );
 
-    console.log(this.scheduleForm.get("weekday").value);
-    console.log(this.scheduleForm.get("startDate").value);
-    console.log(this.scheduleForm.get("endDate").value);
-    console.log(this.scheduleForm.get("hour").value);
+    console.log(this.taskDates);
+  }
 
-      this.setTaskDates(
-        this.scheduleForm.get("weekday").value,
-        this.scheduleForm.get("startDate").value,
-        this.scheduleForm.get("endDate").value,
-        this.scheduleForm.get("hour").value
-      );
-
-      console.log(this.taskDates);
-    }
-
-
-
-    setTaskDates(weekdays: string[], startDate: string, endDate: string, hour: string): void {
+  setTaskDates(weekdays: string[], startDate: string, endDate: string, hour: string): void {
     this.taskDates = [];
 
     // Make month -1 because Date.UTC
     const start = new Date(startDate);
 
     let day: number = start.getDate();
-    let month: number = start.getMonth() - 1;
+    let month: number = start.getMonth();
     let year: number = start.getFullYear();
 
     const end = new Date(endDate);
 
     const endDay: number = end.getDate();
-    const endMonth: number = end.getMonth() - 1;
+    const endMonth: number = end.getMonth();
     const endYear: number = end.getFullYear();
 
     const getWeekdayId: number[] = this.getWeekdaysId(weekdays);
+    console.log(getWeekdayId);
 
     let isCorrectYear = false;
     let isCorrectMonth = false;
@@ -172,24 +185,14 @@ export class NewTaskPage implements OnInit {
         }
 
         while (day <= 31) {
-
           if (isCorrectYear && isCorrectMonth && day > endDay) {
             break;
           }
           const date = new Date(Date.UTC(year, month, day));
 
           if (getWeekdayId.includes(date.getUTCDay())) {
-            const stringMonth: string = (month + 1) < 10 ? '0' + (month + 1).toString() : (month + 1).toString();
-            const stringDay: string = day < 10 ? '0' + day.toString() : day.toString();
-
             const hourDate = new Date(hour);
-
-            this.taskDates.push(new Date(
-              year,
-              Number(stringMonth),
-              Number(stringDay),
-              hourDate.getHours(),
-              hourDate.getMinutes()));
+            this.taskDates.push(this.getTimestamp(date, hourDate));
           }
           if (day === 31) {
             day = 1;
@@ -207,8 +210,28 @@ export class NewTaskPage implements OnInit {
     }
   }
 
-  getWeekdaysId(wekdays: string[]): number[] {
+  getTimestamp(date: Date, hour: Date): string {
+    const day: number = date.getDate();
+    const month: number = date.getMonth();
+    const year: number = date.getFullYear();
 
+    const stringMonth: string =
+      month + 1 < 10 ? '0' + (month + 1).toString() : (month + 1).toString();
+    const stringDay: string = day + 1 < 10 ? '0' + (day + 1).toString() : (day + 1).toString();
+
+    return (
+      year.toString() +
+      '-' +
+      stringMonth +
+      '-' +
+      stringDay +
+      'T' +
+      new Date(year, month, day, hour.getHours(), hour.getMinutes()).toLocaleTimeString() +
+      '.000-03:00'
+    );
+  }
+
+  getWeekdaysId(wekdays: string[]): number[] {
     let weekdayNumbers: number[] = [];
 
     if (wekdays.includes('Monday')) {
@@ -241,6 +264,4 @@ export class NewTaskPage implements OnInit {
 
     return weekdayNumbers;
   }
-
-
 }
