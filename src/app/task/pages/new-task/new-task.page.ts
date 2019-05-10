@@ -70,7 +70,6 @@ export class NewTaskPage implements OnInit {
       done: [false],
       startDate: ['', [Validators.required]],
       weekday: [''],
-      scheduled: [''],
       endDate: [''],
       hour: ['']
     });
@@ -136,8 +135,26 @@ export class NewTaskPage implements OnInit {
   onRepeats() {
     this.repeats = !this.repeats;
     if (this.repeats) {
+      this.taskForm = this.fb.group({
+        title: [this.taskForm.get('title').value, [Validators.required, Validators.minLength(3)]],
+        done: [false],
+        startDate: [this.taskForm.get('startDate').value, [Validators.required]],
+        weekday: ['', [Validators.required]],
+        endDate: ['', [Validators.required]],
+        hour: [this.taskForm.get('hour').value]
+      });
+
       this.startDate = 'Primeiro Dia';
     } else {
+      this.taskForm = this.fb.group({
+        title: [this.taskForm.get('title').value, [Validators.required, Validators.minLength(3)]],
+        done: [false],
+        startDate: [this.taskForm.get('startDate').value, [Validators.required]],
+        weekday: [''],
+        endDate: [''],
+        hour: [this.taskForm.get('hour').value]
+      });
+
       this.startDate = 'Agendar';
     }
   }
