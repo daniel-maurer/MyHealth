@@ -8,6 +8,7 @@ export interface Record {
   title: string;
   note: string;
   soure: string;
+  type: string;
 
   infos: RecordInfo[];
   values: RecordValue[];

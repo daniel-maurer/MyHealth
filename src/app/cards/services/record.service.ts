@@ -16,7 +16,7 @@ export class RecordService extends Firestore<Record> {
   private init(): void {
     this.authService.authState$.subscribe(user => {
       if (user) {
-        this.setCollection(`/cards/records`, ref => ref.orderBy('date', 'asc'));
+        this.setCollection(`/records`, ref => ref.orderBy('date', 'asc'));
         return;
       }
       this.setCollection(null);
