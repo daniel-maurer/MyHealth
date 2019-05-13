@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController, NavController } from '@ionic/angular';
 import { AuthService } from '../../../core/services/auth.service';
-import { Card } from 'src/app/notifications/models/card.model';
-import { CardService } from 'src/app/notifications/services/card.service';
+import { Card } from 'src/app/cards/models/card.model';
+import { CardService } from 'src/app/cards/services/card.service';
 
 @Component({
   selector: 'app-signin',

@@ -9,8 +9,8 @@ import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 
 import * as firebase from 'firebase/app';
-import { CardService } from 'src/app/notifications/services/card.service';
-import { Card } from 'src/app/notifications/models/card.model';
+import { CardService } from 'src/app/cards/services/card.service';
+import { Card } from 'src/app/cards/models/card.model';
 
 @Component({
   selector: 'app-signup',

@@ -11,9 +11,9 @@ import { UserService } from '../auth/services/user.service';
 import { Observable, scheduled } from 'rxjs';
 import { Task } from '../task/models/task.model';
 import { TaskService } from '../task/services/task.service';
-import { Card } from '../notifications/models/card.model';
-import { CardService } from '../notifications/services/card.service';
-import { OrganizeCardsPage } from '../notifications/pages/organize-cards/organize-cards.page';
+import { Card } from '../cards/models/card.model';
+import { CardService } from '../cards/services/card.service';
+import { OrganizeCardsPage } from '../cards/pages/organize-cards/organize-cards.page';
 
 @Component({
   selector: 'app-home',

@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { SharedModule } from '../shared/shared.module';
-import { OrganizeCardsPage } from '../notifications/pages/organize-cards/organize-cards.page';
+import { OrganizeCardsPage } from '../cards/pages/organize-cards/organize-cards.page';
 
 @NgModule({
   imports: [

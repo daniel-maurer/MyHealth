@@ -19,11 +19,11 @@ const routes: Routes = [
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
   {
     path: 'card-history',
-    loadChildren: './notifications/pages/card-history/card-history.module#CardHistoryPageModule'
+    loadChildren: './cards/pages/card-history/card-history.module#CardHistoryPageModule'
   },
   {
     path: 'add-record',
-    loadChildren: './notifications/pages/add-record/add-record.module#AddRecordPageModule'
+    loadChildren: './cards/pages/add-record/add-record.module#AddRecordPageModule'
   }
 ];
 
