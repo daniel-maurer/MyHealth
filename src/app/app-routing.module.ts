@@ -16,8 +16,11 @@ const routes: Routes = [
     loadChildren: './auth/pages/user-profile/user-profile.module#UserProfilePageModule'
   },
   { path: 'tasks', loadChildren: './task/task.module#TasksModule' },
-  { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' }
-
+  { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  {
+    path: 'card-history',
+    loadChildren: './notifications/pages/card-history/card-history.module#CardHistoryPageModule'
+  }
 ];
 
 @NgModule({
