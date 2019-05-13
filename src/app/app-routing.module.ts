@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'card-history',
     loadChildren: './notifications/pages/card-history/card-history.module#CardHistoryPageModule'
+  },
+  {
+    path: 'add-record',
+    loadChildren: './notifications/pages/add-record/add-record.module#AddRecordPageModule'
   }
 ];
 
