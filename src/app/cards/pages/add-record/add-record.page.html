@@ -3,26 +3,26 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tasks"></ion-back-button>
     </ion-buttons>
-    <ion-title class="clean-title">{{title}}</ion-title>
+    <ion-title class="clean-title">{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-item>
     <ion-label>Data e Hora</ion-label>
-    <ion-datetime display-format="MMM DD, YYYY HH:mm"></ion-datetime>
+    <ion-datetime display-format="MMM DD, YYYY HH:mm" [(ngModel)]="date"></ion-datetime>
   </ion-item>
   <ion-list *ngFor="let info of infos">
     <ion-item>
       <ion-label position="floating">{{ info.title }}</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="info.value"></ion-input>
     </ion-item>
   </ion-list>
   <ion-item>
-    <ion-label position="floating">Notas</ion-label>
+    <ion-label position="floating" [(ngModel)]="notes">Notas</ion-label>
     <ion-textarea></ion-textarea>
   </ion-item>
-<ion-button class="style-btn" expand="full" type="submit">
-  Adicionar
-</ion-button>
+  <ion-button class="style-btn" expand="full" type="submit" (click)='onAdd()'>
+    Adicionar
+  </ion-button>
 </ion-content>

@@ -10,7 +10,7 @@ export class CardHistoryPage implements OnInit {
   private cardId: string;
 
   constructor(private route: ActivatedRoute) {
-    this.cardId = this.route.snapshot.params['cardId'];
+    this.cardId = this.route.snapshot.params.cardId;
   }
 
   ngOnInit() {

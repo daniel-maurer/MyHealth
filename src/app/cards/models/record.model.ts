@@ -7,7 +7,7 @@ export interface Record {
   date: any;
   title: string;
   note: string;
-  soure: string;
+  source: string;
   type: string;
 
   infos: RecordInfo[];
