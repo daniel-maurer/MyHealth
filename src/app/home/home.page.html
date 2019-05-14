@@ -14,7 +14,7 @@
 
     <ion-slides pager="false" [options]="slideOpts" *ngIf="cards$ | async as cards">
       <ion-slide *ngFor="let card of cards">
-        <ion-card mode="ios" button="true" [class]="card.important ? 'card-notification' : 'style-btn'" (click)='onCard()'>
+        <ion-card mode="ios" button="true" [class]="card.important ? 'card-notification' : 'style-btn'" (click)='onCard(card.id)'>
           <ion-icon class="card-icon" [name]="card.icon"></ion-icon>
           <p class="card-title" no-margin>{{ card.title }}</p>
         </ion-card>

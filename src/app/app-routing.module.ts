@@ -18,11 +18,11 @@ const routes: Routes = [
   { path: 'tasks', loadChildren: './task/task.module#TasksModule' },
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
   {
-    path: 'card-history',
+    path: 'card-history/:cardId',
     loadChildren: './cards/pages/card-history/card-history.module#CardHistoryPageModule'
   },
   {
-    path: 'add-record',
+    path: 'add-record/:cardId',
     loadChildren: './cards/pages/add-record/add-record.module#AddRecordPageModule'
   }
 ];

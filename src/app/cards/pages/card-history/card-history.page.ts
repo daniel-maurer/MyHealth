@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-card-history',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-history.page.scss'],
 })
 export class CardHistoryPage implements OnInit {
+  private cardId: string;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+    this.cardId = this.route.snapshot.params['cardId'];
+  }
 
   ngOnInit() {
   }

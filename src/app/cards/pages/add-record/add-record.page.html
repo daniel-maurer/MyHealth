@@ -3,23 +3,26 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tasks"></ion-back-button>
     </ion-buttons>
-    <ion-title class="clean-title">Add Record</ion-title>
+    <ion-title class="clean-title">{{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list *ngIf="records$ | async as records">
-
-        <ion-list *ngFor="let record of records">
-            <ion-label>{{record.title}}</ion-label>
-            <ion-item *ngFor="let info of record.infos">
-                <ion-label>teste</ion-label>
-              <ion-label>{{info.title}}</ion-label></ion-item>
-              <ion-item>
-                  <ion-label>teste</ion-label>
-</ion-item>
-            
-        </ion-list>
-
-</ion-list>
+<ion-content padding>
+  <ion-item>
+    <ion-label>Data e Hora</ion-label>
+    <ion-datetime display-format="MMM DD, YYYY HH:mm"></ion-datetime>
+  </ion-item>
+  <ion-list *ngFor="let info of infos">
+    <ion-item>
+      <ion-label position="floating">{{ info.title }}</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label position="floating">Notas</ion-label>
+    <ion-textarea></ion-textarea>
+  </ion-item>
+<ion-button class="style-btn" expand="full" type="submit">
+  Adicionar
+</ion-button>
 </ion-content>

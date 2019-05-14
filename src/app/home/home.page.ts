@@ -87,10 +87,9 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward('user-profile');
   }
 
-  onCard(): void {
-    this.navCtrl.navigateForward('card-history');
+  onCard(cardId: string): void {
+    this.navCtrl.navigateForward(['card-history', cardId]);
   }
-
 
   today(td) {
     const d = new Date();
