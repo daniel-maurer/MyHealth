@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Record } from '../../models/record.model';
+import { RecordService } from '../../services/record.service';
 
 @Component({
   selector: 'app-add-record',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-record.page.scss'],
 })
 export class AddRecordPage implements OnInit {
+  records$: Observable<Record[]>;
 
-  constructor() { }
+  constructor(
+    public tasksService: RecordService,
+  ) { }
 
   ngOnInit() {
+    this.records$ = this.tasksService.getAll();
+    console.log('records');
+    console.log(this.records$);
   }
 
 }
