@@ -8,6 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AddRecordService } from '../../services/add-record.service';
 import { RecordValue } from '../../models/record-value.model';
 import { RecordComboValue } from '../../models/record-combo-value.model';
+import { UserService } from 'src/app/auth/services/user.service';
+import { User } from 'src/app/auth/models/user.model';
 
 @Component({
   selector: 'app-add-record',
@@ -23,23 +25,30 @@ export class AddRecordPage implements OnInit {
   comboValues: RecordComboValue[];
   cardId: string;
 
+  currentUser: User;
+
   constructor(
-    public tasksService: RecordService,
+    public recordService: RecordService,
     public recordInfoService: RecordInfoService,
     private route: ActivatedRoute,
-    private addRecordService: AddRecordService
+    private addRecordService: AddRecordService,
+    private userService: UserService
   ) {
     this.cardId = this.route.snapshot.params.cardId;
     this.recordInfoService.init(this.cardId);
   }
 
   ngOnInit() {
-    this.tasksService.getAll().subscribe(record => {
+    this.recordService.getAll().subscribe(record => {
       this.title = record.filter(record2 => record2.id === this.cardId)[0].title;
     });
 
     this.recordInfoService.getAll().subscribe(inf => {
       this.infos = inf;
+    });
+
+    this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
+      this.currentUser = user;
     });
   }
 
@@ -56,6 +65,8 @@ export class AddRecordPage implements OnInit {
       id: null,
       source: null
     };
+
+    this.addRecordService.create(record);
 
     console.log(record);
   }
