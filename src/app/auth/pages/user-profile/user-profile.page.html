@@ -20,7 +20,7 @@
     <p text-center>@{{ currentUser.username }}</p>
   </div>
 
-  <ion-button class="style-btn" expand="block" (click)="canEdit = !canEdit">Edit</ion-button>
+  <ion-button expand="block" (click)="canEdit = !canEdit">Edit</ion-button>
 
   <form (ngSubmit)="onSubmit($event)" *ngIf="canEdit" #profileForm="ngForm">
 
@@ -57,7 +57,7 @@
     <app-progress-bar *ngIf="uploadProgress" [progress]="uploadProgress"></app-progress-bar>
 -->
     <br>
-    <ion-button class="style-btn" expand="block" type="submit" [disabled]="profileForm.form.invalid">Save</ion-button>
+    <ion-button expand="block" type="submit" [disabled]="profileForm.form.invalid">Save</ion-button>
 
   </form>
 

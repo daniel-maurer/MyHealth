@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="style-toolbar">
+  <ion-toolbar>
     <ion-title>Entrar</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -8,11 +8,6 @@
   <ion-grid>
     <ion-row justify-content-center>
       <ion-col size-sm="8" size-md="4" size-lg="3" size-xl="3">
-        <!--
-        <h1 text-center>
-          <img [src]="'assets/images/dolphin_logo.png'" height="121" width="105" />
-        </h1>
-        -->
         <h1 text-center>
           <img src="https://img.icons8.com/nolan/100/000000/heart-health.png" />
         </h1>
@@ -33,12 +28,12 @@
           </ion-item>
 
           <br />
-          <ion-button class="style-btn" expand="block" type="submit" [disabled]="signinForm.invalid"
+          <ion-button expand="block" type="submit" [disabled]="signinForm.invalid"
             >Entrar</ion-button
           >
         </form>
 
-        <ion-button class="style-btn" expand="block" text-center (click)="onSignup()"
+        <ion-button expand="block" text-center (click)="onSignup()"
           >Cadastrar</ion-button
         >
 
