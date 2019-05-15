@@ -4,7 +4,7 @@ import { RecordComboValue } from './record-combo-value.model';
 
 export interface Record {
   id: string;
-  date: any;
+  date: string;
   title: string;
   note: string;
   source: string;

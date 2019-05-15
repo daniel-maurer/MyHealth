@@ -19,10 +19,10 @@ import { User } from 'src/app/auth/models/user.model';
 export class AddRecordPage implements OnInit {
   title: string;
   date: any;
-  notes: string;
-  infos: RecordInfo[];
-  values: RecordValue[];
-  comboValues: RecordComboValue[];
+  notes: string = '';
+  infos: RecordInfo[] = [];
+  values: RecordValue[] = [];
+  comboValues: RecordComboValue[] = [];
   cardId: string;
 
   currentUser: User;
@@ -39,16 +39,17 @@ export class AddRecordPage implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
+      console.log(user);
+      this.currentUser = user;
+    });
+
     this.recordService.getAll().subscribe(record => {
       this.title = record.filter(record2 => record2.id === this.cardId)[0].title;
     });
 
     this.recordInfoService.getAll().subscribe(inf => {
       this.infos = inf;
-    });
-
-    this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
-      this.currentUser = user;
     });
   }
 
@@ -63,11 +64,9 @@ export class AddRecordPage implements OnInit {
       comboValues: this.comboValues,
 
       id: null,
-      source: null
+      source: this.currentUser.name
     };
 
     this.addRecordService.create(record);
-
-    console.log(record);
   }
 }
