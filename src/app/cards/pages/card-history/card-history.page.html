@@ -7,7 +7,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="clean-content">
+  
+  <div class="timeline" *ngIf="records$ | async as records">
+      <div class="container left" *ngFor="let record of records">
+        <div class="content">
+          <h2>{{ record.date }}</h2>
+          <p>{{ record.title }}</p>
+        </div>
+      </div>
+    </div>
+
   <ion-fab vertical="bottom" horizontal="end">
     <ion-fab-button class="style-btn" routerLink="/add-record/{{cardId}}" routerDirection="forward">
       <ion-icon name="add"></ion-icon>
