@@ -17,6 +17,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'history',
+        children: [
+          {
+            path: '',
+            loadChildren: '../cards/pages/card-history/card-history.module#CardHistoryPageModule'
+          }
+        ]
+      },
+      {
         path: 'messages',
         children: [
           {

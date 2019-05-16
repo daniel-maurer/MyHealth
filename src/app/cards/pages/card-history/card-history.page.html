@@ -8,13 +8,13 @@
 </ion-header>
 
 <ion-content class="clean-content">
-  
+
   <div class="timeline" *ngIf="records$ | async as records">
       <div class="container left" *ngFor="let record of records">
-        <div class="content">
+        <ion-card class="content">
           <h2>{{ record.date }}</h2>
           <p>{{ record.title }}</p>
-        </div>
+        </ion-card>
       </div>
     </div>
 
