@@ -8,15 +8,54 @@
 </ion-header>
 
 <ion-content class="clean-content">
-  <div class="timeline" *ngIf="records$ | async as records">
-    <div class="container left" *ngFor="let record of records">
+  <div class="timeline">
+    <div class="container left" *ngFor="let card of cards">
       <div class="style-div icon">
-        <ion-icon name="hourglass"></ion-icon>
+        <ion-icon name="{{ card.icon }}"></ion-icon>
       </div>
 
       <ion-card class="content">
-        <h2>{{ record.date | date: 'EEE, MMM d' }}</h2>
-        <p>{{ record.title }}</p>
+        <ion-row>
+          <ion-col class="left-col">
+            <ion-row>
+              <div class="card-title">{{ card.title }}</div>
+            </ion-row>
+          </ion-col>
+
+          <ion-col class="right-col">
+            <div class="card-date">
+              <ion-row>
+                <div>
+                  {{ card.date | date: 'EEE, MMM d' }}
+                </div>
+              </ion-row>
+              <ion-row>
+                <div class="hora">{{ card.date | date: 'hh:mm' }}</div>
+              </ion-row>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <div class="info-title">
+            {{ card.infoTitle1 }}
+          </div>
+        </ion-row>
+        <ion-row>
+          <div class="info-value">
+            {{ card.infoValue1 }}
+          </div>
+        </ion-row>
+        <ion-row>
+          <div class="info-title">
+            {{ card.infoTitle2 }}
+          </div>
+        </ion-row>
+        <ion-row>
+          <div class="info-value">
+            {{ card.infoValue2 }}
+          </div>
+        </ion-row>
       </ion-card>
     </div>
   </div>
