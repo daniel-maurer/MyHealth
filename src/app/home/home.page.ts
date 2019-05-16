@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
   currentUser: User;
 
   slideOpts = {
-    slidesPerView: this.platform.width() / 110,
+    slidesPerView: this.platform.width() / 130,
     spaceBetween: 10,
     freeMode: true
   };
