@@ -76,6 +76,13 @@ export class HomePage implements OnInit {
 
   onUpdate(task: Task): void {
     task.done = !task.done;
+
+    if (task.done) {
+      task.completedDate = (new Date(Date.now())).toISOString();
+    } else {
+      task.completedDate = '';
+    }
+
     this.tasksService.update(task);
   }
 
