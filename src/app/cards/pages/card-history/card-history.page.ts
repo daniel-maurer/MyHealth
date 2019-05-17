@@ -98,4 +98,8 @@ export class CardHistoryPage implements OnInit {
     this.records$ = this.addRecordService.getAll();
     this.records$.subscribe(record => console.log(record));
   }
+
+  populateCardHistory() {
+
+  }
 }

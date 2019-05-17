@@ -13,16 +13,20 @@
     <ion-datetime display-format="MMM DD, YYYY HH:mm" [(ngModel)]="date"></ion-datetime>
   </ion-item>
   <ion-list *ngFor="let info of infos">
-    <ion-item>
-      <ion-label position="floating">{{ info.title }}</ion-label>
-      <ion-input [(ngModel)]="info.value"></ion-input>
-    </ion-item>
+    <ng-container *ngIf="!info.textArea; else textArea">
+      <ion-item>
+        <ion-label position="floating">{{ info.title }}</ion-label>
+        <ion-input [(ngModel)]="info.value"></ion-input>
+      </ion-item>
+    </ng-container>
+    <ng-template #textArea>
+      <ion-item>
+        <ion-label position="floating">{{ info.title }}</ion-label>
+        <ion-textarea [(ngModel)]="info.value"></ion-textarea>
+      </ion-item>
+    </ng-template>
   </ion-list>
-  <ion-item>
-    <ion-label position="floating">Notas</ion-label>
-    <ion-textarea [(ngModel)]="notes"></ion-textarea>
-  </ion-item>
-  <ion-button expand="full" type="submit" (click)='onAdd()'>
+  <ion-button expand="full" type="submit" (click)="onAdd()">
     Adicionar
   </ion-button>
 </ion-content>

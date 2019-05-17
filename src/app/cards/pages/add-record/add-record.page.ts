@@ -10,6 +10,7 @@ import { RecordValue } from '../../models/record-value.model';
 import { RecordComboValue } from '../../models/record-combo-value.model';
 import { UserService } from 'src/app/auth/services/user.service';
 import { User } from 'src/app/auth/models/user.model';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-record',
@@ -32,6 +33,7 @@ export class AddRecordPage implements OnInit {
     public recordInfoService: RecordInfoService,
     private route: ActivatedRoute,
     private addRecordService: AddRecordService,
+    private navCtrl: NavController,
     private userService: UserService
   ) {
     this.cardId = this.route.snapshot.params.cardId;
@@ -68,5 +70,6 @@ export class AddRecordPage implements OnInit {
     };
 
     this.addRecordService.create(record);
+    this.navCtrl.navigateBack(`/card-history/${this.cardId}`);
   }
 }

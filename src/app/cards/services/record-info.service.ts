@@ -10,13 +10,13 @@ import { RecordInfo } from '../models/record-info.model';
 export class RecordInfoService extends Firestore<RecordInfo> {
   constructor(private authService: AuthService, db: AngularFirestore) {
     super(db);
-   // this.init('procedures');
+    // this.init('procedures');
   }
 
   public init(com: string): void {
     this.authService.authState$.subscribe(user => {
       if (user) {
-        this.setCollection(`/records/${com}/infos`);
+        this.setCollection(`/records/${com}/infos`, ref => ref.orderBy('position', 'asc'));
         return;
       }
       this.setCollection(null);
