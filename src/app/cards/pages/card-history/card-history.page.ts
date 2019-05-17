@@ -4,6 +4,9 @@ import { AddRecordService } from '../../services/add-record.service';
 import { Observable } from 'rxjs';
 import { Record } from '../../models/record.model';
 import { HistoryCard } from '../../models/history-card.model';
+import { RecordInfo } from '../../models/record-info.model';
+import { Task } from '../../../task/models/task.model';
+import { TaskService } from 'src/app/task/services/task.service';
 
 @Component({
   selector: 'app-card-history',
@@ -13,93 +16,89 @@ import { HistoryCard } from '../../models/history-card.model';
 export class CardHistoryPage implements OnInit {
   private cardId: string;
 
-  public cards: HistoryCard[] = [
-    {
-      title: 'Medicação',
-      isTask: false,
-      taskDone: false,
-      date: '2019-05-20T20:11:37.556-03:00',
-      infoTitle1: 'Nome:',
-      infoValue1: 'Paracetamol',
-      infoTitle2: 'Dosagem:',
-      infoValue2: '750 MG',
-      source: 'Médico',
-      icon: 'heart-empty'
-    },
-    {
-      title: 'Consulta',
-      isTask: true,
-      taskDone: false,
-      date: '2019-05-17T20:11:37.556-03:00',
-      infoTitle1: 'Não concluído',
-      infoValue1: '',
-      infoTitle2: '',
-      infoValue2: '',
-      source: 'Médico 1',
-      icon: 'checkmark-circle-outline'
-    },
-    {
-      title: 'Apontamento',
-      isTask: false,
-      taskDone: false,
-      date: '2019-05-16T20:11:37.556-03:00',
-      infoTitle1: 'Apontamento de:',
-      infoValue1: 'Médico',
-      infoTitle2: 'Notas:',
-      infoValue2: 'Febre leve sem sintomas de gripe.',
-      source: 'Hospital 1',
-      icon: 'heart-empty'
-    },
-    {
-      title: 'Condição',
-      isTask: false,
-      taskDone: false,
-      date: '2019-05-15T20:11:37.556-03:00',
-      infoTitle1: 'Condição:',
-      infoValue1: 'Febre leve.',
-      infoTitle2: '',
-      infoValue2: '',
-      source: 'Daniel Maurer',
-      icon: 'heart-empty'
-    },
-    {
-      title: 'Procedimento',
-      isTask: false,
-      taskDone: false,
-      date: '2019-05-11T20:11:37.556-03:00',
-      infoTitle1: 'Executado por:',
-      infoValue1: 'Médico 2',
-      infoTitle2: 'Nome do procedimento:',
-      infoValue2: 'Cirurgia Desvio de Septo',
-      source: 'Hospital 2',
-      icon: 'heart-empty'
-    },
-    {
-      title: 'Marcar cirurgia',
-      isTask: true,
-      taskDone: true,
-      date: '2019-05-05T20:11:37.556-03:00',
-      infoTitle1: 'Concluído',
-      infoValue1: '',
-      infoTitle2: '',
-      infoValue2: '',
-      source: 'Daniel Maurer',
-      icon: 'checkmark-circle-outline'
-    }
-  ];
-
+  public cards: HistoryCard[] = [];
   records$: Observable<Record[]>;
+  tasks$: Observable<Task[]>;
 
-  constructor(private route: ActivatedRoute, private addRecordService: AddRecordService) {
+  constructor(
+    private route: ActivatedRoute,
+    private addRecordService: AddRecordService,
+    public tasksService: TaskService
+  ) {
     this.cardId = this.route.snapshot.params.cardId;
   }
 
   ngOnInit() {
     this.records$ = this.addRecordService.getAll();
-    this.records$.subscribe(record => console.log(record));
+    this.tasks$ = this.tasksService.getAll();
+
+    this.populateCardHistory();
   }
 
   populateCardHistory() {
+    this.records$.subscribe((record: Record[]) => {
+      let cards2: HistoryCard[] = [];
 
+      record.forEach((record: Record) => {
+        const info1: RecordInfo = record.infos.filter(r => r.position == 1)[0];
+        const info2: RecordInfo = record.infos.filter(r => r.position == 2)[0];
+
+        const historyCard: HistoryCard = {
+          title: record.title,
+          isTask: false,
+          taskDone: false,
+          date: record.date,
+          infoTitle1: info1.title + ':',
+          infoValue1: info1.value,
+          infoTitle2: info2 ? info2.title + ':' : '',
+          infoValue2: info2 ? info2.value : '',
+          source: record.source,
+          icon: 'heart-empty'
+        };
+
+        cards2.push(historyCard);
+      });
+
+      this.cards = this.cards.concat(cards2);
+    });
+
+    this.tasks$.subscribe((task: Task[]) => {
+      const cards2: HistoryCard[] = [];
+
+      task.forEach((task: Task) => {
+        const historyCard: HistoryCard = {
+          title: task.title,
+          isTask: false,
+          taskDone: false,
+          date: task.completedDate,
+          infoTitle1: task.done ? 'Concluído' : 'Não Concluído',
+          infoValue1: '',
+          infoTitle2: '',
+          infoValue2: '',
+          source: task.source,
+          icon: 'checkmark-circle-outline'
+        };
+
+        if (task.completedDate) {
+          cards2.push(historyCard);
+        }
+      });
+
+      this.cards = this.cards.concat(cards2);
+
+      this.cards = this.cards.sort((n1, n2) => this.compareStringTimestamp(n1.date, n2.date));
+    });
+  }
+
+  compareStringTimestamp(t1: string, t2: string): number {
+    const l1 = new Date(t1).getTime();
+    const l2 = new Date(t2).getTime();
+    if (l2 > l1) {
+      return 1;
+    } else if (l1 > l2) {
+      return -1;
+    } else {
+      return 0;
+    }
   }
 }
