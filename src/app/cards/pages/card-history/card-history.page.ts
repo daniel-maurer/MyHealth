@@ -39,6 +39,10 @@ export class CardHistoryPage implements OnInit {
     this.records$.subscribe((record: Record[]) => {
       let cards2: HistoryCard[] = [];
 
+      if (this.cardId) {
+        record = record.filter(r => r.type == this.cardId);
+      }
+
       record.forEach((record: Record) => {
         const info1: RecordInfo = record.infos.filter(r => r.position == 1)[0];
         const info2: RecordInfo = record.infos.filter(r => r.position == 2)[0];
@@ -59,35 +63,39 @@ export class CardHistoryPage implements OnInit {
         cards2.push(historyCard);
       });
 
+      this.cards = this.cards.filter(c => c.isTask);
       this.cards = this.cards.concat(cards2);
-    });
-
-    this.tasks$.subscribe((task: Task[]) => {
-      const cards2: HistoryCard[] = [];
-
-      task.forEach((task: Task) => {
-        const historyCard: HistoryCard = {
-          title: task.title,
-          isTask: false,
-          taskDone: false,
-          date: task.completedDate,
-          infoTitle1: task.done ? 'Concluído' : 'Não Concluído',
-          infoValue1: '',
-          infoTitle2: '',
-          infoValue2: '',
-          source: task.source,
-          icon: 'checkmark-circle-outline'
-        };
-
-        if (task.completedDate) {
-          cards2.push(historyCard);
-        }
-      });
-
-      this.cards = this.cards.concat(cards2);
-
       this.cards = this.cards.sort((n1, n2) => this.compareStringTimestamp(n1.date, n2.date));
     });
+
+    if (!this.cardId) {
+      this.tasks$.subscribe((task: Task[]) => {
+        const cards2: HistoryCard[] = [];
+
+        task.forEach((task: Task) => {
+          const historyCard: HistoryCard = {
+            title: task.title,
+            isTask: false,
+            taskDone: false,
+            date: task.completedDate,
+            infoTitle1: task.done ? 'Concluído' : 'Não Concluído',
+            infoValue1: '',
+            infoTitle2: '',
+            infoValue2: '',
+            source: task.source,
+            icon: 'checkmark-circle-outline'
+          };
+
+          if (task.completedDate) {
+            cards2.push(historyCard);
+          }
+        });
+
+        this.cards = this.cards.filter(c => !c.isTask);
+        this.cards = this.cards.concat(cards2);
+        this.cards = this.cards.sort((n1, n2) => this.compareStringTimestamp(n1.date, n2.date));
+      });
+    }
   }
 
   compareStringTimestamp(t1: string, t2: string): number {
