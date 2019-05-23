@@ -83,6 +83,7 @@ export class NewTaskPage implements OnInit {
     try {
       // Set Hour if selected
       const scheduledDate = new Date(this.taskForm.get('startDate').value);
+      scheduledDate.setDate(scheduledDate.getDay() - 1);
       const scheduledHour = new Date(this.taskForm.get('hour').value);
       const completeScheduled = this.getTimestamp(scheduledDate, scheduledHour);
 
@@ -91,7 +92,6 @@ export class NewTaskPage implements OnInit {
         done: [false]
       });
 
-      console.log(!this.taskId);
       const task = !this.taskId
         ? this.onCreateTask(completeScheduled)
         : await this.tasksService.update({
