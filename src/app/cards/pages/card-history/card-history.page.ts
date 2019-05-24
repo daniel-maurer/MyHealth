@@ -69,13 +69,13 @@ export class CardHistoryPage implements OnInit {
     });
 
     if (!this.cardId) {
-      this.tasks$.subscribe((task: Task[]) => {
+      this.tasks$.subscribe((tasks: Task[]) => {
         const cards2: HistoryCard[] = [];
 
-        task.forEach((task: Task) => {
+        tasks.forEach((task: Task) => {
           const historyCard: HistoryCard = {
             title: task.title,
-            isTask: false,
+            isTask: true,
             taskDone: false,
             date: task.completedDate,
             infoTitle1: task.done ? 'Concluído' : 'Não Concluído',
