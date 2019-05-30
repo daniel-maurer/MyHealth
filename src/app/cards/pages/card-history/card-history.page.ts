@@ -7,6 +7,7 @@ import { HistoryCard } from '../../models/history-card.model';
 import { RecordInfo } from '../../models/record-info.model';
 import { Task } from '../../../task/models/task.model';
 import { TaskService } from 'src/app/task/services/task.service';
+import { RecordService } from '../../services/record.service';
 
 @Component({
   selector: 'app-card-history',
@@ -15,6 +16,7 @@ import { TaskService } from 'src/app/task/services/task.service';
 })
 export class CardHistoryPage implements OnInit {
   private cardId: string;
+  title: string = 'Histórico';
 
   public cards: HistoryCard[] = [];
   records$: Observable<Record[]>;
@@ -23,6 +25,7 @@ export class CardHistoryPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private addRecordService: AddRecordService,
+    public recordService: RecordService,
     public tasksService: TaskService
   ) {
     this.cardId = this.route.snapshot.params.cardId;
@@ -31,6 +34,12 @@ export class CardHistoryPage implements OnInit {
   ngOnInit() {
     this.records$ = this.addRecordService.getAll();
     this.tasks$ = this.tasksService.getAll();
+
+    if (this.cardId) {
+      this.recordService.getAll().subscribe(record => {
+        this.title = record.filter(record2 => record2.id === this.cardId)[0].title;
+      });
+    }
 
     this.populateCardHistory();
   }
