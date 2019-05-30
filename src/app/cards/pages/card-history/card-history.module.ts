@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { CardHistoryPage } from './card-history.page';
+import { CardOptionsPage } from '../card-options/card-options.page';
 
 const routes: Routes = [
   {
@@ -15,12 +16,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [CardHistoryPage]
+  imports: [CommonModule, FormsModule, IonicModule, RouterModule.forChild(routes)],
+  declarations: [CardHistoryPage, CardOptionsPage],
+  entryComponents: [CardOptionsPage]
 })
 export class CardHistoryPageModule {}

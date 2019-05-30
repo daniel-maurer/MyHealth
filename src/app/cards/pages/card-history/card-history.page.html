@@ -1,68 +1,88 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start" *ngIf="cardId">
-      <ion-back-button defaultHref="/tasks"></ion-back-button>
-    </ion-buttons>
-    <ion-title class="clean-title">{{ title }}</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons
+            slot="start"
+            *ngIf="cardId"
+        >
+            <ion-back-button defaultHref="/tasks"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="clean-title">{{ title }}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button
+                slot="icon-only"
+                (click)="onOptions()"
+            >
+                <ion-icon name="settings"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
+
 <ion-content class="clean-content">
-  <div class="timeline">
-    <div class="container left" *ngFor="let card of cards">
-      <div class="style-div icon">
-        <ion-icon name="{{ card.icon }}"></ion-icon>
-      </div>
-
-      <ion-card mode="ios" class="content">
-        <ion-row>
-          <ion-col class="left-col">
-            <ion-row>
-              <div class="card-title">{{ card.title }}</div>
-            </ion-row>
-          </ion-col>
-
-          <ion-col class="right-col">
-            <div class="card-date">
-              <ion-row>
-                <div>
-                  {{ card.date | date: 'EEE, MMM d' }}
-                </div>
-              </ion-row>
-              <ion-row>
-                <div class="hora">{{ card.date | date: 'hh:mm' }}</div>
-              </ion-row>
+    <div class="timeline">
+        <div
+            class="container left"
+            *ngFor="let card of cards"
+        >
+            <div class="style-div icon">
+                <ion-icon name="{{ card.icon }}"></ion-icon>
             </div>
-          </ion-col>
-        </ion-row>
 
-        <ion-row>
-          <div class="info-title">
-            {{ card.infoTitle1 }}
-          </div>
-        </ion-row>
-        <ion-row>
-          <div class="info-value">
-            {{ card.infoValue1 }}
-          </div>
-        </ion-row>
-        <ion-row>
-          <div class="info-title">
-            {{ card.infoTitle2 }}
-          </div>
-        </ion-row>
-        <ion-row>
-          <div class="info-value">
-            {{ card.infoValue2 }}
-          </div>
-        </ion-row>
-      </ion-card>
+
+            <ion-card
+                mode="ios"
+                class="content"
+            >
+                <ion-row>
+                    <ion-col class="left-col">
+                        <ion-row>
+                            <div class="card-title">{{ card.title }}</div>
+                        </ion-row>
+                    </ion-col>
+
+
+                    <ion-col class="right-col">
+                        <div class="card-date">
+                            <ion-row>
+                                <div>{{ card.date | date: 'EEE, MMM d' }}</div>
+                            </ion-row>
+                            <ion-row>
+                                <div class="hora">{{ card.date | date: 'hh:mm' }}</div>
+                            </ion-row>
+                        </div>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row>
+                    <div class="info-title">{{ card.infoTitle1 }}</div>
+                </ion-row>
+                <ion-row>
+                    <div class="info-value">{{ card.infoValue1 }}</div>
+                </ion-row>
+                <ion-row>
+                    <div class="info-title">{{ card.infoTitle2 }}</div>
+                </ion-row>
+                <ion-row>
+                    <div class="info-value">{{ card.infoValue2 }}</div>
+                </ion-row>
+            </ion-card>
+        </div>
     </div>
-  </div>
 </ion-content>
 
-<ion-fab vertical="bottom" horizontal="end" *ngIf="cardId">
-  <ion-fab-button class="style-btn" routerLink="/add-record/{{ cardId }}" routerDirection="forward">
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
+
+<ion-fab
+    vertical="bottom"
+    horizontal="end"
+    *ngIf="cardId"
+>
+    <ion-fab-button
+        class="style-btn"
+        routerLink="/add-record/{{ cardId }}"
+        routerDirection="forward"
+    >
+        <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
 </ion-fab>

@@ -37,7 +37,6 @@ export class HomePage implements OnInit {
     public loadingCtrl: LoadingController,
     public navCtrl: NavController,
     public modalCtrl: ModalController,
-    public popoverCtrl: PopoverController,
     public userService: UserService,
     public tasksService: TaskService,
     public platform: Platform

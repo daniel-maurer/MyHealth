@@ -8,6 +8,8 @@ import { RecordInfo } from '../../models/record-info.model';
 import { Task } from '../../../task/models/task.model';
 import { TaskService } from 'src/app/task/services/task.service';
 import { RecordService } from '../../services/record.service';
+import { CardOptionsPage } from '../card-options/card-options.page';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-card-history',
@@ -25,6 +27,7 @@ export class CardHistoryPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private addRecordService: AddRecordService,
+    public popoverCtrl: PopoverController,
     public recordService: RecordService,
     public tasksService: TaskService
   ) {
@@ -117,5 +120,14 @@ export class CardHistoryPage implements OnInit {
     } else {
       return 0;
     }
+  }
+
+  async onOptions(ev: any) {
+    const popover = await this.popoverCtrl.create({
+      component: CardOptionsPage,
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
   }
 }

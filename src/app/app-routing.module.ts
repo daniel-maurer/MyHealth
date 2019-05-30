@@ -24,7 +24,8 @@ const routes: Routes = [
   {
     path: 'add-record/:cardId',
     loadChildren: './cards/pages/add-record/add-record.module#AddRecordPageModule'
-  }
+  },  { path: 'card-options', loadChildren: './cards/pages/card-options/card-options.module#CardOptionsPageModule' }
+
 ];
 
 @NgModule({
