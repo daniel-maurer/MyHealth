@@ -11,6 +11,7 @@ import { RecordComboValue } from '../../models/record-combo-value.model';
 import { UserService } from 'src/app/auth/services/user.service';
 import { User } from 'src/app/auth/models/user.model';
 import { NavController } from '@ionic/angular';
+import { OverlayService } from 'src/app/core/services/overlay.service';
 
 @Component({
   selector: 'app-add-record',
@@ -34,6 +35,7 @@ export class AddRecordPage implements OnInit {
     private route: ActivatedRoute,
     private addRecordService: AddRecordService,
     private navCtrl: NavController,
+    private overlayService: OverlayService,
     private userService: UserService
   ) {
     this.cardId = this.route.snapshot.params.cardId;
@@ -56,20 +58,50 @@ export class AddRecordPage implements OnInit {
   }
 
   onAdd() {
-    let record: Record = {
-      title: this.title,
-      infos: this.infos,
-      date: this.date,
-      note: this.notes,
-      type: this.cardId,
-      values: this.values,
-      comboValues: this.comboValues,
+    if (this.verifyRequiredInfos()) {
+      let record: Record = {
+        title: this.title,
+        infos: this.infos,
+        date: this.date,
+        note: this.notes,
+        type: this.cardId,
+        values: this.values,
+        comboValues: this.comboValues,
 
-      id: null,
-      source: this.currentUser.name
-    };
+        id: null,
+        source: this.currentUser.name
+      };
 
-    this.addRecordService.create(record);
-    this.navCtrl.navigateBack(`/card-history/${this.cardId}`);
+      this.addRecordService.create(record);
+      this.navCtrl.navigateBack(`/card-history/${this.cardId}`);
+    }
+  }
+
+  verifyRequiredInfos(): boolean {
+    let requiredTitles: string = '';
+
+    this.infos.forEach((record: RecordInfo) => {
+      if (record.required && !record.value) {
+        requiredTitles = `${requiredTitles}${record.title}, `;
+      }
+    });
+
+    if (requiredTitles.length > 0) {
+      requiredTitles = requiredTitles.substr(0, requiredTitles.length - 2);
+
+      if (requiredTitles.indexOf(',') !== -1) {
+        this.overlayService.toast({
+          message: `Ei! Você se esqueceu dessas informações: ${requiredTitles}`
+        });
+      } else {
+        this.overlayService.toast({
+          message: `Ei! Você se esqueceu dessa informação: ${requiredTitles}`
+        });
+      }
+
+      return false;
+    }
+
+    return true;
   }
 }
