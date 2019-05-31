@@ -123,6 +123,18 @@ export class CardHistoryPage implements OnInit {
   }
 
   async onOptions(ev: any) {
+    ev = {
+      target: {
+        getBoundingClientRect: () => {
+          return {
+            top: '10',
+            left: '100',
+            height: '50'
+          };
+        }
+      }
+    };
+
     const popover = await this.popoverCtrl.create({
       component: CardOptionsPage,
       event: ev,

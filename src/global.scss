@@ -23,8 +23,8 @@
 
 .md ion-title {
   --height: 50px !important;
-  font-size: 30px !important;
-  font-weight: 300 !important;
+  font-size: 30px;
+  font-weight: 300;
   width: 100%;
   left: 0% !important;
   //new
@@ -37,9 +37,6 @@
 
 ion-button {
   font-family: 'Roboto', sans-serif !important;
-  // font-weight: 700 !important;
-  // text-transform: none;
-  // font-size: 16px !important;
 }
 
 .md .clean-title {

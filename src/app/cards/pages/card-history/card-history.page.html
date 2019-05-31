@@ -10,6 +10,7 @@
         <ion-buttons slot="end">
             <ion-button
                 slot="icon-only"
+                *ngIf="cardId"
                 (click)="onOptions()"
             >
                 <ion-icon name="settings"></ion-icon>

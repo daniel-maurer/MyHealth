@@ -8,19 +8,17 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-organize-cards',
   templateUrl: './organize-cards.page.html',
-  styleUrls: ['./organize-cards.page.scss'],
+  styleUrls: ['./organize-cards.page.scss']
 })
 export class OrganizeCardsPage implements OnInit {
   public cards: Card[];
 
-  constructor(private cardService: CardService, private modalCtrl: ModalController) {  }
+  constructor(private cardService: CardService, private modalCtrl: ModalController) {}
 
   ngOnInit() {
-    this.cardService.getAll().subscribe((cards) => {
-      console.log('ma apas ');
-      this.cards =  cards;
-  });
-
+    this.cardService.getAll().subscribe(cards => {
+      this.cards = cards;
+    });
   }
 
   closeModal() {
@@ -32,16 +30,15 @@ export class OrganizeCardsPage implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  async reorder(event): Promise<void>  {
+  async reorder(event): Promise<void> {
     console.log(`Moving item from ${event.detail.from} to ${event.detail.to}`);
 
     const itemToMove = this.cards.splice(event.detail.from, 1)[0];
     this.cards.splice(event.detail.to, 0, itemToMove);
     event.detail.complete();
-}
+  }
 
-onUpdate(card: Card): void {
-  card.important = !card.important;
-}
-
+  onUpdate(card: Card): void {
+    card.important = !card.important;
+  }
 }
