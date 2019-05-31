@@ -5,14 +5,22 @@
 </ion-header>
 
 <ion-content>
-  <ion-list lines='none'>
-    <ion-item>
-      <ion-checkbox mode='ios'></ion-checkbox>
-      <ion-label>Visiível</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-checkbox mode='ios'></ion-checkbox>
-      <ion-label>Importante</ion-label>
-    </ion-item>
-  </ion-list>
+    <ion-list lines='none'>
+        <ion-item>
+            <ion-checkbox
+                mode="ios"
+                [checked]="card.visible"
+                (ionChange)="onVisible(card)"
+            ></ion-checkbox>
+            <ion-label>Visiível</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-checkbox
+                mode="ios"
+                [checked]="card.important"
+                (ionChange)="onImportant(card)"
+            ></ion-checkbox>
+            <ion-label>Importante</ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>

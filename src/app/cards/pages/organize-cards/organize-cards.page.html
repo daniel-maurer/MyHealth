@@ -16,6 +16,7 @@
         <ion-reorder-group (ionItemReorder)="reorder($event)" [disabled]="false">
             <ion-item *ngFor="let card of cards">
                 <ion-label>{{card.title}}</ion-label>
+                <ion-toggle [(ngModel)]="card.visible"></ion-toggle>
                 <ion-reorder></ion-reorder>
             </ion-item>
         </ion-reorder-group>

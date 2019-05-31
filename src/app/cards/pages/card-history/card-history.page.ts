@@ -138,7 +138,8 @@ export class CardHistoryPage implements OnInit {
     const popover = await this.popoverCtrl.create({
       component: CardOptionsPage,
       event: ev,
-      translucent: true
+      translucent: true,
+      componentProps: { cardId: this.cardId }
     });
     return await popover.present();
   }

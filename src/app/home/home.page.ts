@@ -55,7 +55,9 @@ export class HomePage implements OnInit {
       return tasks.filter(task => this.today(new Date(task.scheduled)) && task.done);
     });
 
-    this.cards$ = this.cardService.getAll();
+    this.cards$ = this.cardService.getAll().map(cards => {
+      return cards.filter(card => card.visible);
+    });
   }
 
   showLoading(): any {
@@ -77,7 +79,7 @@ export class HomePage implements OnInit {
     task.done = !task.done;
 
     if (task.done) {
-      task.completedDate = (new Date(Date.now())).toISOString();
+      task.completedDate = new Date(Date.now()).toISOString();
     } else {
       task.completedDate = '';
     }
