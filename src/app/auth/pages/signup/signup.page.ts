@@ -26,7 +26,8 @@ export class SignupPage implements OnInit {
       important: false,
       visible: true,
       icon: 'heart-empty',
-      position: 0
+      position: 0,
+      medicalPrescription: false
     },
     {
       id: 'notes',
@@ -34,7 +35,8 @@ export class SignupPage implements OnInit {
       important: false,
       visible: true,
       icon: 'heart-empty',
-      position: 1
+      position: 1,
+      medicalPrescription: false
     },
     {
       id: 'conditions',
@@ -42,7 +44,8 @@ export class SignupPage implements OnInit {
       important: false,
       visible: true,
       icon: 'heart-empty',
-      position: 2
+      position: 2,
+      medicalPrescription: false
     },
     {
       id: 'diets',
@@ -50,7 +53,8 @@ export class SignupPage implements OnInit {
       important: false,
       visible: true,
       icon: 'heart-empty',
-      position: 3
+      position: 3,
+      medicalPrescription: false
     },
     {
       id: 'exercises',
@@ -58,7 +62,8 @@ export class SignupPage implements OnInit {
       important: false,
       visible: true,
       icon: 'heart-empty',
-      position: 4
+      position: 4,
+      medicalPrescription: false
     },
     {
       id: 'medicines',
@@ -66,7 +71,8 @@ export class SignupPage implements OnInit {
       important: false,
       visible: true,
       icon: 'heart-empty',
-      position: 5
+      position: 5,
+      medicalPrescription: false
     },
     {
       id: 'weight',
@@ -74,7 +80,8 @@ export class SignupPage implements OnInit {
       important: false,
       visible: true,
       icon: 'heart-empty',
-      position: 6
+      position: 6,
+      medicalPrescription: false
     },
     {
       id: 'therapeutic-plans',
@@ -82,7 +89,8 @@ export class SignupPage implements OnInit {
       important: false,
       visible: true,
       icon: 'heart-empty',
-      position: 7
+      position: 7,
+      medicalPrescription: false
     },
     {
       id: 'procedures',
@@ -90,7 +98,8 @@ export class SignupPage implements OnInit {
       important: false,
       visible: true,
       icon: 'heart-empty',
-      position: 8
+      position: 8,
+      medicalPrescription: false
     }
   ];
 

@@ -95,8 +95,16 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward('user-profile');
   }
 
-  onCard(cardId: string): void {
-    this.navCtrl.navigateForward(['card-history', cardId]);
+  onCard(cardId: string, medicalPrescription: boolean): void {
+    console.log(cardId);
+    console.log(medicalPrescription);
+
+
+    if (medicalPrescription) {
+      this.navCtrl.navigateForward(['medical-prescription', cardId]);
+    } else {
+      this.navCtrl.navigateForward(['card-history', cardId]);
+    }
   }
 
   today(td) {

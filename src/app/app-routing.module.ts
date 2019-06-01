@@ -24,7 +24,9 @@ const routes: Routes = [
   {
     path: 'add-record/:cardId',
     loadChildren: './cards/pages/add-record/add-record.module#AddRecordPageModule'
-  },  { path: 'card-options', loadChildren: './cards/pages/card-options/card-options.module#CardOptionsPageModule' }
+  },
+  { path: 'card-options', loadChildren: './cards/pages/card-options/card-options.module#CardOptionsPageModule' },
+  { path: 'medical-prescription/:cardId', loadChildren: './cards/pages/medical-prescription/medical-prescription.module#MedicalPrescriptionPageModule' }
 
 ];
 

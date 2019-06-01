@@ -5,4 +5,5 @@ export interface Card {
   visible: boolean;
   icon: string;
   position: number;
+  medicalPrescription: boolean;
 }
