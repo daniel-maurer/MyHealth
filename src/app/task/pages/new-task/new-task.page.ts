@@ -15,6 +15,17 @@ import { UserService } from 'src/app/auth/services/user.service';
   styleUrls: ['./new-task.page.scss']
 })
 export class NewTaskPage implements OnInit {
+  private cardId: string = '';
+  taskForm: FormGroup;
+  pageTitle = '...';
+  buttonText = '...';
+  taskId: string = undefined;
+  currentUser: User;
+  createdTask: FormGroup;
+  startDate: string = 'Agendar';
+  repeats: boolean = false;
+  taskDates: any[] = [];
+
   constructor(
     private fb: FormBuilder,
     private navCtrl: NavController,
@@ -22,19 +33,9 @@ export class NewTaskPage implements OnInit {
     private overlayService: OverlayService,
     private tasksService: TaskService,
     private userService: UserService
-  ) {}
-  taskForm: FormGroup;
-  pageTitle = '...';
-  buttonText = '...';
-  taskId: string = undefined;
-  currentUser: User;
-
-  createdTask: FormGroup;
-
-  startDate: string = 'Agendar';
-  repeats: boolean = false;
-
-  taskDates: any[] = [];
+  ) {
+    this.cardId = this.route.snapshot.params.cardId ? this.route.snapshot.params.cardId : '';
+  }
 
   ngOnInit(): void {
     this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
@@ -96,6 +97,7 @@ export class NewTaskPage implements OnInit {
         ? this.onCreateTask(completeScheduled)
         : await this.tasksService.update({
             id: this.taskId,
+            prescriptionId: this.cardId,
             completeScheduled,
             ...this.createdTask.value
           });
@@ -119,6 +121,7 @@ export class NewTaskPage implements OnInit {
         console.log(date);
         this.tasksService.create({
           source: this.currentUser.name,
+          prescriptionId: this.cardId,
           scheduled: date,
           ...this.createdTask.value
         });
@@ -127,6 +130,7 @@ export class NewTaskPage implements OnInit {
       await this.tasksService.create({
         source: this.currentUser.name,
         scheduled: scheduledDate,
+        prescriptionId: this.cardId,
         ...this.createdTask.value
       });
     }

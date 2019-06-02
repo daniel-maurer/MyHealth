@@ -10,6 +10,10 @@ const routes: Routes = [
         loadChildren: './pages/new-task/new-task.module#NewTaskPageModule'
       },
       {
+        path: 'create/:cardId',
+        loadChildren: './pages/new-task/new-task.module#NewTaskPageModule'
+      },
+      {
         path: 'edit/:id',
         loadChildren: './pages/new-task/new-task.module#NewTaskPageModule'
       }

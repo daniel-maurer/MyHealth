@@ -3,15 +3,12 @@ import { MenuController, NavController } from '@ionic/angular';
 
 import { AuthService } from '../../../core/services/auth.service';
 import { Chat } from '../../models/chat.model';
-import { ChatPage } from '../chat/chat.page';
 import { ChatService } from '../../services/chat.service';
-import { SignupPage } from '../../../auth/pages/signup/signup.page';
 import { User } from '../../../auth/models/user.model';
 import { UserService } from '../../../auth/services/user.service';
-
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
-import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import { map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-messages',
@@ -38,8 +35,6 @@ export class MessagesPage implements OnInit {
     });
   }
 
- // ngOnInit() {}
-
   ionViewCanEnter(): Promise<boolean> {
     return this.authService.authenticated;
   }
@@ -64,9 +59,7 @@ export class MessagesPage implements OnInit {
     this.users = this.userService.users;
 
     if (searchTerm) {
-
       switch(this.view) {
-
         case 'chats':
           this.chats = this.chats
             .pipe(
@@ -81,9 +74,7 @@ export class MessagesPage implements OnInit {
             );
           break;
       }
-
     }
-
   }
 
   onChatCreate(recipientUser: User): void {

@@ -1,9 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>medical-prescription</ion-title>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <ion-title>{{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
 </ion-content>
+
+<ion-fab vertical="bottom" horizontal="end">
+  <ion-fab-button class="style-btn" (click)="onAddTask()" routerDirection="forward">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

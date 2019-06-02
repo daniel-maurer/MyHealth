@@ -6,4 +6,5 @@ export interface Task {
   scheduled: any;
   completedDate: any;
   source: string;
+  prescriptionId: string;
 }
