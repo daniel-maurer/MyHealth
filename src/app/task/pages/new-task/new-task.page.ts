@@ -85,7 +85,14 @@ export class NewTaskPage implements OnInit {
       // Set Hour if selected
       const scheduledDate = new Date(this.taskForm.get('startDate').value);
       scheduledDate.setDate(scheduledDate.getDate() - 1);
-      const scheduledHour = new Date(this.taskForm.get('hour').value);
+      let scheduledHour = new Date(this.taskForm.get('hour').value);
+
+      if (!this.taskForm.get('hour').value) {
+        scheduledHour = new Date();
+        scheduledHour.setTime(0);
+        scheduledHour.setHours(0);
+      }
+
       const completeScheduled = this.getTimestamp(scheduledDate, scheduledHour);
 
       this.createdTask = this.fb.group({
