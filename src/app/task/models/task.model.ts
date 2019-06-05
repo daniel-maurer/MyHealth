@@ -7,4 +7,5 @@ export interface Task {
   completedDate: any;
   source: string;
   prescriptionId: string;
+  prescriptionTitle: string;
 }

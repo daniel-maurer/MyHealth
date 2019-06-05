@@ -43,6 +43,7 @@ export class HomePage implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
+    console.log('negoninit');
     this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
       this.currentUser = user;
     });
@@ -57,6 +58,28 @@ export class HomePage implements OnInit {
 
     this.cards$ = this.cardService.getAll().map(cards => {
       return cards.filter(card => card.visible);
+    });
+
+    this.setTasks();
+
+  }
+
+  setTasks(): void {
+    this.tasks$.subscribe((tasks: Task[]) => {
+      tasks.forEach((task: Task) => {
+
+        if (task.prescriptionId) {
+          this.cards$.subscribe((cards: Card[]) => {
+            console.log('here3');
+            if (cards.filter(p => p.id == task.prescriptionId)[0]) {
+              console.log(cards.filter(p => p.id == task.prescriptionId)[0].title);
+              task.prescriptionTitle = cards.filter(p => p.id == task.prescriptionId)[0].title;
+
+              this.tasksService.update(task);
+            }
+          });
+        }
+      });
     });
   }
 
