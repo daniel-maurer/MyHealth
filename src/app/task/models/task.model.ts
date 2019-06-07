@@ -8,4 +8,5 @@ export interface Task {
   source: string;
   prescriptionId: string;
   prescriptionTitle: string;
+  type: string;
 }

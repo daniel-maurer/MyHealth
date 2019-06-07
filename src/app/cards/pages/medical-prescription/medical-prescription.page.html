@@ -1,48 +1,71 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
         </ion-buttons>
-    <ion-title>{{title}}</ion-title>
-  </ion-toolbar>
+        <ion-title>{{title}}</ion-title>
+    </ion-toolbar>
 </ion-header>
+
+
 
 <ion-content>
 
 
 
-  
 
-  <div class="labelContainer" *ngIf="showMenuItem">
-    <div class="container">
-      <a><div class="label">Escolher Turma</div></a>
-      <a><div class="label">Adicionar Turma</div></a>
+
+
+
+    <div
+        class="labelContainer"
+        *ngIf="showMenuItem"
+    >
+        <div class="container">
+            <a>
+                <div class="label">Escolher Turma</div>
+            </a>
+            <a>
+                <div class="label">Adicionar Turma</div>
+            </a>
+        </div>
     </div>
-  </div>
 
 
 
-  <ion-fab vertical="bottom" horizontal="end">
-    <ion-fab-button class="style-btn">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="top" *ngIf="cards$ | async as cards">
-      <ng-container *ngFor="let item of cards">
-        <div class="voteindex">
-          <ion-fab-button (click)="someFunction(item)" class="style-btn">
-              <ion-icon [name]="item.icon"></ion-icon>
-            </ion-fab-button>
-            <ion-label  (click)="someFunction(item)">
-                {{ item.title }}
-            </ion-label>
-          </div>
-      </ng-container>
-    </ion-fab-list>
-  </ion-fab>
 
 
-
+    <ion-fab
+        vertical="bottom"
+        horizontal="end"
+    >
+        <ion-fab-button class="style-btn">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list
+            side="top"
+            *ngIf="cards$ | async as cards"
+        >
+            <div class="voteindex">
+                <ion-fab-button
+                    class="style-btn"
+                    (click)="onAddTask()"
+                >
+                    <ion-icon name="done-all"></ion-icon>
+                </ion-fab-button>
+                <ion-label (click)="onAddTask()">Tarefas</ion-label>
+            </div>
+            <ng-container *ngFor="let item of cards">
+                <div class="voteindex">
+                    <ion-fab-button
+                        (click)="someFunction(item)"
+                        class="style-btn"
+                    >
+                        <ion-icon [name]="item.icon"></ion-icon>
+                    </ion-fab-button>
+                    <ion-label (click)="someFunction(item)">{{ item.title }}</ion-label>
+                </div>
+            </ng-container>
+        </ion-fab-list>
+    </ion-fab>
 </ion-content>
-
-
-
