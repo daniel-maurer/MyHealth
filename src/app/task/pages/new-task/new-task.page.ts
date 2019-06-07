@@ -16,6 +16,7 @@ import { UserService } from 'src/app/auth/services/user.service';
 })
 export class NewTaskPage implements OnInit {
   private cardId: string = '';
+  private taskInfo: string = '';
   taskForm: FormGroup;
   pageTitle = '...';
   buttonText = '...';
@@ -35,6 +36,11 @@ export class NewTaskPage implements OnInit {
     private userService: UserService
   ) {
     this.cardId = this.route.snapshot.params.cardId ? this.route.snapshot.params.cardId : '';
+
+    if (this.route.snapshot.params['taskInfo']) {
+      this.cardId = this.route.snapshot.params['cardId'];
+      this.taskInfo = this.route.snapshot.params['taskInfo'];
+    }
   }
 
   ngOnInit(): void {
@@ -105,6 +111,7 @@ export class NewTaskPage implements OnInit {
         : await this.tasksService.update({
             id: this.taskId,
             prescriptionId: this.cardId,
+            type: this.taskInfo,
             completeScheduled,
             ...this.createdTask.value
           });
@@ -129,6 +136,7 @@ export class NewTaskPage implements OnInit {
         this.tasksService.create({
           source: this.currentUser.name,
           prescriptionId: this.cardId,
+          type: this.taskInfo,
           scheduled: date,
           ...this.createdTask.value
         });
@@ -138,6 +146,7 @@ export class NewTaskPage implements OnInit {
         source: this.currentUser.name,
         scheduled: scheduledDate,
         prescriptionId: this.cardId,
+        type: this.taskInfo,
         ...this.createdTask.value
       });
     }

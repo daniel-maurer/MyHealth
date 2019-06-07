@@ -35,16 +35,17 @@ export class MedicalPrescriptionPage implements OnInit {
     });
   }
 
-  someFunction(item) {
+  someFunction(item: Card) {
+    let taskParameters = {
+      cardId: this.cardId,
+      taskInfo: item.id
+    };
+
+    this.navCtrl.navigateForward(['/tasks/create', taskParameters]);
     console.log(item.title);
   }
 
   onAddTask() {
     this.navCtrl.navigateForward(['/tasks/create', this.cardId]);
   }
-
-  showMenuItems(){
-    this.showMenuItem = !this.showMenuItem;
-}
-
 }
