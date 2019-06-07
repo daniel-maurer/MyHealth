@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CardService } from '../../services/card.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { Card } from '../../models/card.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-medical-prescription',
@@ -11,6 +13,9 @@ import { NavController } from '@ionic/angular';
 export class MedicalPrescriptionPage implements OnInit {
   private cardId: string;
   private title: string;
+  showMenuItem: boolean = false;
+
+  cards$: Observable<Card[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,10 +29,22 @@ export class MedicalPrescriptionPage implements OnInit {
     this.cardService.getAll().subscribe(card => {
       this.title = card.filter(card2 => card2.id === this.cardId)[0].title;
     });
+
+    this.cards$ = this.cardService.getAll().map(cards => {
+      return cards.filter(card => card.canAssociatedTask);
+    });
+  }
+
+  someFunction(item) {
+    console.log(item.title);
   }
 
   onAddTask() {
     this.navCtrl.navigateForward(['/tasks/create', this.cardId]);
   }
+
+  showMenuItems(){
+    this.showMenuItem = !this.showMenuItem;
+}
 
 }

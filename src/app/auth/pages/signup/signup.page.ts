@@ -27,7 +27,8 @@ export class SignupPage implements OnInit {
       visible: true,
       icon: 'heart-empty',
       position: 0,
-      medicalPrescription: false
+      medicalPrescription: false,
+      canAssociatedTask: false
     },
     {
       id: 'notes',
@@ -36,7 +37,8 @@ export class SignupPage implements OnInit {
       visible: true,
       icon: 'heart-empty',
       position: 1,
-      medicalPrescription: false
+      medicalPrescription: false,
+      canAssociatedTask: false
     },
     {
       id: 'conditions',
@@ -45,7 +47,8 @@ export class SignupPage implements OnInit {
       visible: true,
       icon: 'heart-empty',
       position: 2,
-      medicalPrescription: false
+      medicalPrescription: false,
+      canAssociatedTask: false
     },
     {
       id: 'diets',
@@ -54,7 +57,8 @@ export class SignupPage implements OnInit {
       visible: true,
       icon: 'heart-empty',
       position: 3,
-      medicalPrescription: false
+      medicalPrescription: false,
+      canAssociatedTask: false
     },
     {
       id: 'exercises',
@@ -63,7 +67,8 @@ export class SignupPage implements OnInit {
       visible: true,
       icon: 'heart-empty',
       position: 4,
-      medicalPrescription: false
+      medicalPrescription: false,
+      canAssociatedTask: true
     },
     {
       id: 'medicines',
@@ -72,7 +77,8 @@ export class SignupPage implements OnInit {
       visible: true,
       icon: 'heart-empty',
       position: 5,
-      medicalPrescription: false
+      medicalPrescription: false,
+      canAssociatedTask: true
     },
     {
       id: 'weight',
@@ -81,7 +87,8 @@ export class SignupPage implements OnInit {
       visible: true,
       icon: 'heart-empty',
       position: 6,
-      medicalPrescription: false
+      medicalPrescription: false,
+      canAssociatedTask: false
     },
     {
       id: 'therapeutic-plans',
@@ -90,7 +97,8 @@ export class SignupPage implements OnInit {
       visible: true,
       icon: 'heart-empty',
       position: 7,
-      medicalPrescription: false
+      medicalPrescription: false,
+      canAssociatedTask: false
     },
     {
       id: 'procedures',
@@ -99,7 +107,8 @@ export class SignupPage implements OnInit {
       visible: true,
       icon: 'heart-empty',
       position: 8,
-      medicalPrescription: false
+      medicalPrescription: false,
+      canAssociatedTask: false
     }
   ];
 

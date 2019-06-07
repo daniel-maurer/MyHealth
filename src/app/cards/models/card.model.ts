@@ -6,4 +6,5 @@ export interface Card {
   icon: string;
   position: number;
   medicalPrescription: boolean;
+  canAssociatedTask: boolean;
 }
