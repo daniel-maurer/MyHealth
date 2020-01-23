@@ -40,7 +40,6 @@ export class HomePage implements OnInit {
     public userService: UserService,
     public tasksService: TaskService,
     public platform: Platform
-  ) {}
 
   async ngOnInit(): Promise<void> {
     console.log('negoninit');
@@ -51,6 +50,7 @@ export class HomePage implements OnInit {
     this.tasks$ = this.tasksService.getAll().map(tasks => {
       return tasks.filter(task => this.today(new Date(task.scheduled)) || this.isLate(task));
     });
+
 
     this.dones$ = this.tasksService.getAll().map(tasks => {
       return tasks.filter(task => this.today(new Date(task.scheduled)) && task.done);
@@ -67,9 +67,11 @@ export class HomePage implements OnInit {
   setTasks(): void {
     this.tasks$.subscribe((tasks: Task[]) => {
       tasks.forEach((task: Task) => {
-
         if (task.prescriptionId) {
-          this.cards$.subscribe((cards: Card[]) => {
+          console.log('here2');
+          this.cardService.getAll().map(cards => {
+            return cards.filter(card => card.visible);
+          }).subscribe((cards: Card[]) => {
             console.log('here3');
             if (cards.filter(p => p.id == task.prescriptionId)[0]) {
               console.log(cards.filter(p => p.id == task.prescriptionId)[0].title);
