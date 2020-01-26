@@ -40,7 +40,8 @@ export class HomePage implements OnInit {
     public userService: UserService,
     public tasksService: TaskService,
     public platform: Platform
-
+  ){}
+  
   async ngOnInit(): Promise<void> {
     console.log('negoninit');
     this.userService.mapObjectKey<User>(this.userService.currentUser).subscribe((user: User) => {
