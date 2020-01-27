@@ -106,3 +106,55 @@ ion-card {
 ion-fab {
   bottom: 11px !important;
 }
+
+.list-md{
+  padding-bottom: 68px !important;
+}
+
+.btn-new
+{
+
+    position:absolute;
+    width:calc(100% - 89px) !important;
+    height:52px !important;
+    left: 11px;
+    z-index:2;
+    bottom: 10px !important;
+    --border-radius: 10px 10px 10px 0px !important;
+
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 52px;
+    --box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.14),0 1px 18px 0 rgba(0,0,0,0.12) !important;
+
+    .button-native {
+      background: linear-gradient(45deg, #007eb7 100%, #2cb6c5 100%);
+    }
+}
+
+
+.btn-new-bg{
+    position:absolute;
+    width:100% !important;
+    height:16px !important;
+    left: 0px;
+    bottom: 66px;
+    z-index:1;
+
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95));
+    background-repeat: repeat-y;
+
+}
+
+.btn-new-bg2 {
+    position:absolute;
+    width:100% !important;
+    height:66px !important;
+    left: 0px;
+    bottom: 0px;
+    z-index:1;
+  background: #fff;
+
+}
+
