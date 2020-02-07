@@ -140,9 +140,23 @@ ion-fab {
   animation: animation-btn 1500ms;
   animation-delay: 2500ms;
   animation-fill-mode: forwards;
-//  animation-timing-function: cubic-bezier(.76,.05,.86,.06);
 }
 
+.animate-btn-bg {
+  animation: animation-btn-bg 1000ms;
+  animation-delay: 3000ms;
+  animation-fill-mode: forwards;
+}
+
+
+@keyframes animation-btn-bg {
+  from {
+opacity: 1;
+  }
+  to {
+opacity: 0;
+  }
+}
 
 
 
@@ -161,8 +175,8 @@ ion-fab {
   20% {
     bottom: 16px;
 
-    width: 40px ;
-    height: 40px ;
+    width: 30px ;
+    height: 30px ;
     --border-radius: 20px;
      left:calc(50% - 58px);
      transform: scale(0.8);
@@ -170,8 +184,8 @@ ion-fab {
   }
   30% {
 bottom: 16px;
-    width: 40px ;
-    height: 40px ;
+    width: 30px ;
+    height: 30px ;
     --border-radius: 20px;
      left:calc(50% - 58px);
     transform: scale(1.2);
@@ -179,8 +193,8 @@ bottom: 16px;
   }
   40% {
 bottom: 16px;
-    width: 40px ;
-    height: 40px ;
+    width: 30px ;
+    height: 30px ;
     --border-radius: 20px;
      left:calc(50% - 58px);
     transform: scale(1);
@@ -189,8 +203,8 @@ bottom: 16px;
   }
   60% {
 bottom: 16px;
-    width: 40px ;
-    height: 40px ;
+    width: 30px ;
+    height: 30px ;
     --border-radius: 20px;
      left:calc(50% - 58px);
     left: calc(100% - 56px);
@@ -199,8 +213,8 @@ bottom: 16px;
   }
   100% {
     bottom: 16px;
-    width: 40px ;
-    height: 40px ;
+    width: 30px ;
+    height: 30px ;
     --border-radius: 20px;
      left:calc(50% - 58px);
      left: calc(100% - 56px);
