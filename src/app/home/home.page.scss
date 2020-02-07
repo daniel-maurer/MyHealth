@@ -181,6 +181,7 @@ opacity: 0;
      left:calc(50% - 58px);
      transform: scale(0.8);
      opacity: 1;
+     font-size: 0.5px;
   }
   30% {
 bottom: 16px;
@@ -190,6 +191,7 @@ bottom: 16px;
      left:calc(50% - 58px);
     transform: scale(1.2);
     opacity: 1;
+    font-size: 1px;
   }
   40% {
 bottom: 16px;
@@ -200,6 +202,7 @@ bottom: 16px;
     transform: scale(1);
     opacity: 1;
     animation-timing-function: cubic-bezier(.76,.05,.86,.06);
+    font-size: 0.5px;
   }
   60% {
 bottom: 16px;
@@ -210,6 +213,7 @@ bottom: 16px;
     left: calc(100% - 56px);
     opacity: 0.4;
     animation-timing-function: cubic-bezier(.76,.05,.86,.06);
+    font-size: 0.5px;
   }
   100% {
     bottom: 16px;
@@ -218,6 +222,7 @@ bottom: 16px;
     --border-radius: 20px;
      left:calc(50% - 58px);
      left: calc(100% - 56px);
+     font-size: 0.5px;
   }
 }
 
