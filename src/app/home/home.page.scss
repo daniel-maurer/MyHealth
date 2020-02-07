@@ -114,14 +114,10 @@ ion-fab {
 .btn-new
 {
 
-    position:absolute;
-    width:calc(100% - 89px) !important;
-    height:52px !important;
-    left: 11px;
-    z-index:2;
-    bottom: 10px !important;
-    --border-radius: 10px 10px 10px 0px !important;
 
+
+    position:absolute;
+    z-index:2;
     color: #ffffff;
     text-align: center;
     vertical-align: middle;
@@ -131,8 +127,85 @@ ion-fab {
     .button-native {
       background: linear-gradient(45deg, #007eb7 100%, #2cb6c5 100%);
     }
+   width:calc(100% - 89px);
+   height:52px;
+
+     --border-radius: 10px 10px 10px 0px;
+    left: 11px;
+    bottom: 10px;
+  }
+
+
+.animate-btn {
+  animation: animation-btn 1500ms;
+  animation-delay: 2500ms;
+  animation-fill-mode: forwards;
+//  animation-timing-function: cubic-bezier(.76,.05,.86,.06);
 }
 
+
+
+
+
+
+
+@keyframes animation-btn {
+  0% {
+   bottom: 10px;
+   width:calc(100% - 89px);
+   height:52px;
+   left: 11px;
+  --border-radius: 10px 10px 10px 0px;
+  opacity: 1;
+  }
+  20% {
+    bottom: 16px;
+
+    width: 40px ;
+    height: 40px ;
+    --border-radius: 20px;
+     left:calc(50% - 58px);
+     transform: scale(0.8);
+     opacity: 1;
+  }
+  30% {
+bottom: 16px;
+    width: 40px ;
+    height: 40px ;
+    --border-radius: 20px;
+     left:calc(50% - 58px);
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  40% {
+bottom: 16px;
+    width: 40px ;
+    height: 40px ;
+    --border-radius: 20px;
+     left:calc(50% - 58px);
+    transform: scale(1);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(.76,.05,.86,.06);
+  }
+  60% {
+bottom: 16px;
+    width: 40px ;
+    height: 40px ;
+    --border-radius: 20px;
+     left:calc(50% - 58px);
+    left: calc(100% - 56px);
+    opacity: 0.4;
+    animation-timing-function: cubic-bezier(.76,.05,.86,.06);
+  }
+  100% {
+    bottom: 16px;
+    width: 40px ;
+    height: 40px ;
+    --border-radius: 20px;
+     left:calc(50% - 58px);
+     left: calc(100% - 56px);
+  }
+}
 
 .btn-new-bg{
     position:absolute;
